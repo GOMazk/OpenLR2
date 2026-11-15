@@ -560,6 +560,29 @@ int CheckMission(game *g){
 	return 0;
 }
 
+int AddPlayerPlayCount(game* g) {
+	
+	g->gameplay.playerstat.playcount++;
+	if (g->gameplay.player[PLAYER_1].clearType >= 2)
+		g->gameplay.playerstat.clear++; 
+	else 
+		g->gameplay.playerstat.fail++;
+
+	g->gameplay.playerstat.playtime += (int)GetTimeLapse(41, &g->timer1) / 1000;
+
+	return 0;
+}
+int AddSongPlayCount(game *g) {
+	
+	g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount++;
+	if (g->gameplay.player[PLAYER_1].clearType >= 2)
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount++;
+	else
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.failcount++;
+
+	return 0;
+}
+
 int SaveResult(game *g, sqlite3* sql) {
 	g->net.WaitForRankingHandle();
 	g->net.rankingData.Init();
@@ -784,369 +807,313 @@ int SaveResult(game *g, sqlite3* sql) {
 				g->gameplay.player[PLAYER_1].clearType = 2;
 			}
 		}
-
-		if (g->config.play.battle != OPTION_BATTLE_BATTLE || g->is_starter) {
-
-			if ((g->gameplay.freqSpeedMultiplier < 1.0 || g->config.play.m_isLunaris) && g->is_starter == 0) {
-				if (g->gameplay.replay.status == 2) return -1;
-
-				g->gameplay.playerstat.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType < 2) g->gameplay.playerstat.fail++;
-				else g->gameplay.playerstat.clear++;
-
-				g->gameplay.playerstat.playtime += (int)GetTimeLapse(41, &g->timer1) / 1000;
-
-				g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType >= 2)
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount++;
-				else
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.failcount++;
-
-				UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
-				UpdatePlayerStat(&g->gameplay.playerstat, sql);
-				return 0;
-			}
-
-			else if (g->config.play.battle == OPTION_BATTLE_DBATTLE && g->is_starter == 0) {
-				if (g->gameplay.replay.status == 2) return -1;
-
-				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_db < g->gameplay.player[PLAYER_1].clearType) {
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_db = g->gameplay.player[PLAYER_1].clearType;
-				}
-
-				g->gameplay.playerstat.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType < 2) g->gameplay.playerstat.fail++;
-				else {
-					g->gameplay.playerstat.clear++;
-					if (g->gameplay.player[PLAYER_1].clearType > 2) g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= 0x4000000;
-				}
-
-				g->gameplay.playerstat.playtime += (int)GetTimeLapse(41, &g->timer1) / 1000;
-
-				g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType >= 2)
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount++;
-				else
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.failcount++;
-
-				UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
-				UpdatePlayerStat(&g->gameplay.playerstat, sql);
-				g->gameplay.isNosave = 1;
-				return 0;
-			}
-
-			else if (g->config.play.battle == OPTION_BATTLE_SP2DP && g->is_starter == 0) {
-				if (g->gameplay.replay.status == 2) return -1;
-
-				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_sd < g->gameplay.player[PLAYER_1].clearType) {
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_sd = g->gameplay.player[PLAYER_1].clearType;
-				}
-
-				g->gameplay.playerstat.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType < 2) g->gameplay.playerstat.fail++;
-				else {
-					g->gameplay.playerstat.clear++;
-					if (g->gameplay.player[PLAYER_1].clearType > 2) g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= 0x8000000;
-				}
-
-				g->gameplay.playerstat.playtime += (int)GetTimeLapse(41, &g->timer1) / 1000;
-
-				g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType >= 2)
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount++;
-				else
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.failcount++;
-
-				UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
-				UpdatePlayerStat(&g->gameplay.playerstat, sql);
-				g->gameplay.isNosave = 1;
-				return 0;
-			}
-
-			else if (g->config.play.m_isExtra && g->is_starter == 0){
-				if (g->gameplay.replay.status == 2) return -1;
-				
-				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_ex < g->gameplay.player[PLAYER_1].clearType) {
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_ex = g->gameplay.player[PLAYER_1].clearType;
-				}
-
-				g->gameplay.playerstat.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType < 2) g->gameplay.playerstat.fail++;
-				else {
-					g->gameplay.playerstat.clear++;
-					if (g->gameplay.player[PLAYER_1].clearType > 2) g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= 0x2000000;
-				}
-
-				g->gameplay.playerstat.playtime += (int)GetTimeLapse(41, &g->timer1) / 1000;
-				
-				g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType >= 2)
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount++;
-				else
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.failcount++;
-
-				UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
-				UpdatePlayerStat(&g->gameplay.playerstat, sql);
-				g->gameplay.isNosave = 1;
-				return 0;
-			}
-
-			else if (((g->config.play.assist[PLAYER_1] == 1 || g->config.play.assist[PLAYER_2] == 1) || g->config.play.hsfix == OPTION_HSFIX_CONSTANT || (g->config.play.random[PLAYER_1] > OPTION_RANDOM_SRANDOM || g->config.play.random[PLAYER_2] > OPTION_RANDOM_SRANDOM)) && g->is_starter == 0) { 
-				if (g->gameplay.replay.status == 2) return -1;
-
-				if (g->gameplay.player[PLAYER_1].clearType > 2) g->gameplay.player[PLAYER_1].clearType = 2;
-
-				g->gameplay.playerstat.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType < 2) g->gameplay.playerstat.fail++;
-				else g->gameplay.playerstat.clear++;
-
-				g->gameplay.playerstat.playtime += (int)GetTimeLapse(41, &g->timer1) / 1000;
-
-				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear < g->gameplay.player[PLAYER_1].clearType) {
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear = g->gameplay.player[PLAYER_1].clearType;
-					if (1 <= g->sSelect.bmsList[g->sSelect.cur_song].difficulty && g->sSelect.bmsList[g->sSelect.cur_song].difficulty <= 5) {
-						g->sSelect.bmsList[g->sSelect.cur_song].difficultyLevelBarLamp[g->sSelect.bmsList[g->sSelect.cur_song].difficulty - 1] = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear;
-					}
-				}
-
-				g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType >= 2)
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount++;
-				else
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.failcount++;
-
-				g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= ConvertOptionHistory(g);
-
-				CheckMission(g);
-
-				UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
-				UpdatePlayerStat(&g->gameplay.playerstat, sql);
-				g->gameplay.isNosave = 1;
-				return 0;
-			}
-
-			else {
-				if (g->gameplay.replay.status == 2) return -1;
-
-				g->gameplay.playerstat.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType < 2) g->gameplay.playerstat.fail++;
-				else g->gameplay.playerstat.clear++;
-
-				g->gameplay.playerstat.playtime += (int)GetTimeLapse(41, &g->timer1) / 1000;
-
-				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes == 0) {
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes = g->gameplay.player[PLAYER_1].totalnotes;
-					if (g->gameplay.player[PLAYER_1].totalnotes > 0) {
-						g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = g->gameplay.player[PLAYER_1].exscore * 9 / (g->gameplay.player[PLAYER_1].totalnotes * 2);
-						if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank > 8) g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 8;
-						if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank < 2 && g->gameplay.player[PLAYER_1].exscore > 0) g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 1;
-					}
-				}
-
-				if (g->gameplay.player[PLAYER_1].totalnotes <= g->gameplay.player[PLAYER_1].note_current) {
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.complete = 1;
-				}
-
-				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear < g->gameplay.player[PLAYER_1].clearType) {
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear = g->gameplay.player[PLAYER_1].clearType;
-					if (1 <= g->sSelect.bmsList[g->sSelect.cur_song].difficulty && g->sSelect.bmsList[g->sSelect.cur_song].difficulty <= 5) {
-						g->sSelect.bmsList[g->sSelect.cur_song].difficultyLevelBarLamp[g->sSelect.bmsList[g->sSelect.cur_song].difficulty - 1] = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear;
-					}
-				}
-
-				bool isNewRecord = false;
-				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great + g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat * 2 < g->gameplay.player[PLAYER_1].exscore) {
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes = g->gameplay.player[PLAYER_1].totalnotes;
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat = g->gameplay.player[PLAYER_1].judgecount[5];
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great = g->gameplay.player[PLAYER_1].judgecount[4];
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good = g->gameplay.player[PLAYER_1].judgecount[3];
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad = g->gameplay.player[PLAYER_1].judgecount[2];
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor = g->gameplay.player[PLAYER_1].judgecount[1];
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_score = g->gameplay.player[PLAYER_1].score;
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore = g->gameplay.player[PLAYER_1].exscore;
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.rate = (g->gameplay.player[PLAYER_1].exscore * 100) / (g->gameplay.player[PLAYER_1].totalnotes * 2);
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = (g->gameplay.player[PLAYER_1].exscore * 9) / (g->gameplay.player[PLAYER_1].totalnotes * 2);
-
-
-					if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank > 8)
-						g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 8;
-					if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank < 1 && g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore > 0)
-						g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 1;
-
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.rseed = g->gameplay.randomseed;
-
-					if (g->sSelect.bmsList[g->sSelect.cur_song].keymode < 10) {
-						g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best = g->gameplay.player[PLAYER_1].gaugeType + g->config.play.random[PLAYER_1] * 10;
-					}
-					else {
-						g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best = g->gameplay.player[PLAYER_1].gaugeType + g->config.play.random[PLAYER_1] * 10 + g->config.play.random[PLAYER_2] * 100 + (int)g->config.play.dpFlip * 1000;
-					}
-
-					isNewRecord = true;
-				}
-
-				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo < g->gameplay.player[PLAYER_1].max_combo)
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo = g->gameplay.player[PLAYER_1].max_combo;
-
-				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes == g->gameplay.player[PLAYER_1].note_current) {
-					if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp == -1 || g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1] < g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp) {
-						g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp = g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1];
-					}
-				}
-				else {
-					if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp == -1 || g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1] + (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes - g->gameplay.player[PLAYER_1].note_current) < g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp) {
-						g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp = g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1] + (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes - g->gameplay.player[PLAYER_1].note_current);
-					}
-				}
-
-				g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount++;
-				if (g->gameplay.player[PLAYER_1].clearType >= 2)
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount++;
-				else
-					g->sSelect.bmsList[g->sSelect.cur_song].mybest.failcount++;
-
-				g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= ConvertOptionHistory(g);
-
-				CheckMission(g);
-
-				UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
-				if (isNewRecord) {
-					WriteGhostInDatabase(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->gameplay.p1Score);
-				}
-
-				UpdatePlayerStat(&g->gameplay.playerstat, sql);
-				g->sSelect.oldIRrank = g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking;
-
-				if (g->net.isOnline && g->is_starter == 0) {
-					if (g->gameplay.flag_longsound) {
-						g->net.IRresultMessage = "この曲はIRに登録できません";
-					}
-					else {
-						if (g->gameplay.isCourse == 0) {
-							g->net.myRanking.InitRanking();
-							BMSMETA meta;
-							ParseBMSMETA(&meta, g->sSelect.bmsList[g->sSelect.cur_song].filepath, 0);
-							g->net.myRanking.songMD5 = g->sSelect.bmsList[g->sSelect.cur_song].hash;
-							g->net.myRanking.passMD5 = g->net.IR_passMD5;
-							g->net.myRanking.title = meta.title;
-							if (meta.subtitle.length() > 0) {
-								g->net.myRanking.title.add(" ");
-								g->net.myRanking.title.add(meta.subtitle);
-							}
-							g->net.myRanking.genre = meta.genre;
-							g->net.myRanking.artist = meta.artist;
-							if (meta.subartist.length() > 0) {
-								g->net.myRanking.artist.add(" ");
-								g->net.myRanking.artist.add(meta.subartist);
-							}
-							g->net.myRanking.maxbpm = meta.maxbpm;
-							g->net.myRanking.minbpm = meta.minbpm;
-							g->net.myRanking.playlevel = meta.selLevel;
-							g->net.myRanking.clear = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear;
-							g->net.myRanking.exscore = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore;
-							g->net.myRanking.pg = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat;
-							g->net.myRanking.gr = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great;
-							g->net.myRanking.gd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good;
-							g->net.myRanking.bd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad;
-							g->net.myRanking.pr = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor;
-							g->net.myRanking.maxcombo = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo;
-							g->net.myRanking.playcount = g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount;
-							g->net.myRanking.clearcount = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount;
-							g->net.myRanking.rate = g->sSelect.bmsList[g->sSelect.cur_song].mybest.rate;
-							g->net.myRanking.minbp = g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp;
-							g->net.myRanking.totalnotes = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
-							g->net.myRanking.opt_history = g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history;
-							g->net.myRanking.opt_this = g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best;
-							g->net.myRanking.rseed = g->sSelect.bmsList[g->sSelect.cur_song].mybest.rseed;
-							g->net.myRanking.clear_db = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_db;
-							g->net.myRanking.clear_sd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_sd;
-							g->net.myRanking.clear_ex = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_ex;
-							g->net.myRanking.line = meta.keymode;
-							g->net.myRanking.judge = meta.judge;
-
-							g->net.myRanking.inputtype = DetermineResultPlayDevice(&g->KeyInput);
-							const CSTR ghostString = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
-							g->net.MakeIRsendScoreThread(ghostString.body);
-
-							if (!g->config.network.displayIr.length()) {
-								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
-								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
-								if (g->net.rankingData.rankingCount > 0) {
-									g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
-								}
-							}
-						}
-						else {
-							if (g->sSelect.bmsList[g->sSelect.cur_song].courseIR == 0) {
-								return 1;
-							}
-
-							g->net.myRanking.InitRanking();
-							g->net.myRanking.songMD5 = g->sSelect.bmsList[g->sSelect.cur_song].hash;
-							g->net.myRanking.passMD5 = g->net.IR_passMD5;
-							g->net.myRanking.title = g->sSelect.bmsList[g->sSelect.cur_song].title;
-							if (g->sSelect.bmsList[g->sSelect.cur_song].subtitle.length() > 0) {
-								g->net.myRanking.title.add(" ");
-								g->net.myRanking.title.add(g->sSelect.bmsList[g->sSelect.cur_song].subtitle);
-							}
-							g->net.myRanking.playlevel = g->sSelect.bmsList[g->sSelect.cur_song].courseType; //TODO : CHECK THIS
-							g->net.myRanking.clear = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear;
-							g->net.myRanking.exscore = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore;
-							g->net.myRanking.pg = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat;
-							g->net.myRanking.gr = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great;
-							g->net.myRanking.gd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good;
-							g->net.myRanking.bd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad;
-							g->net.myRanking.pr = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor;
-							g->net.myRanking.maxcombo = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo;
-							g->net.myRanking.playcount = g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount;
-							g->net.myRanking.clearcount = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount;
-							g->net.myRanking.rate = g->sSelect.bmsList[g->sSelect.cur_song].mybest.rate;
-							g->net.myRanking.minbp = g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp;
-							g->net.myRanking.totalnotes = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
-							g->net.myRanking.opt_history = g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history;
-							g->net.myRanking.opt_this = g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best;
-							g->net.myRanking.rseed = g->sSelect.bmsList[g->sSelect.cur_song].mybest.rseed;
-							g->net.myRanking.clear_db = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_db;
-							g->net.myRanking.clear_sd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_sd;
-							g->net.myRanking.clear_ex = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_ex;
-							g->net.myRanking.line = g->sSelect.bmsList[g->sSelect.cur_song].keymode;
-							
-							g->net.myRanking.inputtype = DetermineResultPlayDevice(&g->KeyInput);
-							const CSTR ghostString = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
-							g->net.MakeIRsendScoreThread(ghostString.body);
-
-							if (!g->config.network.displayIr.length()) {
-								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
-								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
-								if (g->net.rankingData.rankingCount > 0) {
-									g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
-								}
-							}
-						}
-					}
-					SetObjectString(20, g->net.IRresultMessage, g->txtStruct.objectStr);
-				}
-				else {
-					ErrorLogAdd("IR機能は利用しません\n");
-				}
-				return 1;
-			}
-		}
-
-		if (g->gameplay.player[PLAYER_2].clearType > g->gameplay.player[PLAYER_1].clearType) g->gameplay.player[PLAYER_1].clearType = g->gameplay.player[PLAYER_2].clearType;
 		
-		if (g->gameplay.replay.status != 2) {
-			g->gameplay.playerstat.playcount++;
 
-			if (g->gameplay.player[PLAYER_1].clearType >= 2)
-				g->gameplay.playerstat.clear++; 
-			else 
-				g->gameplay.playerstat.fail++;
+		//BATTLE
+		if (g->config.play.battle == OPTION_BATTLE_BATTLE && g->is_starter == 0) {
+			if (g->gameplay.player[PLAYER_2].clearType > g->gameplay.player[PLAYER_1].clearType) g->gameplay.player[PLAYER_1].clearType = g->gameplay.player[PLAYER_2].clearType;
 
-			g->gameplay.playerstat.playtime += GetTimeLapse(41, &g->timer1) / 1000;
+			if (g->gameplay.replay.status == 2) return -1;
+
+			AddPlayerPlayCount(g);
+
 			UpdatePlayerStat(&g->gameplay.playerstat, sql);
 			return 0;
 		}
+		//LOW FREQ / LUNARIS
+		else if ((g->gameplay.freqSpeedMultiplier < 1.0 || g->config.play.m_isLunaris) && g->is_starter == 0) {
+			if (g->gameplay.replay.status == 2) return -1;
+
+			AddPlayerPlayCount(g);
+
+			AddSongPlayCount(g);
+
+			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
+			UpdatePlayerStat(&g->gameplay.playerstat, sql);
+			return 0;
+		}
+		//D-BATTLE
+		else if (g->config.play.battle == OPTION_BATTLE_DBATTLE && g->is_starter == 0) {
+			if (g->gameplay.replay.status == 2) return -1;
+
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_db < g->gameplay.player[PLAYER_1].clearType) {
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_db = g->gameplay.player[PLAYER_1].clearType;
+			}
+
+			AddPlayerPlayCount(g);
+			if (g->gameplay.player[PLAYER_1].clearType >= 3) g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= 0x4000000;
+
+			AddSongPlayCount(g);
+
+			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
+			UpdatePlayerStat(&g->gameplay.playerstat, sql);
+			g->gameplay.isNosave = 1;
+			return 0;
+		}
+		//SP2DP
+		else if (g->config.play.battle == OPTION_BATTLE_SP2DP && g->is_starter == 0) {
+			if (g->gameplay.replay.status == 2) return -1;
+
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_sd < g->gameplay.player[PLAYER_1].clearType) {
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_sd = g->gameplay.player[PLAYER_1].clearType;
+			}
+
+			AddPlayerPlayCount(g);
+			if (g->gameplay.player[PLAYER_1].clearType >= 3) g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= 0x8000000;
+
+			AddSongPlayCount(g);
+
+			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
+			UpdatePlayerStat(&g->gameplay.playerstat, sql);
+			g->gameplay.isNosave = 1;
+			return 0;
+		}
+		//EXTRA
+		else if (g->config.play.m_isExtra && g->is_starter == 0){
+			if (g->gameplay.replay.status == 2) return -1;
+				
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_ex < g->gameplay.player[PLAYER_1].clearType) {
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_ex = g->gameplay.player[PLAYER_1].clearType;
+			}
+
+			AddPlayerPlayCount(g);
+			if (g->gameplay.player[PLAYER_1].clearType >= 3) g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= 0x2000000;
+
+			AddSongPlayCount(g);
+
+			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
+			UpdatePlayerStat(&g->gameplay.playerstat, sql);
+			g->gameplay.isNosave = 1;
+			return 0;
+		}
+		//FORCE EASY(ASSIST)
+		else if (((g->config.play.assist[PLAYER_1] == 1 || g->config.play.assist[PLAYER_2] == 1) || g->config.play.hsfix == OPTION_HSFIX_CONSTANT || (g->config.play.random[PLAYER_1] > OPTION_RANDOM_SRANDOM || g->config.play.random[PLAYER_2] > OPTION_RANDOM_SRANDOM)) && g->is_starter == 0) { 
+			if (g->gameplay.replay.status == 2) return -1;
+
+			if (g->gameplay.player[PLAYER_1].clearType > 2) g->gameplay.player[PLAYER_1].clearType = 2;
+
+			AddPlayerPlayCount(g);
+
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear < g->gameplay.player[PLAYER_1].clearType) {
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear = g->gameplay.player[PLAYER_1].clearType;
+				if (1 <= g->sSelect.bmsList[g->sSelect.cur_song].difficulty && g->sSelect.bmsList[g->sSelect.cur_song].difficulty <= 5) {
+					g->sSelect.bmsList[g->sSelect.cur_song].difficultyLevelBarLamp[g->sSelect.bmsList[g->sSelect.cur_song].difficulty - 1] = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear;
+				}
+			}
+
+			AddSongPlayCount(g); 
+
+			g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= ConvertOptionHistory(g);
+
+			CheckMission(g);
+
+			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
+			UpdatePlayerStat(&g->gameplay.playerstat, sql);
+			g->gameplay.isNosave = 1;
+			return 0;
+		}
+		//NORMAL GAME
+		else {
+			if (g->gameplay.replay.status == 2) return -1;
+
+			AddPlayerPlayCount(g);
+
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes == 0) {
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes = g->gameplay.player[PLAYER_1].totalnotes;
+				if (g->gameplay.player[PLAYER_1].totalnotes > 0) {
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = g->gameplay.player[PLAYER_1].exscore * 9 / (g->gameplay.player[PLAYER_1].totalnotes * 2);
+					if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank > 8) g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 8;
+					if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank < 2 && g->gameplay.player[PLAYER_1].exscore > 0) g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 1;
+				}
+			}
+
+			if (g->gameplay.player[PLAYER_1].totalnotes <= g->gameplay.player[PLAYER_1].note_current) {
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.complete = 1;
+			}
+
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear < g->gameplay.player[PLAYER_1].clearType) {
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear = g->gameplay.player[PLAYER_1].clearType;
+				if (1 <= g->sSelect.bmsList[g->sSelect.cur_song].difficulty && g->sSelect.bmsList[g->sSelect.cur_song].difficulty <= 5) {
+					g->sSelect.bmsList[g->sSelect.cur_song].difficultyLevelBarLamp[g->sSelect.bmsList[g->sSelect.cur_song].difficulty - 1] = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear;
+				}
+			}
+
+			bool isNewRecord = false;
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great + g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat * 2 < g->gameplay.player[PLAYER_1].exscore) {
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes = g->gameplay.player[PLAYER_1].totalnotes;
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat = g->gameplay.player[PLAYER_1].judgecount[5];
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great = g->gameplay.player[PLAYER_1].judgecount[4];
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good = g->gameplay.player[PLAYER_1].judgecount[3];
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad = g->gameplay.player[PLAYER_1].judgecount[2];
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor = g->gameplay.player[PLAYER_1].judgecount[1];
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_score = g->gameplay.player[PLAYER_1].score;
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore = g->gameplay.player[PLAYER_1].exscore;
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.rate = (g->gameplay.player[PLAYER_1].exscore * 100) / (g->gameplay.player[PLAYER_1].totalnotes * 2);
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = (g->gameplay.player[PLAYER_1].exscore * 9) / (g->gameplay.player[PLAYER_1].totalnotes * 2);
+
+
+				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank > 8)
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 8;
+				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank < 1 && g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore > 0)
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 1;
+
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.rseed = g->gameplay.randomseed;
+
+				if (g->sSelect.bmsList[g->sSelect.cur_song].keymode < 10) {
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best = g->gameplay.player[PLAYER_1].gaugeType + g->config.play.random[PLAYER_1] * 10;
+				}
+				else {
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best = g->gameplay.player[PLAYER_1].gaugeType + g->config.play.random[PLAYER_1] * 10 + g->config.play.random[PLAYER_2] * 100 + (int)g->config.play.dpFlip * 1000;
+				}
+
+				isNewRecord = true;
+			}
+
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo < g->gameplay.player[PLAYER_1].max_combo)
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo = g->gameplay.player[PLAYER_1].max_combo;
+
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes == g->gameplay.player[PLAYER_1].note_current) {
+				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp == -1 || g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1] < g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp) {
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp = g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1];
+				}
+			}
+			else {
+				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp == -1 || g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1] + (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes - g->gameplay.player[PLAYER_1].note_current) < g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp) {
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp = g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1] + (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes - g->gameplay.player[PLAYER_1].note_current);
+				}
+			}
+
+
+			AddSongPlayCount(g);
+
+			g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history |= ConvertOptionHistory(g);
+
+			CheckMission(g);
+
+			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
+			if (isNewRecord) {
+				WriteGhostInDatabase(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->gameplay.p1Score);
+			}
+
+			UpdatePlayerStat(&g->gameplay.playerstat, sql);
+
+			//ONLINE
+			g->sSelect.oldIRrank = g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking;
+			if (!g->net.isOnline || g->is_starter) {
+				ErrorLogAdd("IR機能は利用しません\n");
+				return 1;
+			}
+			if (g->gameplay.flag_longsound) {
+				g->net.IRresultMessage = "この曲はIRに登録できません";
+				SetObjectString(20, g->net.IRresultMessage, g->txtStruct.objectStr);
+				return 1;
+			}
+
+			if (g->gameplay.isCourse == 0) {
+				g->net.myRanking.InitRanking();
+				BMSMETA meta;
+				ParseBMSMETA(&meta, g->sSelect.bmsList[g->sSelect.cur_song].filepath, 0);
+				g->net.myRanking.songMD5 = g->sSelect.bmsList[g->sSelect.cur_song].hash;
+				g->net.myRanking.passMD5 = g->net.IR_passMD5;
+				g->net.myRanking.title = meta.title;
+				if (meta.subtitle.length() > 0) {
+					g->net.myRanking.title.add(" ");
+					g->net.myRanking.title.add(meta.subtitle);
+				}
+				g->net.myRanking.genre = meta.genre;
+				g->net.myRanking.artist = meta.artist;
+				if (meta.subartist.length() > 0) {
+					g->net.myRanking.artist.add(" ");
+					g->net.myRanking.artist.add(meta.subartist);
+				}
+				g->net.myRanking.maxbpm = meta.maxbpm;
+				g->net.myRanking.minbpm = meta.minbpm;
+				g->net.myRanking.playlevel = meta.selLevel;
+				g->net.myRanking.clear = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear;
+				g->net.myRanking.exscore = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore;
+				g->net.myRanking.pg = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat;
+				g->net.myRanking.gr = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great;
+				g->net.myRanking.gd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good;
+				g->net.myRanking.bd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad;
+				g->net.myRanking.pr = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor;
+				g->net.myRanking.maxcombo = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo;
+				g->net.myRanking.playcount = g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount;
+				g->net.myRanking.clearcount = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount;
+				g->net.myRanking.rate = g->sSelect.bmsList[g->sSelect.cur_song].mybest.rate;
+				g->net.myRanking.minbp = g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp;
+				g->net.myRanking.totalnotes = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
+				g->net.myRanking.opt_history = g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history;
+				g->net.myRanking.opt_this = g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best;
+				g->net.myRanking.rseed = g->sSelect.bmsList[g->sSelect.cur_song].mybest.rseed;
+				g->net.myRanking.clear_db = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_db;
+				g->net.myRanking.clear_sd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_sd;
+				g->net.myRanking.clear_ex = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_ex;
+				g->net.myRanking.line = meta.keymode;
+				g->net.myRanking.judge = meta.judge;
+
+				g->net.myRanking.inputtype = DetermineResultPlayDevice(&g->KeyInput);
+				const CSTR ghostString = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
+				g->net.MakeIRsendScoreThread(ghostString.body);
+
+				if (!g->config.network.displayIr.length()) {
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
+					if (g->net.rankingData.rankingCount > 0) {
+						g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+					}
+				}
+			}
+			else {
+				if (g->sSelect.bmsList[g->sSelect.cur_song].courseIR == 0) {
+					return 1;
+				}
+
+				g->net.myRanking.InitRanking();
+				g->net.myRanking.songMD5 = g->sSelect.bmsList[g->sSelect.cur_song].hash;
+				g->net.myRanking.passMD5 = g->net.IR_passMD5;
+				g->net.myRanking.title = g->sSelect.bmsList[g->sSelect.cur_song].title;
+				if (g->sSelect.bmsList[g->sSelect.cur_song].subtitle.length() > 0) {
+					g->net.myRanking.title.add(" ");
+					g->net.myRanking.title.add(g->sSelect.bmsList[g->sSelect.cur_song].subtitle);
+				}
+				g->net.myRanking.playlevel = g->sSelect.bmsList[g->sSelect.cur_song].courseType; //TODO : CHECK THIS
+				g->net.myRanking.clear = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear;
+				g->net.myRanking.exscore = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore;
+				g->net.myRanking.pg = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat;
+				g->net.myRanking.gr = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great;
+				g->net.myRanking.gd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good;
+				g->net.myRanking.bd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad;
+				g->net.myRanking.pr = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor;
+				g->net.myRanking.maxcombo = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo;
+				g->net.myRanking.playcount = g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount;
+				g->net.myRanking.clearcount = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount;
+				g->net.myRanking.rate = g->sSelect.bmsList[g->sSelect.cur_song].mybest.rate;
+				g->net.myRanking.minbp = g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp;
+				g->net.myRanking.totalnotes = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
+				g->net.myRanking.opt_history = g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_history;
+				g->net.myRanking.opt_this = g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best;
+				g->net.myRanking.rseed = g->sSelect.bmsList[g->sSelect.cur_song].mybest.rseed;
+				g->net.myRanking.clear_db = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_db;
+				g->net.myRanking.clear_sd = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_sd;
+				g->net.myRanking.clear_ex = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_ex;
+				g->net.myRanking.line = g->sSelect.bmsList[g->sSelect.cur_song].keymode;
+							
+				g->net.myRanking.inputtype = DetermineResultPlayDevice(&g->KeyInput);
+				const CSTR ghostString = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
+				g->net.MakeIRsendScoreThread(ghostString.body);
+
+				if (!g->config.network.displayIr.length()) {
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
+					if (g->net.rankingData.rankingCount > 0) {
+						g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+					}
+				}
+			}
+			SetObjectString(20, g->net.IRresultMessage, g->txtStruct.objectStr);
+			return 1;
+		}
+
 	}
 
 	return -1;
