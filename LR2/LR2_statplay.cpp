@@ -1,6 +1,7 @@
 ﻿#include "LR2_statplay.h"
 #include "Engine.h"
 #include "LR2_statlong.h"
+#include "LR2_version.h"
 #include "LR2.h"
 #include "Scene02_Songselect.h" //objstr in CheckMission()
 
@@ -692,6 +693,7 @@ int SaveResult(game *g, sqlite3* sql) {
 		bms.mybest.op_history |= ConvertOptionHistory(g);
 
 		CheckMission(g);
+		AddScoreLog(g, sql, isNewRecord, 0);
 		UpdateScoreDB(bms.hash, &bms.mybest, sql, &g->sSelect.playerPassMD5);
 
 		if (isNewRecord) {
@@ -828,6 +830,7 @@ int SaveResult(game *g, sqlite3* sql) {
 
 			AddSongPlayCount(g);
 
+			//AddScoreLog(g, sql, 0, 1);
 			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
 			UpdatePlayerStat(&g->gameplay.playerstat, sql);
 			return 0;
@@ -845,6 +848,7 @@ int SaveResult(game *g, sqlite3* sql) {
 
 			AddSongPlayCount(g);
 
+			//AddScoreLog(g, sql, 0, 1);
 			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
 			UpdatePlayerStat(&g->gameplay.playerstat, sql);
 			g->gameplay.isNosave = 1;
@@ -863,6 +867,7 @@ int SaveResult(game *g, sqlite3* sql) {
 
 			AddSongPlayCount(g);
 
+			//AddScoreLog(g, sql, 0, 1);
 			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
 			UpdatePlayerStat(&g->gameplay.playerstat, sql);
 			g->gameplay.isNosave = 1;
@@ -881,6 +886,7 @@ int SaveResult(game *g, sqlite3* sql) {
 
 			AddSongPlayCount(g);
 
+			//AddScoreLog(g, sql, 0, 1);
 			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
 			UpdatePlayerStat(&g->gameplay.playerstat, sql);
 			g->gameplay.isNosave = 1;
@@ -907,6 +913,7 @@ int SaveResult(game *g, sqlite3* sql) {
 
 			CheckMission(g);
 
+			AddScoreLog(g, sql, 0, 1);
 			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
 			UpdatePlayerStat(&g->gameplay.playerstat, sql);
 			g->gameplay.isNosave = 1;
@@ -990,6 +997,7 @@ int SaveResult(game *g, sqlite3* sql) {
 
 			CheckMission(g);
 
+			AddScoreLog(g, sql, isNewRecord, 0);
 			UpdateScoreDB(g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sql, &g->sSelect.playerPassMD5);
 			if (isNewRecord) {
 				WriteGhostInDatabase(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash, &g->gameplay.p1Score);
@@ -1118,4 +1126,48 @@ int SaveResult(game *g, sqlite3* sql) {
 
 	return -1;
 }
+
+int AddScoreLog(game* g, sqlite3* sql, bool isNewRecord, bool noSave) {
+	if (!g || !sql) return 0;
+
+	const auto& hash = g->sSelect.bmsList[g->sSelect.cur_song].hash;
+	const auto* stat = &g->gameplay.player[PLAYER_1];
+	const int courseStage = g->gameplay.isCourse != 0 ? (g->gameplay.courseStageNow + 1) : 0;
+	const int rseed = g->gameplay.randomseed;
+
+	int maxExscore = (stat->totalnotes) * 2;
+	int rank = maxExscore > 0 ? (stat->exscore * 9LL / maxExscore) : 0;
+	if (rank > 8) rank = 8;
+	if (rank < 1 && stat->exscore > 0) rank = 1;
+	int rate = maxExscore > 0 ? (stat->exscore * 100LL / maxExscore) : 0;
+
+	int remainingNotes = (stat->totalnotes > stat->note_current) ? (stat->totalnotes - stat->note_current) : 0;
+	int bp = stat->judgecount[2] + stat->judgecount[1] + remainingNotes;
+
+	int mashpoorTemp = stat->judgecount[1] + stat->judgecount[2] + stat->judgecount[3] + stat->judgecount[4] + stat->judgecount[5] - stat->totalnotes; //TOFIX : have to fix all of mashpoor counting method in multiple files, AUTOSCRATCH make it minus
+
+	int pitch = (g->audio.param.pitch_on && (g->audio.param.pitch_type == 0 || g->audio.param.pitch_type == 2)) ? g->audio.param.pitch_amount : 0;
+	// Score hash, ghost and special-mode clear metadata are not logged yet.
+	// Omitted score_log columns remain NULL.
+	char* query = sqlite3_mprintf(
+		"INSERT INTO score_log (timestamp,courseStage,hash,clear,perfect,great,good,bad,poor,"
+		"mashpoor,totalnotes,maxcombo,bp,fast,slow,cb,rank,rate,op,freq,rseed,complete,wasBest,noSave,version) "
+		"VALUES(CAST(strftime('%%s','now') AS INTEGER),%d,%Q,%d,%d,%d,%d,%d,%d,"
+		"%d,%d,%d,%d,%u,%u,%u,%d,%d,%u,%d,%d,%d,%d,%d,%d)",
+		courseStage, hash.body, stat->clearType,
+		stat->judgecount[5], stat->judgecount[4], stat->judgecount[3],
+		stat->judgecount[2], stat->judgecount[1], mashpoorTemp,
+		stat->totalnotes, stat->max_combo, bp,
+		stat->extendedStats.fast, stat->extendedStats.slow, stat->extendedStats.cb,
+		rank, rate, ConvertOptionHistory(g), pitch, rseed, stat->note_current >= stat->totalnotes, (int)isNewRecord, (int)noSave, openlr2::versionCode);
+	if (!query) return 0;
+
+	const int result = SQL_Run(query, sql);
+	if (result != SQLITE_OK) {
+		ErrorLogFmtAdd("AddScoreLog failed (%d): %s\n", result, sqlite3_errmsg(sql));
+	}
+	sqlite3_free(query);
+	return result == SQLITE_OK ? 1 : 0;
+}
+
 
