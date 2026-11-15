@@ -610,27 +610,27 @@ int WriteOpenLr2ConfigXml(game *g, const char *filename){
 	fputs("<?xml version=\"1.0\" encoding=\"shift_jis\"?>\n", pFile);
 	fputs("<config>\n", pFile);
 
-	fputs("\t<system>\n", pFile);
-	WriteXML_Tab2Int(pFile, "resolution", (g->config).system.resolution);
-	WriteXML_Tab2Int(pFile, "fullscreenfilter", (g->config).system.fullscreenfilter);
-	WriteXML_Tab2BoolAsInt(pFile, "fullscreenfitstretch", (g->config).system.fullscreenfitstretch);
-	WriteXML_Tab2Int(pFile, "screenmode", (g->config).system.screenmode);
-	fputs("\t</system>\n", pFile);
+	fputs("\t<network>\n", pFile);
+	WriteXML_Tab2Str(pFile, "display_ir", (g->config).network.displayIr);
+	fputs("\t</network>\n", pFile);
 
 	fputs("\t<play>\n", pFile);
 	WriteXML_Tab2BoolAsInt(pFile, "gaugeautoshift", (g->config).play.m_gas);
-	WriteXML_Tab2BoolAsInt(pFile, "newrandomrestart", (g->config).play.newRandomRestart);
-	WriteXML_Tab2Int(pFile, "lifttype", (g->config).play.lift[PLAYER_1]);
 	WriteXML_Tab2Int(pFile, "lift", (g->config).play.liftv[PLAYER_1]);
+	WriteXML_Tab2Int(pFile, "lifttype", (g->config).play.lift[PLAYER_1]);
+	WriteXML_Tab2BoolAsInt(pFile, "newrandomrestart", (g->config).play.newRandomRestart);
 	fputs("\t</play>\n", pFile);
 
 	fputs("\t<skin>\n", pFile);
 	WriteXML_Tab2Str(pFile, "courseresult", (g->config).skin.skinFilePath[15]);
 	fputs("\t</skin>\n", pFile);
 
-	fputs("\t<network>\n", pFile);
-	WriteXML_Tab2Str(pFile, "display_ir", (g->config).network.displayIr);
-	fputs("\t</network>\n", pFile);
+	fputs("\t<system>\n", pFile);
+	WriteXML_Tab2Int(pFile, "fullscreenfilter", (g->config).system.fullscreenfilter);
+	WriteXML_Tab2BoolAsInt(pFile, "fullscreenfitstretch", (g->config).system.fullscreenfitstretch);
+	WriteXML_Tab2Int(pFile, "resolution", (g->config).system.resolution);
+	WriteXML_Tab2Int(pFile, "screenmode", (g->config).system.screenmode);
+	fputs("\t</system>\n", pFile);
 
 	fputs("</config>\n", pFile);
 
@@ -1197,24 +1197,24 @@ int ReadOpenLr2Config(game* g, const char* filepath) {
 		return 0;
 	}
 
-	ReadXml_Int("config", "system", "resolution", 0, &g->config.system.resolution, hXml);
-	ReadXml_Int("config", "system", "fullscreenfilter", 0, &g->config.system.fullscreenfilter, hXml);
-	ReadXml_PositiveIntAsBool("config", "system", "fullscreenfitstretch", false, &g->config.system.fullscreenfitstretch, hXml);
-	ReadXml_Int("config", "system", "screenmode", 0, &g->config.system.screenmode, hXml);
-	if (g->config.system.screenmode < 0 || g->config.system.screenmode > 2)
-		g->config.system.screenmode = 0; // out-of-range
+	ReadXml_Str("config", "network", "display_ir", "", &g->config.network.displayIr, hXml);
 
 	ReadXml_PositiveIntAsBool("config", "play", "gaugeautoshift", false, &g->config.play.m_gas, hXml);
-	ReadXml_PositiveIntAsBool("config", "play", "newrandomrestart", false, &g->config.play.newRandomRestart, hXml);
+	ReadXml_Int("config", "play", "lift", 0, &g->config.play.liftv[PLAYER_1], hXml);
+	g->config.play.liftv[PLAYER_2] = g->config.play.liftv[PLAYER_1];
 	ReadXml_Int("config", "play", "lifttype", 0, &g->config.play.lift[PLAYER_1], hXml);
 	if (g->config.play.lift[PLAYER_1] != 0) g->config.play.lift[PLAYER_1] = 1;
 	g->config.play.lift[PLAYER_2] = g->config.play.lift[PLAYER_1];
-	ReadXml_Int("config", "play", "lift", 0, &g->config.play.liftv[PLAYER_1], hXml);
-	g->config.play.liftv[PLAYER_2] = g->config.play.liftv[PLAYER_1];
+	ReadXml_PositiveIntAsBool("config", "play", "newrandomrestart", false, &g->config.play.newRandomRestart, hXml);
 
 	ReadXml_Str("config", "skin", "courseresult", "", &g->config.skin.skinFilePath[15], hXml);
 
-	ReadXml_Str("config", "network", "display_ir", "", &g->config.network.displayIr, hXml);
+	ReadXml_Int("config", "system", "fullscreenfilter", 0, &g->config.system.fullscreenfilter, hXml);
+	ReadXml_PositiveIntAsBool("config", "system", "fullscreenfitstretch", false, &g->config.system.fullscreenfitstretch, hXml);
+	ReadXml_Int("config", "system", "resolution", 0, &g->config.system.resolution, hXml);
+	ReadXml_Int("config", "system", "screenmode", 0, &g->config.system.screenmode, hXml);
+	if (g->config.system.screenmode < 0 || g->config.system.screenmode > 2)
+		g->config.system.screenmode = 0; // out-of-range
 
 	delete(hXml);
 	return 1;
