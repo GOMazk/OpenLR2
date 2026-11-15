@@ -234,7 +234,7 @@ int WriteConfigXml(game *g, const char *filename){
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "hs", (g->config).play.hiSpeed[PLAYER_1], "hs");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "hstype", (g->config).play.hsfix, "hstype");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "hstype", (g->config).play.oldHsFix, "hstype");
 	fputs(buf, pFile);
 
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "hsmax", (g->config).play.hsmax, "hsmax");
@@ -616,6 +616,7 @@ int WriteOpenLr2ConfigXml(game *g, const char *filename){
 
 	fputs("\t<play>\n", pFile);
 	WriteXML_Tab2BoolAsInt(pFile, "gaugeautoshift", (g->config).play.m_gas);
+	WriteXML_Tab2Int(pFile, "hstype", (g->config).play.hsfix);
 	WriteXML_Tab2Int(pFile, "lift", (g->config).play.liftv[PLAYER_1]);
 	WriteXML_Tab2Int(pFile, "lifttype", (g->config).play.lift[PLAYER_1]);
 	WriteXML_Tab2BoolAsInt(pFile, "newrandomrestart", (g->config).play.newRandomRestart);
@@ -1099,7 +1100,7 @@ int ReadConfig(game* g, const char* filepath) {
 	ReadXml_Int("config", "play", "gauge", OPTION_GAUGE_GROOVE, g->config.play.gaugeType, hXml);
 	ReadXml_Int("config", "play", "random", OPTION_RANDOM_OFF, &g->config.play.random[PLAYER_1], hXml);
 	ReadXml_Int("config", "play", "effect", 0, &g->config.play.m_HIDSUD[PLAYER_1], hXml);
-	ReadXml_Int("config", "play", "hstype", OPTION_HSFIX_OFF, &g->config.play.hsfix, hXml);
+	ReadXml_Int("config", "play", "hstype", OPTION_HSFIX_OFF, &g->config.play.oldHsFix, hXml);
 	ReadXml_Int("config", "play", "hsmin", 10, &g->config.play.hsmin, hXml);
 	ReadXml_Int("config", "play", "hsmax", 900, &g->config.play.hsmax, hXml);
 	ReadXml_Int("config", "play", "hsmargin", 10, &g->config.play.hsmargin, hXml);
@@ -1200,6 +1201,9 @@ int ReadOpenLr2Config(game* g, const char* filepath) {
 	ReadXml_Str("config", "network", "display_ir", "", &g->config.network.displayIr, hXml);
 
 	ReadXml_PositiveIntAsBool("config", "play", "gaugeautoshift", false, &g->config.play.m_gas, hXml);
+	ReadXml_Int("config", "play", "hstype", g->config.play.oldHsFix, &g->config.play.hsfix, hXml);
+	if (g->config.play.hsfix < OPTION_HSFIX_OFF || g->config.play.hsfix > OPTION_HSFIX_END)
+		g->config.play.hsfix = OPTION_HSFIX_MAINBPM;
 	ReadXml_Int("config", "play", "lift", 0, &g->config.play.liftv[PLAYER_1], hXml);
 	g->config.play.liftv[PLAYER_2] = g->config.play.liftv[PLAYER_1];
 	ReadXml_Int("config", "play", "lifttype", 0, &g->config.play.lift[PLAYER_1], hXml);

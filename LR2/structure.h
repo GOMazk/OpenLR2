@@ -383,7 +383,8 @@ struct CONFIG_PLAY {
 	bool autokey{};
 	int assist[PLAYER_MAX]{};
 	bool dpFlip{};
-	int hsfix{}; // 1:max 2:min 3:average 4:constant 5:main
+	int hsfix{}; // 1:max 2:min 3:average 4:constant 5:main \ref enum OPTION
+	int oldHsFix{}; // 1:max 2:min 3:average 4:constant \ref enum OPTION - LR2 setting untouched, we use \ref hsfix now
 	int battle{}; // 1:battle 2:d-battle 3:sp-to-dp 4:g-battle
 	int autojudge{};
 	int judgetiming{};
