@@ -1568,19 +1568,25 @@ int main(int argc, char** argv) {
 						gs.gameplay.courseConnection[6] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[6];
 						gs.gameplay.courseConnection[7] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[7];
 						gs.gameplay.courseConnection[8] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[8];
+						// Block some options for dan courses
 						if (gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 2) {
-							gs.config.play.random[PLAYER_1] = OPTION_RANDOM_OFF;
-							gs.config.play.random[PLAYER_2] = OPTION_RANDOM_OFF;
-							if (gs.config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_EASY) {
+							if (gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 10 || gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 14) {
+								// LR2 difference: DP: allow mirror, but only combined with dpFlip
+								if (!gs.config.play.dpFlip || gs.config.play.random[PLAYER_1] != OPTION_RANDOM_MIRROR || gs.config.play.random[PLAYER_2] != OPTION_RANDOM_MIRROR) {
+									gs.config.play.random[PLAYER_1] = OPTION_RANDOM_OFF;
+									gs.config.play.random[PLAYER_2] = OPTION_RANDOM_OFF;
+									gs.config.play.dpFlip = false;
+								}
+							} else {
+								// LR2 difference: SP: allow mirror
+								if (gs.config.play.random[PLAYER_1] != OPTION_RANDOM_OFF && gs.config.play.random[PLAYER_1] != OPTION_RANDOM_MIRROR) {
+									gs.config.play.random[PLAYER_1] = OPTION_RANDOM_OFF;
+								}
+							}
+							if (gs.config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_EASY || gs.config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_GATTACK) {
 								gs.config.play.gaugeType[PLAYER_1] = OPTION_GAUGE_GROOVE;
 							}
-							if (gs.config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_EASY) {
-								gs.config.play.gaugeType[PLAYER_2] = OPTION_GAUGE_GROOVE;
-							}
-							if (gs.config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_GATTACK) {
-								gs.config.play.gaugeType[PLAYER_1] = OPTION_GAUGE_GROOVE;
-							}
-							if (gs.config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_GATTACK) {
+							if (gs.config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_EASY || gs.config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_GATTACK) {
 								gs.config.play.gaugeType[PLAYER_2] = OPTION_GAUGE_GROOVE;
 							}
 							gs.config.play.m_HIDSUD[PLAYER_1] = 0;
@@ -1595,7 +1601,6 @@ int main(int argc, char** argv) {
 							gs.config.play.m_char = 0;
 							gs.config.play.m_earthquake = 0;
 							gs.config.play.m_extra = 0;
-							gs.config.play.dpFlip = false;
 							gs.config.play.m_isLunaris = false;
 							gs.config.play.m_gambol = 0;
 							gs.config.play.m_sidejump = 0;
@@ -1611,6 +1616,7 @@ int main(int argc, char** argv) {
 							gs.audio.param.pitch_on = 0;
 							ApplySoundFX(&gs.audio, 1, false);
 						}
+						// Block some options for nonstop courses
 						if (gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 1) {
 							gs.audio.param.pitch_amount = 0;
 							gs.audio.param.pitch_on = 0;
