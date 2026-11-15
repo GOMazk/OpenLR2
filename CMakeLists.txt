@@ -203,6 +203,9 @@ if(WIN32)
         DxLib
         PUBLIC dep/dxlib-for-linux/DxLib/insufficient_include
     )
+	if(MSVC)
+		target_compile_options(DxLib PUBLIC /utf-8)
+	endif()
 elseif(LINUX)
     add_library(DxLib STATIC IMPORTED GLOBAL)
     set_target_properties(
