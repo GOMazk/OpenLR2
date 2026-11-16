@@ -51,7 +51,7 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
 ## Third party tools
 - Launcher (partial support OpenLR2)
   
-  [lr2-launcher](https://github.com/SayakaIsBaka/lr2-launcher)
+  [lr2-launcher](https://github.com/SayakaIsBaka/lr2-launcher) (recommended)
 
   [LR2Nexus](https://github.com/Unengine/LR2Nexus)
 
