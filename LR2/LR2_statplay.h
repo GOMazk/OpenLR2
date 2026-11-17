@@ -19,4 +19,4 @@ int FlipScore(game *g);
 
 
 int SaveResult(game * g, sqlite3 * sql);
-
+int AddScoreLog(game* g, sqlite3* sql, bool isNewRecord, bool noSave);
