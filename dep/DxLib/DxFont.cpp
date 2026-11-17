@@ -1,8 +1,8 @@
-﻿// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ＤｉｒｅｃｔＤｒａｗ制御プログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
@@ -44,6 +44,7 @@
 		#include "iOS/DxFontiOS.h"
     #endif // TARGET_OS_IPHONE
 #endif // __APPLE__
+
 
 
 
@@ -1849,6 +1850,7 @@ extern int RefreshFontDrawResourceToHandle( FONTMANAGE *ManageData, int ASyncThr
 				ManageData->CacheImageSize.cx, ( float )ManageData->CacheImageSize.cx,
 				ManageData->CacheImageSize.cy, ( float )ManageData->CacheImageSize.cy,
 				ManageData->TextureCache,
+				FALSE,
 				ASyncThread
 			) ;
 		}
@@ -8824,7 +8826,10 @@ extern int FontCacheStringDrawToHandleST(
 					// 画像置き換え文字かどうかで処理を分岐
 					if( CharData->GraphHandleFlag )
 					{
-						NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+						if( ManageData->TextureCacheUsePremulAlpha == FALSE )
+						{
+							NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+						}
 
 						Graphics_DrawSetting_SetDrawBrightToOneParam( FColor ) ;
 						if( OnlyType == 0 || OnlyType == 1 )
@@ -8867,7 +8872,10 @@ extern int FontCacheStringDrawToHandleST(
 						Param.GraphHandle = UseManageData->TextureCache ;
 						Param.TransFlag   = TRUE ;
 
-						NS_SetIgnoreDrawGraphColor( TRUE ) ;
+						if( ManageData->TextureCacheUsePremulAlpha == FALSE )
+						{
+							NS_SetIgnoreDrawGraphColor( TRUE ) ;
+						}
 
 						// エッジがある場合はそれを先に描画する
 						if( ( UseManageData->FontType & DX_FONTTYPE_EDGE ) != 0 )
@@ -8914,7 +8922,10 @@ extern int FontCacheStringDrawToHandleST(
 					// 画像置き換え文字かどうかで処理を分岐
 					if( CharData->GraphHandleFlag )
 					{
-						NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+						if( ManageData->TextureCacheUsePremulAlpha == FALSE )
+						{
+							NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+						}
 
 						// 拡大描画かどうかで処理を分岐
 						if( ExRateValidFlag == FALSE )
@@ -9042,8 +9053,11 @@ extern int FontCacheStringDrawToHandleST(
 						// キャッシュテクスチャのサイズを取得する
 						NS_GetGraphSize( UseManageData->TextureCache, &GraphSizeX, &GraphSizeY ) ;
 
-						// テクスチャの RGB は無視する
-						NS_SetIgnoreDrawGraphColor( TRUE ) ;
+						if( ManageData->TextureCacheUsePremulAlpha == FALSE )
+						{
+							// テクスチャの RGB は無視する
+							NS_SetIgnoreDrawGraphColor( TRUE ) ;
+						}
 
 						// 拡大描画かどうかで処理を分岐
 						if( ExRateValidFlag == FALSE )
@@ -9276,7 +9290,10 @@ extern int FontCacheStringDrawToHandleST(
 						// 画像置き換え文字かどうかで処理を分岐
 						if( CharData->GraphHandleFlag )
 						{
-							NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+							if( ManageData->TextureCacheUsePremulAlpha == FALSE )
+							{
+								NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+							}
 
 							Graphics_DrawSetting_SetDrawBrightToOneParam( FColor ) ;
 							if( OnlyType == 0 || OnlyType == 1 )
@@ -9303,8 +9320,11 @@ extern int FontCacheStringDrawToHandleST(
 						}
 						else
 						{
-							// テクスチャの RGB は無視する
-							NS_SetIgnoreDrawGraphColor( TRUE ) ;
+							if( ManageData->TextureCacheUsePremulAlpha == FALSE )
+							{
+								// テクスチャの RGB は無視する
+								NS_SetIgnoreDrawGraphColor( TRUE ) ;
+							}
 
 							// エッジがある場合はそれを先に描画する
 							if( ( UseManageData->FontType & DX_FONTTYPE_EDGE ) != 0 )
@@ -9387,7 +9407,10 @@ extern int FontCacheStringDrawToHandleST(
 						// 画像置き換え文字かどうかで処理を分岐
 						if( CharData->GraphHandleFlag )
 						{
-							NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+							if( ManageData->TextureCacheUsePremulAlpha == FALSE )
+							{
+								NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+							}
 
 							if( PosIntFlag )
 							{
@@ -9417,8 +9440,11 @@ extern int FontCacheStringDrawToHandleST(
 						}
 						else
 						{
-							// テクスチャの RGB は無視する
-							NS_SetIgnoreDrawGraphColor( TRUE ) ;
+							if( ManageData->TextureCacheUsePremulAlpha == FALSE )
+							{
+								// テクスチャの RGB は無視する
+								NS_SetIgnoreDrawGraphColor( TRUE ) ;
+							}
 
 							if( PosIntFlag )
 							{
@@ -11399,8 +11425,11 @@ LOOPEND :
 		}
 		DrawPosSub += ( UseManageData->BaseInfo.FontHeight - UseManageData->BaseInfo.FontAddHeight ) * ( VerticalFlag ? ExRateX : ExRateY ) ;
 
-		// テクスチャの RGB を無視するかどうかの設定を元に戻す
-		NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+		if( ManageData->TextureCacheUsePremulAlpha == FALSE )
+		{
+			// テクスチャの RGB を無視するかどうかの設定を元に戻す
+			NS_SetIgnoreDrawGraphColor( IgnoreDrawGraphColor ) ;
+		}
 
 		// 縁なしの場合は最後に描画輝度を元に戻す
 		Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
@@ -14853,10 +14882,10 @@ extern int DrawVStringF_WCHAR_T( float x, float y, const wchar_t *String, size_t
 #define SETDRAWRECTCODE\
 	if( VerticalFlag )\
 	{\
-		x += font->BaseInfo.FontAddHeight / 2;\
+		x -= font->BaseInfo.FontAddHeight / 2;\
 		SETRECT( DrawRect, x, y, x + font->BaseInfo.FontHeight + font->BaseInfo.FontAddHeight / 2 + 3, GSYS.DrawSetting.DrawArea.bottom ) ;\
 		if( DrawRect.left >= GSYS.DrawSetting.DrawArea.right ) return 0 ;\
-		x -= font->BaseInfo.FontAddHeight / 2;\
+		x += font->BaseInfo.FontAddHeight / 2;\
 	}\
 	else\
 	{\

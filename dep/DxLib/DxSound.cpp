@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ＤｉｒｅｃｔＳｏｕｎｄ制御プログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -5635,7 +5635,7 @@ extern int NS_SetPanSoundMem( int PanPal , int SoundHandle )
 	return 0 ;
 }
 
-// サウンドハンドルのパンを設定する( 0 〜 255 )
+// サウンドハンドルのパンを設定する( 0 ～ 255 )
 extern int NS_ChangePanSoundMem( int PanPal, int SoundHandle )
 {
 	int i ;
@@ -5863,20 +5863,20 @@ extern int NS_ChangeVolumeSoundMem( int VolumePal, int SoundHandle )
 	return 0 ;
 }
 
-// メモリに読みこんだWAVEデータの再生のボリュームを取得する( 100分の1デシベル単位 0 〜 10000 )
+// メモリに読みこんだWAVEデータの再生のボリュームを取得する( 100分の1デシベル単位 0 ～ 10000 )
 extern int NS_GetVolumeSoundMem( int SoundHandle )
 {
 	return NS_GetChannelVolumeSoundMem( 0, SoundHandle ) ;
 }
 
 
-// メモリに読みこんだWAVEデータの再生のボリュームを取得する( 0 〜 255 )
+// メモリに読みこんだWAVEデータの再生のボリュームを取得する( 0 ～ 255 )
 extern int NS_GetVolumeSoundMem2( int SoundHandle )
 {
 	return NS_GetChannelVolumeSoundMem2( 0, SoundHandle ) ;
 }
 
-// サウンドハンドルの指定のチャンネルのボリュームを設定する( 100分の1デシベル単位 0 〜 10000 )
+// サウンドハンドルの指定のチャンネルのボリュームを設定する( 100分の1デシベル単位 0 ～ 10000 )
 extern int NS_SetChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -5923,7 +5923,7 @@ extern int NS_SetChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHan
 	return 0 ;
 }
 
-// サウンドハンドルの指定のチャンネルのボリュームを設定する( 0 〜 255 )
+// サウンドハンドルの指定のチャンネルのボリュームを設定する( 0 ～ 255 )
 extern int NS_ChangeChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -5976,7 +5976,7 @@ extern int NS_ChangeChannelVolumeSoundMem( int Channel, int VolumePal, int Sound
 	return 0 ;
 }
 
-// サウンドハンドルの指定のチャンネルのボリュームを取得する( 100分の1デシベル単位 0 〜 10000 )
+// サウンドハンドルの指定のチャンネルのボリュームを取得する( 100分の1デシベル単位 0 ～ 10000 )
 extern int NS_GetChannelVolumeSoundMem( int Channel, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6016,7 +6016,7 @@ extern int NS_GetChannelVolumeSoundMem( int Channel, int SoundHandle )
 	return Result + 10000 ; 
 }
 
-// サウンドハンドルの指定のチャンネルのボリュームを取得する( 0 〜 255 )
+// サウンドハンドルの指定のチャンネルのボリュームを取得する( 0 ～ 255 )
 extern int NS_GetChannelVolumeSoundMem2( int Channel, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6058,11 +6058,11 @@ extern int NS_GetChannelVolumeSoundMem2( int Channel, int SoundHandle )
 			
 	if( SoundSysData.OldVolumeTypeFlag )
 	{
-		Vol8bit = _DTOL( ( _POW( (float)10, Result / 10.0f / 100.0f ) / ( Max - Min ) ) * 256 ) ;
+		Vol8bit = _DTOL( ( _POW( (float)10, Result / 10.0f / 100.0f ) / ( Max - Min ) ) * 255 ) ;
 	}
 	else
 	{
-		Vol8bit = _DTOL( ( _POW( (float)10, Result / 50.0f / 100.0f ) / ( Max - Min ) ) * 256 ) ;
+		Vol8bit = _DTOL( ( _POW( (float)10, Result / 50.0f / 100.0f ) / ( Max - Min ) ) * 255 ) ;
 	}
 
 	// 終了
@@ -6187,7 +6187,7 @@ extern	int	NS_SetNextPlayPanSoundMem( int PanPal, int SoundHandle )
 	return 0 ;
 }
 
-// サウンドハンドルの次の再生にのみ使用するパンを設定する( -255 〜 255 )
+// サウンドハンドルの次の再生にのみ使用するパンを設定する( -255 ～ 255 )
 extern int NS_ChangeNextPlayPanSoundMem( int PanPal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6339,7 +6339,7 @@ extern	int	NS_ChangeNextPlayVolumeSoundMem( int VolumePal, int SoundHandle )
 	return 0 ;
 }
 
-// サウンドハンドルの次の再生にのみ使用するチャンネルのボリュームを設定する( 100分の1デシベル単位 0 〜 10000 )
+// サウンドハンドルの次の再生にのみ使用するチャンネルのボリュームを設定する( 100分の1デシベル単位 0 ～ 10000 )
 extern int NS_SetNextPlayChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6364,7 +6364,7 @@ extern int NS_SetNextPlayChannelVolumeSoundMem( int Channel, int VolumePal, int 
 	return 0 ;
 }
 
-// サウンドハンドルの次の再生にのみ使用するチャンネルのボリュームを設定する( 0 〜 255 )
+// サウンドハンドルの次の再生にのみ使用するチャンネルのボリュームを設定する( 0 ～ 255 )
 extern int NS_ChangeNextPlayChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -8049,10 +8049,12 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 						DescSize = ReadID3v2Text( FrameBuffer, Desc, sizeof( Desc ), 5 ) ;
 						BYTE *ImageData = &FrameBuffer[ DescSize + 5 ] ;
 
+#ifndef DX_NON_GRAPHICS
 						if( PictureGrHandle != NULL )
 						{
 							*PictureGrHandle = NS_CreateGraphFromMem( ImageData, ( int )( FrameSize - ( DescSize + 5 ) ), NULL, 0, TRUE, FALSE ) ;
 						}
+#endif // DX_NON_GRAPHICS
 					}
 				}
 				else
@@ -8143,10 +8145,12 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 						size_t DescSize = ReadID3v2Text( FrameBuffer, Desc, sizeof( Desc ), MimeSize + 2 ) ;
 						BYTE *ImageData = &FrameBuffer[ MimeSize + 2 + DescSize ] ; 
 
+#ifndef DX_NON_GRAPHICS
 						if( PictureGrHandle != NULL )
 						{
 							*PictureGrHandle = NS_CreateGraphFromMem( ImageData, ( int )( FrameSize - ( MimeSize + 2 + DescSize ) ), NULL, 0, TRUE, FALSE ) ;
 						}
+#endif // DX_NON_GRAPHICS
 					}
 				}
 			}

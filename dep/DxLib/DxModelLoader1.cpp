@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ＦＢＸモデルデータ読み込みプログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -1620,6 +1620,244 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 														if( Material->NormalTexs[ j ] == NULL ) 
 														{
 															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump テクスチャオブジェクトの追加に失敗しました\n" @*/ )) ;
+															return -1 ;
+														}
+													}
+												}
+											}
+										}
+
+										// 自己発光マテリアルプロパティの取得
+										{
+											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sEmissive ) ;
+
+											// レイヤードテクスチャの場合とそれ以外で処理を分岐
+											if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 0 ) != NULL )
+											{
+												// ２個以上のレイヤーには対応していない
+												if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 1 ) != NULL )
+												{
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x45\x00\x6d\x00\x69\x00\x73\x00\x73\x00\x69\x00\x76\x00\x65\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Emissive マテリアルは１レイヤー以上には対応していません\n" @*/ )) ;
+													return -1 ;
+												}
+
+												// テクスチャの数だけ繰り返し
+												LayeredTexNum = 1 ;
+												for( j = 0 ; j < LayeredTexNum ; j ++ )
+												{
+													// テクスチャのアドレスを取得
+													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
+
+													// レイヤーの中に含まれているテクスチャの数を取得する
+													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
+
+													// テクスチャの数だけ繰り返し
+													for( k = 0 ; k < NormalTexNum ; k ++ )
+													{
+														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
+														if( _FbxTexture == NULL ) continue ;
+
+														// モデルに追加
+														Material->EmissiveTexs[ Material->EmissiveTexNum ] = FbxAddTexture( RModel, _FbxTexture ) ;
+														if( Material->EmissiveTexs[ Material->EmissiveTexNum ] == NULL ) 
+														{
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x45\x00\x6d\x00\x69\x00\x73\x00\x73\x00\x69\x00\x76\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Emissive テクスチャオブジェクトの追加に失敗しました\n" @*/ )) ;
+															return -1 ;
+														}
+
+														// 合成方法を取得する
+														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
+														switch( BlendMode )
+														{
+														case FbxLayeredTexture::eTranslucent : Material->EmissiveTexs[ Material->EmissiveTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_TRANSLUCENT ; break ;
+														case FbxLayeredTexture::eAdditive :    Material->EmissiveTexs[ Material->EmissiveTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_ADDITIVE ;    break ;
+														case FbxLayeredTexture::eModulate :    Material->EmissiveTexs[ Material->EmissiveTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE ;    break ;
+														case FbxLayeredTexture::eModulate2 :   Material->EmissiveTexs[ Material->EmissiveTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
+														}
+
+														// テクスチャの数をインクリメント
+														Material->EmissiveTexNum ++ ;
+													}
+												}
+											}
+											else
+											{
+												// 通常のテクスチャの数を取得
+												Material->EmissiveTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
+
+												// 使用している場合は処理
+												if( Material->EmissiveTexNum != 0 )
+												{
+													// テクスチャの数だけ繰り返し
+													for( j = 0 ; j < Material->EmissiveTexNum ; j ++ )
+													{
+														// テクスチャのアドレスを取得
+														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
+
+														// モデルに追加
+														Material->EmissiveTexs[ j ] = FbxAddTexture( RModel, _FbxTexture ) ;
+														if( Material->EmissiveTexs[ j ] == NULL ) 
+														{
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x45\x00\x6d\x00\x69\x00\x73\x00\x73\x00\x69\x00\x76\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Emissive テクスチャオブジェクトの追加に失敗しました\n" @*/ )) ;
+															return -1 ;
+														}
+													}
+												}
+											}
+										}
+
+										// ラフネスマテリアルプロパティの取得
+										{
+											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sShininess ) ;
+
+											// レイヤードテクスチャの場合とそれ以外で処理を分岐
+											if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 0 ) != NULL )
+											{
+												// ２個以上のレイヤーには対応していない
+												if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 1 ) != NULL )
+												{
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x68\x00\x69\x00\x6e\x00\x69\x00\x6e\x00\x65\x00\x73\x00\x73\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Shininess マテリアルは１レイヤー以上には対応していません\n" @*/ )) ;
+													return -1 ;
+												}
+
+												// テクスチャの数だけ繰り返し
+												LayeredTexNum = 1 ;
+												for( j = 0 ; j < LayeredTexNum ; j ++ )
+												{
+													// テクスチャのアドレスを取得
+													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
+
+													// レイヤーの中に含まれているテクスチャの数を取得する
+													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
+
+													// テクスチャの数だけ繰り返し
+													for( k = 0 ; k < NormalTexNum ; k ++ )
+													{
+														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
+														if( _FbxTexture == NULL ) continue ;
+
+														// モデルに追加
+														Material->ShininessTexs[ Material->ShininessTexNum ] = FbxAddTexture( RModel, _FbxTexture ) ;
+														if( Material->ShininessTexs[ Material->ShininessTexNum ] == NULL ) 
+														{
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x68\x00\x69\x00\x6e\x00\x69\x00\x6e\x00\x65\x00\x73\x00\x73\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Shininess テクスチャオブジェクトの追加に失敗しました\n" @*/ )) ;
+															return -1 ;
+														}
+
+														// 合成方法を取得する
+														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
+														switch( BlendMode )
+														{
+														case FbxLayeredTexture::eTranslucent : Material->ShininessTexs[ Material->ShininessTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_TRANSLUCENT ; break ;
+														case FbxLayeredTexture::eAdditive :    Material->ShininessTexs[ Material->ShininessTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_ADDITIVE ;    break ;
+														case FbxLayeredTexture::eModulate :    Material->ShininessTexs[ Material->ShininessTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE ;    break ;
+														case FbxLayeredTexture::eModulate2 :   Material->ShininessTexs[ Material->ShininessTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
+														}
+
+														// テクスチャの数をインクリメント
+														Material->ShininessTexNum ++ ;
+													}
+												}
+											}
+											else
+											{
+												// 通常のテクスチャの数を取得
+												Material->ShininessTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
+
+												// 使用している場合は処理
+												if( Material->ShininessTexNum != 0 )
+												{
+													// テクスチャの数だけ繰り返し
+													for( j = 0 ; j < Material->ShininessTexNum ; j ++ )
+													{
+														// テクスチャのアドレスを取得
+														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
+
+														// モデルに追加
+														Material->ShininessTexs[ j ] = FbxAddTexture( RModel, _FbxTexture ) ;
+														if( Material->ShininessTexs[ j ] == NULL ) 
+														{
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x68\x00\x69\x00\x6e\x00\x69\x00\x6e\x00\x65\x00\x73\x00\x73\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Shininess テクスチャオブジェクトの追加に失敗しました\n" @*/ )) ;
+															return -1 ;
+														}
+													}
+												}
+											}
+										}
+
+
+										// メタリックマテリアルプロパティの取得
+										{
+											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sReflectionFactor ) ;
+
+											// レイヤードテクスチャの場合とそれ以外で処理を分岐
+											if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 0 ) != NULL )
+											{
+												// ２個以上のレイヤーには対応していない
+												if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 1 ) != NULL )
+												{
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x52\x00\x65\x00\x66\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : ReflectionFactor マテリアルは１レイヤー以上には対応していません\n" @*/ )) ;
+													return -1 ;
+												}
+
+												// テクスチャの数だけ繰り返し
+												LayeredTexNum = 1 ;
+												for( j = 0 ; j < LayeredTexNum ; j ++ )
+												{
+													// テクスチャのアドレスを取得
+													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
+
+													// レイヤーの中に含まれているテクスチャの数を取得する
+													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
+
+													// テクスチャの数だけ繰り返し
+													for( k = 0 ; k < NormalTexNum ; k ++ )
+													{
+														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
+														if( _FbxTexture == NULL ) continue ;
+
+														// モデルに追加
+														Material->ReflectionFactorTexs[ Material->ReflectionFactorTexNum ] = FbxAddTexture( RModel, _FbxTexture ) ;
+														if( Material->ReflectionFactorTexs[ Material->ReflectionFactorTexNum ] == NULL ) 
+														{
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x52\x00\x65\x00\x66\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ReflectionFactor テクスチャオブジェクトの追加に失敗しました\n" @*/ )) ;
+															return -1 ;
+														}
+
+														// 合成方法を取得する
+														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
+														switch( BlendMode )
+														{
+														case FbxLayeredTexture::eTranslucent : Material->ReflectionFactorTexs[ Material->ReflectionFactorTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_TRANSLUCENT ; break ;
+														case FbxLayeredTexture::eAdditive :    Material->ReflectionFactorTexs[ Material->ReflectionFactorTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_ADDITIVE ;    break ;
+														case FbxLayeredTexture::eModulate :    Material->ReflectionFactorTexs[ Material->ReflectionFactorTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE ;    break ;
+														case FbxLayeredTexture::eModulate2 :   Material->ReflectionFactorTexs[ Material->ReflectionFactorTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
+														}
+
+														// テクスチャの数をインクリメント
+														Material->ReflectionFactorTexNum ++ ;
+													}
+												}
+											}
+											else
+											{
+												// 通常のテクスチャの数を取得
+												Material->ReflectionFactorTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
+
+												// 使用している場合は処理
+												if( Material->ReflectionFactorTexNum != 0 )
+												{
+													// テクスチャの数だけ繰り返し
+													for( j = 0 ; j < Material->ReflectionFactorTexNum ; j ++ )
+													{
+														// テクスチャのアドレスを取得
+														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
+
+														// モデルに追加
+														Material->ReflectionFactorTexs[ j ] = FbxAddTexture( RModel, _FbxTexture ) ;
+														if( Material->ReflectionFactorTexs[ j ] == NULL ) 
+														{
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x52\x00\x65\x00\x66\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ReflectionFactor テクスチャオブジェクトの追加に失敗しました\n" @*/ )) ;
 															return -1 ;
 														}
 													}

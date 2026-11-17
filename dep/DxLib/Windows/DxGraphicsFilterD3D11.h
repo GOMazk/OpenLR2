@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		GraphFilter系プログラム( Direct3D11 )ヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -60,6 +60,7 @@ extern int	GraphFilter_D3D11_Level_PF(           GRAPHFILTER_INFO *Info, float M
 extern int	GraphFilter_D3D11_TwoColor_PF(        GRAPHFILTER_INFO *Info, float Threshold, COLOR_F *LowColor, COLOR_F *HighColor, int IsPMA ) ;
 extern int	GraphFilter_D3D11_GradientMap_PF(     GRAPHFILTER_INFO *Info, int MapGrHandle, int Reverse, int IsPMA ) ;
 extern int	GraphFilter_D3D11_Replacement_PF(     GRAPHFILTER_INFO *Info, COLOR_U8 TargetColor, COLOR_U8 NextColor, int IsPMA ) ;
+extern int	GraphFilter_D3D11_BilateralBlur_PF(   GRAPHFILTER_INFO *Info, int IsPMA ) ;
 extern int	GraphFilter_D3D11_PremulAlpha_PF(     GRAPHFILTER_INFO *Info ) ;
 extern int	GraphFilter_D3D11_InterpAlpha_PF(     GRAPHFILTER_INFO *Info ) ;
 extern int	GraphFilter_D3D11_YUVtoRGB_PF(        GRAPHFILTER_INFO *Info, int UVGrHandle ) ;

@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		GraphFilter系プログラム
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -1286,6 +1286,11 @@ extern int GraphFilter_RectBltBase(
 				FilterResult = GraphFilter_Replacement( &Info, Param.TargetColor, Param.NextColor, IsPMA ) ;
 				break ;
 
+			case DX_GRAPH_FILTER_PMA_BILATERAL_BLUR:
+			case DX_GRAPH_FILTER_BILATERAL_BLUR :
+				FilterResult = GraphFilter_BilateralBlur( &Info, IsPMA ) ;
+				break ;
+
 			case DX_GRAPH_FILTER_PREMUL_ALPHA :
 				FilterResult = GraphFilter_PremulAlpha( &Info ) ;
 				break ;
@@ -2379,7 +2384,7 @@ extern int GraphFilter_Down_Scale( GRAPHFILTER_INFO *Info, int DivNum )
 }
 
 // CmpType:比較タイプ( DX_CMP_LESS と DX_CMP_GREATER のみ指定できます )
-// CmpParam:比較値( 0.0f〜255.0f )
+// CmpParam:比較値( 0.0f～255.0f )
 // ClipFillFlag:クリップしたピクセルを特定の色で塗りつぶすか( TRUE:塗りつぶす  FALSE:塗りつぶさない )
 // ClipFillColor:クリップしたピクセルに塗る色( GetColorFで取得するもの )
 extern int GraphFilter_Bright_Clip( GRAPHFILTER_INFO *Info, int CmpType, float CmpParam, int ClipFillFlag, COLOR_F *ClipFillColor, int IsPMA )
@@ -3974,6 +3979,22 @@ extern int GraphFilter_Replacement( GRAPHFILTER_INFO *Info, COLOR_U8 TargetColor
 		}
 
 		GraphFilter_SoftImageTerminate( Info ) ;
+	}
+
+	// 終了
+	return 0 ;
+}
+
+extern int GraphFilter_BilateralBlur( GRAPHFILTER_INFO *Info, int IsPMA )
+{
+	// シェーダーが使えるかどうかで処理を分岐
+	if( GSYS.HardInfo.UseShader == TRUE )
+	{
+		GraphFilter_BilateralBlur_PF( Info, IsPMA ) ;
+	}
+	else
+	{
+		// シェーダーが使えない場合
 	}
 
 	// 終了

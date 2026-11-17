@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		内部との出入り口プログラムファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -6582,6 +6582,14 @@ extern int DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float An
 	DXFUNC_END
 	return Result ;
 }
+extern int DrawRectBillboard3D( VECTOR Pos, int SrcX, int SrcY, int SrcWidth, int SrcHeight, float cx, float cy, float Size, float Angle, int GrHandle, int TransFlag, int ReverseXFlag , int ReverseYFlag )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawRectBillboard3D( Pos,  SrcX,  SrcY,  SrcWidth,  SrcHeight,  cx,  cy,  Size, Angle,  GrHandle,  TransFlag,  ReverseXFlag ,  ReverseYFlag ) ;
+	DXFUNC_END
+	return Result ;
+}
 
 extern int FillGraph( int GrHandle, int Red, int Green, int Blue, int Alpha )
 {
@@ -9072,6 +9080,102 @@ extern	int			DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSHADER *Vertex, 
 	DXFUNC_END
 	return Result ;
 }
+extern	int			DrawPolygon2DToShader2( const VERTEX2D *Vertex, int PolygonNum )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPolygon2DToShader2( Vertex, PolygonNum ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPolygon3DToShader2( const VERTEX3D *Vertex, int PolygonNum )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPolygon3DToShader2( Vertex, PolygonNum ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPolygonIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPolygonIndexed2DToShader2( Vertex, VertexNum, Indices, PolygonNum ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPolygon32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPolygon32bitIndexed2DToShader2( Vertex, VertexNum, Indices, PolygonNum ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPolygonIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPolygonIndexed3DToShader2( Vertex, VertexNum, Indices, PolygonNum ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPolygon32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPolygon32bitIndexed3DToShader2( Vertex, VertexNum, Indices, PolygonNum ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPrimitive2DToShader2( const VERTEX2D *Vertex, int VertexNum, int PrimitiveType )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPrimitive2DToShader2( Vertex,  VertexNum,  PrimitiveType ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPrimitive3DToShader2( const VERTEX3D *Vertex, int VertexNum, int PrimitiveType )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPrimitive3DToShader2( Vertex,  VertexNum,  PrimitiveType ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPrimitiveIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPrimitiveIndexed2DToShader2( Vertex, VertexNum, Indices,  IndexNum,  PrimitiveType ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPrimitive32bitIndexed2DToShader2( Vertex, VertexNum, Indices,  IndexNum,  PrimitiveType ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPrimitiveIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPrimitiveIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern	int			DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_DrawPrimitive32bitIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType ) ;
+	DXFUNC_END
+	return Result ;
+}
 extern	int			DrawPolygon3DToShader_UseVertexBuffer( int VertexBufHandle )
 {
 	int Result ;
@@ -10212,6 +10316,15 @@ extern int CreateGraphFromID3D11Texture2D( const void *pID3D11Texture2D )
 	return Result ;
 }
 #endif // DX_NON_DIRECT3D11
+
+extern	const void*	GetGraphIDirect3DTexture9( int GrHandle )
+{
+	const void* Result ;
+	DXFUNC_BEGIN
+	Result = NS_GetGraphIDirect3DTexture9( GrHandle ) ;
+	DXFUNC_END
+	return Result ;
+}
 
 extern	const void*	GetGraphID3D11Texture2D( int GrHandle )
 {
@@ -13210,6 +13323,14 @@ extern int SetCreateDrawValidGraphMultiSample( int Samples, int Quality )
 	int Result ;
 	DXFUNC_BEGIN
 	Result = NS_SetCreateDrawValidGraphMultiSample( Samples, Quality ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern int GetCreateDrawValidGraphMultiSample( int *Samples, int *Quality )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_GetCreateDrawValidGraphMultiSample( Samples, Quality ) ;
 	DXFUNC_END
 	return Result ;
 }
@@ -19097,6 +19218,23 @@ extern int MV1SaveModelToXFileWithStrLen( int MHandle, const TCHAR *FileName, si
 }
 #endif // DX_NON_SAVEFUNCTION
 
+extern int MV1SetNotSaveTopFrameName( const TCHAR *FrameName )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_MV1SetNotSaveTopFrameName( FrameName ) ;
+	DXFUNC_END
+	return Result ;
+}
+extern int MV1SetNotSaveTopFrameNameWithStrLen( const TCHAR *FrameName, size_t FrameNameLength )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_MV1SetNotSaveTopFrameNameWithStrLen( FrameName, FrameNameLength ) ;
+	DXFUNC_END
+	return Result ;
+}
+
 
 extern int MV1DrawModel( int MHandle )
 {
@@ -20221,6 +20359,60 @@ extern int MV1GetMaterialNormalMapTexture( int MHandle, int MaterialIndex )
 	int Result ;
 	DXFUNC_BEGIN
 	Result = NS_MV1GetMaterialNormalMapTexture(  MHandle,  MaterialIndex ) ;
+	DXFUNC_END
+	return Result ;
+}
+
+extern int MV1SetMaterialEmissiveMapTexture( int MHandle, int MaterialIndex, int TexIndex )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_MV1SetMaterialEmissiveMapTexture(  MHandle,  MaterialIndex, TexIndex ) ;
+	DXFUNC_END
+	return Result ;
+}
+
+extern int MV1GetMaterialEmissiveMapTexture( int MHandle, int MaterialIndex )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_MV1GetMaterialEmissiveMapTexture(  MHandle,  MaterialIndex ) ;
+	DXFUNC_END
+	return Result ;
+}
+
+extern int MV1SetMaterialShininessMapTexture( int MHandle, int MaterialIndex, int TexIndex )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_MV1SetMaterialShininessMapTexture(  MHandle,  MaterialIndex, TexIndex ) ;
+	DXFUNC_END
+	return Result ;
+}
+
+extern int MV1GetMaterialShininessMapTexture( int MHandle, int MaterialIndex )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_MV1GetMaterialShininessMapTexture(  MHandle,  MaterialIndex ) ;
+	DXFUNC_END
+	return Result ;
+}
+
+extern int MV1SetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex, int TexIndex )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_MV1SetMaterialReflectionFactorMapTexture(  MHandle,  MaterialIndex, TexIndex ) ;
+	DXFUNC_END
+	return Result ;
+}
+
+extern int MV1GetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_MV1GetMaterialReflectionFactorMapTexture(  MHandle,  MaterialIndex ) ;
 	DXFUNC_END
 	return Result ;
 }
@@ -22104,20 +22296,20 @@ extern int Live2D_Model_Draw( int Live2DModelHandle )
 	return Result ;
 }
 
-extern int Live2D_Model_StartMotion( int Live2DModelHandle, const TCHAR *group, int no, float fadeInSeconds, float fadeOutSeconds, int isLoopFadeIn )
+extern int Live2D_Model_StartMotion( int Live2DModelHandle, const TCHAR *group, int no, float fadeInSeconds, float fadeOutSeconds, int isLoopFadeIn , int isLoop )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_Live2D_Model_StartMotion( Live2DModelHandle, group, no, fadeInSeconds, fadeOutSeconds, isLoopFadeIn ) ;
+	Result = NS_Live2D_Model_StartMotion( Live2DModelHandle, group, no, fadeInSeconds, fadeOutSeconds, isLoopFadeIn , isLoop ) ;
 	DXFUNC_END
 	return Result ;
 }
 
-extern int Live2D_Model_StartMotionWithStrLen( int Live2DModelHandle, const TCHAR *group, size_t groupLength, int no, float fadeInSeconds, float fadeOutSeconds, int isLoopFadeIn )
+extern int Live2D_Model_StartMotionWithStrLen( int Live2DModelHandle, const TCHAR *group, size_t groupLength, int no, float fadeInSeconds, float fadeOutSeconds, int isLoopFadeIn , int isLoop )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_Live2D_Model_StartMotionWithStrLen( Live2DModelHandle, group, groupLength, no, fadeInSeconds, fadeOutSeconds, isLoopFadeIn ) ;
+	Result = NS_Live2D_Model_StartMotionWithStrLen( Live2DModelHandle, group, groupLength, no, fadeInSeconds, fadeOutSeconds, isLoopFadeIn , isLoop ) ;
 	DXFUNC_END
 	return Result ;
 }

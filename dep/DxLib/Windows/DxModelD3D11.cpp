@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		モデルデータ制御プログラム( Direct3D11 )
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -1833,11 +1833,11 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 	Graphics_D3D11_DeviceState_SetCullMode( GSYS.DrawSetting.ShadowMapDraw ? FALSE : MBMesh->BackCulling ) ; 
 
 	// アルファテスト設定
-//	if( MMaterial->UseAlphaTest )
-//	{
-//		Graphics_D3D11_DeviceState_SetAlphaTestCmpMode( MMaterial->AlphaFunc ) ;
-//		Graphics_D3D11_DeviceState_SetAlphaTestRef(     MMaterial->AlphaRef ) ;
-//	}
+	if( MMaterial->UseAlphaTest )
+	{
+		Graphics_D3D11_DeviceState_SetAlphaTestCmpMode( MMaterial->AlphaFunc ) ;
+		Graphics_D3D11_DeviceState_SetAlphaTestRef(     MMaterial->AlphaRef ) ;
+	}
 
 	// FactorColor の設定
 	{
@@ -2912,14 +2912,16 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 	UseOrigShader = FALSE ;
 	if( MV1Man.UseOrigShaderFlag )
 	{
-		UseOrigShader = TRUE ;
-
 		// 頂点シェーダーのセットアップ
 		if( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle > 0 )
 		{
 			if( Graphics_D3D11_DeviceState_SetVertexShaderToHandle( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle ) < 0 )
 			{
 				UseOrigShader = FALSE ;
+			}
+			else
+			{
+				UseOrigShader = TRUE ;
 			}
 		}
 
@@ -2930,6 +2932,10 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 			{
 				UseOrigShader = FALSE ;
 			}
+			else
+			{
+				UseOrigShader = TRUE ;
+			}
 		}
 
 		// ピクセルシェーダーのセットアップ
@@ -2938,6 +2944,10 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 			if( Graphics_D3D11_DeviceState_SetPixelShaderToHandle( GSYS.DrawSetting.UserShaderRenderInfo.SetPixelShaderHandle ) < 0 )
 			{
 				UseOrigShader = FALSE ;
+			}
+			else
+			{
+				UseOrigShader = TRUE ;
 			}
 		}
 	}

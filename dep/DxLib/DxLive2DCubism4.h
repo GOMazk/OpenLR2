@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		Live2D Cubism4 関係プログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -35,6 +35,7 @@
 		#include "iOS/DxLive2DCubism4iOS.h"
     #endif // TARGET_OS_IPHONE
 #endif // __APPLE__
+
 
 
 
@@ -321,7 +322,7 @@ extern	int		Live2DCubism4_LoadModel_UseGParam( LIVE2DCUBISM4_LOADMODEL_GPARAM *G
 // wchar_t版関数
 extern	int			Live2D_SetCubism4CoreDLLPath_WCHAR_T(			const wchar_t *CoreDLLFilePath ) ;
 extern	int			Live2D_LoadModel_WCHAR_T(						const wchar_t *FilePath ) ;
-extern	int			Live2D_Model_StartMotion_WCHAR_T(				int Live2DModelHandle, const wchar_t *group, int no, float fadeInSeconds, float fadeOutSeconds, int isLoopFadeIn ) ;
+extern	int			Live2D_Model_StartMotion_WCHAR_T(				int Live2DModelHandle, const wchar_t *group, int no, float fadeInSeconds, float fadeOutSeconds, int isLoopFadeIn, int isLoop ) ;
 extern	int			Live2D_Model_SetExpression_WCHAR_T(				int Live2DModelHandle, const wchar_t *expressionID ) ;
 extern	int			Live2D_Model_HitTest_WCHAR_T(					int Live2DModelHandle, const wchar_t *hitAreaName, float x, float y ) ;
 extern	float		Live2D_Model_GetParameterValue_WCHAR_T(			int Live2DModelHandle, const wchar_t *parameterId ) ;

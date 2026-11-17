@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ウインドウ関係制御プログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -365,7 +365,9 @@ static void			SetupWindowClassName() ;													// クラス名のセット�
 
 // メッセージ処理関数
 static	LRESULT		CALLBACK DxLib_WinProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ) ;	// メインウインドウのメッセージコールバック関数
+#ifndef DX_NON_STOPTASKSWITCH
 LRESULT CALLBACK	LowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lParam)	;			// フックされた時のコールバック関数
+#endif // DX_NON_STOPTASKSWITCH
 #ifdef DX_THREAD_SAFE
 DWORD	WINAPI		ProcessMessageThreadFunction( LPVOID ) ;									// ProcessMessage をひたすら呼びつづけるスレッド
 #endif
@@ -1203,6 +1205,7 @@ extern int TerminateWindow( void )
 		// マウスカーソルを表示する
 		NS_SetMouseDispFlag( TRUE ) ;
 
+#ifndef DX_NON_STOPTASKSWITCH
 		// タスクスイッチの有効、無効をセットする
 		{
 	/*		if( WinData.WindowsVersion < DX_WINDOWSVERSION_NT31 )
@@ -1247,6 +1250,8 @@ extern int TerminateWindow( void )
 				}
 			}
 		}
+
+#endif // DX_NON_STOPTASKSWITCH
 
 		// リージョンを削除する
 		NS_SetWindowRgnGraph( NULL ) ;
@@ -4416,9 +4421,16 @@ extern int SetWindowStyle( int CenterPosition )
 						Rect.left = ( ( DesktopW - TrayW ) - WindowSizeX ) / 2 + TrayW + DesktopX ;
 						Rect.top  = (   DesktopH           - WindowSizeY ) / 2         + DesktopY ;
 					}
+					else
+					// それ以外の場合は下側にあると仮定する
+					{
+						// 下側
+						Rect.left = (   DesktopW           - WindowSizeX ) / 2         + DesktopX ;
+						Rect.top  = ( ( DesktopH - TrayH ) - WindowSizeY ) / 2         + DesktopY ;
+					}
 
-					Rect.right  =  Rect.left + WindowSizeX + DesktopX ;
-					Rect.bottom =  Rect.top  + WindowSizeY + DesktopY ;
+					Rect.right  =  Rect.left + WindowSizeX ;
+					Rect.bottom =  Rect.top  + WindowSizeY ;
 				}
 			}
 			else
@@ -4471,7 +4483,7 @@ extern int SetWindowStyle( int CenterPosition )
 
 				if( WinData.WindowRect.left < DesktopX )
 				{
-					left = -WinData.WindowRect.left ;
+					left = -( WinData.WindowRect.left - DesktopX ) ;
 					Rect.left   += left ;
 					Rect.right  += left ;
 					WinData.WindowRect.left   += left ;
@@ -4480,7 +4492,7 @@ extern int SetWindowStyle( int CenterPosition )
 
 				if( WinData.WindowRect.top < DesktopY )
 				{
-					top  = -WinData.WindowRect.top  ;
+					top  = -( WinData.WindowRect.top - DesktopY ) ;
 					Rect.top    += top  ;
 					Rect.bottom += top  ;
 					WinData.WindowRect.top    += top  ;
@@ -5222,6 +5234,8 @@ extern int NS_SetWindowPosition( int x, int y )
 	return 0 ;
 }
 
+#ifndef DX_NON_STOPTASKSWITCH
+
 // _KBDLLHOOKSTRUCT 構造体の定義
 typedef struct tag_KBDLLHOOKSTRUCT
 {
@@ -5254,19 +5268,19 @@ LRESULT CALLBACK LowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lParam)
 					return 1;
 
 				// Alt + Tab を無効にします
-				if (pkbhs->vkCode == VK_TAB && pkbhs->flags & LLKHF_ALTDOWN)
+				if (pkbhs->vkCode == VK_TAB && ( pkbhs->flags & LLKHF_ALTDOWN ) )
 					return 1;
 
 				// Alt + Esc を無効にします
-				if (pkbhs->vkCode == VK_ESCAPE && pkbhs->flags & LLKHF_ALTDOWN)
+				if (pkbhs->vkCode == VK_ESCAPE && ( pkbhs->flags & LLKHF_ALTDOWN ) )
 					return 1;
 
 				// Alt + F4 を無効にします
-				if (pkbhs->vkCode == VK_F4 && pkbhs->flags & LLKHF_ALTDOWN )
+				if (pkbhs->vkCode == VK_F4 && ( pkbhs->flags & LLKHF_ALTDOWN ) )
 					return 1 ;
 
 				// Alt up を無効にします
-				if (pkbhs->flags & LLKHF_UP )
+				if ((pkbhs->vkCode == VK_LMENU || pkbhs->vkCode == VK_LMENU ) && ( pkbhs->flags & LLKHF_UP ) )
 					return 1 ;
 
 				break;
@@ -5278,6 +5292,8 @@ LRESULT CALLBACK LowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lParam)
 	}
     return CallNextHookEx( WinData.TaskHookHandle, nCode, wParam, lParam);
 }
+
+#endif // DX_NON_STOPTASKSWITCH
 
 #ifdef DX_THREAD_SAFE
 
@@ -7473,7 +7489,7 @@ extern int AddMenuItem_WCHAR_T( int AddType, const wchar_t *ItemName, int ItemID
 	{
 		// 選択項目の場合
 
-		// 新しいアイテムのＩＤが−１だった場合使われていないＩＤを付ける
+		// 新しいアイテムのＩＤが－１だった場合使われていないＩＤを付ける
 		if( NewItemID == -1 )
 			NewItemID = GetNewMenuItemID() ;
 		WItemInfo = &WinData.MenuItemInfo[ WinData.MenuItemInfoNum ] ;
@@ -11122,6 +11138,8 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 	// タスクスイッチの有効無効をセット
 	if( WinData.SysCommandOffFlag == TRUE )
 	{
+#ifndef DX_NON_STOPTASKSWITCH
+
 		if( WinData.WindowsVersion < DX_WINDOWSVERSION_NT31 )
 		{
 			// Win95 カーネルの場合の処理
@@ -11181,6 +11199,8 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 // 				}
 			}
 		}
+
+#endif // DX_NON_STOPTASKSWITCH
 
 		// 共通
 		WinData.LockInitializeFlag = TRUE ;

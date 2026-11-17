@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		モデルデータ制御プログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -65,8 +65,8 @@ namespace DxLib
 
 // 頂点タイプ
 #define MV1_VERTEX_TYPE_NORMAL				(0)					// 剛体メッシュ用
-#define MV1_VERTEX_TYPE_SKIN_4BONE			(1)					// １〜４ボーンのスキニングメッシュ用
-#define MV1_VERTEX_TYPE_SKIN_8BONE			(2)					// ５〜８ボーンのスキニングメッシュ用
+#define MV1_VERTEX_TYPE_SKIN_4BONE			(1)					// １～４ボーンのスキニングメッシュ用
+#define MV1_VERTEX_TYPE_SKIN_8BONE			(2)					// ５～８ボーンのスキニングメッシュ用
 #define MV1_VERTEX_TYPE_SKIN_FREEBONE		(3)					// ボーン数無制限のスキニングメッシュ用
 #define MV1_VERTEX_TYPE_NUM					(4)					// 頂点タイプの数
 
@@ -345,6 +345,12 @@ struct MV1_MATERIAL_BASE
 	MV1_MATERIAL_LAYER		SpecularLayer[ 8 ] ;				// スペキュラマップのレイヤー情報( ０レイヤーの BlendType は無視される )
 	int						NormalLayerNum ;					// 法線マップのレイヤー数
 	MV1_MATERIAL_LAYER		NormalLayer[ 8 ] ;					// 法線マップのレイヤー情報( ０レイヤーの BlendType は無視される )
+	int						EmissiveLayerNum ;					// 自己発光マップのレイヤー数
+	MV1_MATERIAL_LAYER		EmissiveLayer[ 8 ] ;				// 自己発光マップのレイヤー情報( ０レイヤーの BlendType は無視される )
+	int						ShininessLayerNum ;					// ラフネスマップのレイヤー数
+	MV1_MATERIAL_LAYER		ShininessLayer[ 8 ] ;				// ラフネスマップのレイヤー情報( ０レイヤーの BlendType は無視される )
+	int						ReflectionFactorLayerNum ;			// メタリックマップのレイヤー数
+	MV1_MATERIAL_LAYER		ReflectionFactorLayer[ 8 ] ;		// メタリックマップのレイヤー情報( ０レイヤーの BlendType は無視される )
 
 	int						DiffuseGradTexture ;				// ( トゥーンレンダリングでのみ使用 )ディフューズカラーグラデーションテクスチャインデックス、当たっているライトのディフューズカラーでＵ値が決まるもの、デフォルトテクスチャの場合は -1 or -2、0以上の場合は MV1_MODEL_BASE.Textue 配列のインデックス
 	int						SpecularGradTexture ;				// ( トゥーンレンダリングでのみ使用 )スペキュラカラーグラデーションテクスチャインデックス、当たっているライトのスペキュラカラーでＵ値が決まるもの、デフォルトテクスチャの場合は -1 or -2、0以上の場合は MV1_MODEL_BASE.Textue 配列のインデックス
@@ -397,8 +403,8 @@ struct MV1_LIGHT
 // 16bitデータタイプ用補助情報構造体
 struct MV1_ANIM_KEY_16BIT
 {
-	BYTE					Min ;								// 最小値( bit7:０かどうか( 0:0以外 1:0 )  bit6:符号(0:+ 1:-)  bit5:乗数方向(0:+ 1:-) bit4〜0:乗数(最大10の15乗) ) 
-	BYTE					Unit ;								// 16bit値１辺りの値( bit7:乗数方向(0:+ 1:-) bit6〜4:乗数(最大10の7乗) bit3〜0:乗算される値( 0〜15 ) )
+	BYTE					Min ;								// 最小値( bit7:０かどうか( 0:0以外 1:0 )  bit6:符号(0:+ 1:-)  bit5:乗数方向(0:+ 1:-) bit4～0:乗数(最大10の15乗) ) 
+	BYTE					Unit ;								// 16bit値１辺りの値( bit7:乗数方向(0:+ 1:-) bit6～4:乗数(最大10の7乗) bit3～0:乗算される値( 0～15 ) )
 } ;
 
 // 16bitデータタイプ用補助情報構造体( float版 )
@@ -1127,12 +1133,12 @@ struct MV1_MATERIAL
 	MV1_MATERIAL_LAYER		SpecularLayer[ 8 ] ;				// スペキュラマップのレイヤー情報( ０レイヤーの BlendType は無視される )
 
 	int						DiffuseGradTexture ;				// ( トゥーンレンダリングでのみ使用 )ディフューズカラーグラデーションテクスチャインデックス、当たっているライトのディフューズカラーでＵ値が決まるもの( MV1_MODEL_BASE.Textue 配列のインデックス )
-	int						SpecularGradTexture ;				// ( トゥーンレンダリングでのみ使用 )スペキュラカラーグラデーションテクスチャインデックス、当たっているライトのスペキュラカラーでＵ値が決まるもの、無効の場合は−１( MV1_MODEL_BASE.Textue 配列のインデックス )
+	int						SpecularGradTexture ;				// ( トゥーンレンダリングでのみ使用 )スペキュラカラーグラデーションテクスチャインデックス、当たっているライトのスペキュラカラーでＵ値が決まるもの、無効の場合は－１( MV1_MODEL_BASE.Textue 配列のインデックス )
 	int						SphereMapTexture ;					// ( トゥーンレンダリングでのみ使用 )スフィアマップテクスチャインデックス
 	int						DiffuseGradBlendType ;				// ( トゥーンレンダリングでのみ使用 )ディフューズグラデーションテクスチャのブレンドタイプ( DX_MATERIAL_BLENDTYPE_TRANSLUCENT など )
 	int						SpecularGradBlendType ;				// ( トゥーンレンダリングでのみ使用 )スペキュラグラデーションテクスチャのブレンドタイプ( DX_MATERIAL_BLENDTYPE_ADDITIVE など )
 	int						SphereMapBlendType ;				// ( トゥーンレンダリングでのみ使用 )スフィアマップテクスチャのブレンドタイプ( DX_MATERIAL_BLENDTYPE_ADDITIVE など )
-	float					OutLineWidth ;						// ( トゥーンレンダリングでのみ使用 )輪郭線の幅( 0.0f 〜 1.0f )
+	float					OutLineWidth ;						// ( トゥーンレンダリングでのみ使用 )輪郭線の幅( 0.0f ～ 1.0f )
 	float					OutLineDotWidth ;					// ( トゥーンレンダリングでのみ使用 )輪郭線のドット単位での幅
 	COLOR_F					OutLineColor ;						// ( トゥーンレンダリングでのみ使用 )輪郭線の色
 
@@ -1433,6 +1439,8 @@ struct MV1_MODEL_MANAGE
 	int						LoadModelToIgnoreIK ;					// 読み込むモデルのIK情報を無視するかどうか( TRUE:無視する  FALSE:無視しない )
 	VECTOR					LoadCalcPhysicsWorldGravity[ MV1_LOADCALC_PHYSICS_GRAVITY_NUM ] ;	// 読み込むモデルの事前計算に使用する重力
 
+	wchar_t					NotSaveTopFrameName[ 256 ] ;		// 保存時に除外するトップフレーム名
+
 	int						AnimFilePathValid ;					// AnimFilePath が有効かどうか( TRUE:有効  FALSE:無効 )
 	wchar_t					AnimFileName[ 512 ] ;				// アニメーションファイルの名前
 	wchar_t					AnimFileDirPath[ 512 ] ;			// アニメーションファイルのディレクトリパス
@@ -1684,6 +1692,12 @@ extern	int				MV1SetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex, 
 extern	int				MV1GetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex ) ;					// 指定のマテリアルでスペキュラマップとして使用されているテクスチャのインデックスを取得する
 extern	int				MV1SetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// 指定のマテリアルで法線マップとして使用するテクスチャを指定する
 extern	int				MV1GetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex ) ;					// 指定のマテリアルで法線マップとして使用されているテクスチャのインデックスを取得する
+extern	int				MV1SetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// 指定のマテリアルで自己発光マップとして使用するテクスチャを指定する
+extern	int				MV1GetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex ) ;				// 指定のマテリアルで自己発光マップとして使用されているテクスチャのインデックスを取得する
+extern	int				MV1SetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;// 指定のマテリアルでラフネスマップとして使用するテクスチャを指定する
+extern	int				MV1GetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex ) ;				// 指定のマテリアルでラフネスマップとして使用されているテクスチャのインデックスを取得する
+extern	int				MV1SetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// 指定のマテリアルでメタリックマップとして使用するテクスチャを指定する
+extern	int				MV1GetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex ) ;				// 指定のマテリアルでメタリックマップとして使用されているテクスチャのインデックスを取得する
 extern	int				MV1SetMaterialDifColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// 指定のマテリアルのディフューズカラーを設定する
 extern	int				MV1SetMaterialSpcColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// 指定のマテリアルのスペキュラカラーを設定する
 extern	int				MV1SetMaterialEmiColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// 指定のマテリアルのエミッシブカラーを設定する
@@ -1704,17 +1718,17 @@ extern	int				MV1GetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIn
 extern	int				MV1SetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex, float Width ) ;		// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを設定する
 extern	float			MV1GetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex ) ;						// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線のドット単位の太さを取得する
 extern	int				MV1SetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex, float Width ) ;		// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線のドット単位の太さを設定する
-extern	float			MV1GetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex ) ;					// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを取得する( 0.0f 〜 1.0f )
+extern	float			MV1GetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex ) ;					// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを取得する( 0.0f ～ 1.0f )
 extern	int				MV1SetMaterialOutLineColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;		// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の色を設定する
 extern	COLOR_F			MV1GetMaterialOutLineColorBase( int MBHandle, int MaterialIndex ) ;						// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の色を取得する
 extern	int				MV1SetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex, int BlendMode ) ;		// 指定のマテリアルの描画ブレンドモードを設定する( DX_BLENDMODE_ALPHA 等 )
 extern	int				MV1SetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex, int BlendParam ) ;	// 指定のマテリアルの描画ブレンドパラメータを設定する
 extern	int				MV1GetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex ) ;					// 指定のマテリアルの描画ブレンドモードを取得する( DX_BLENDMODE_ALPHA 等 )
 extern	int				MV1GetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex ) ;					// 指定のマテリアルの描画ブレンドパラメータを設定する
-extern	int				MV1SetMaterialDrawAlphaTestBase( int MBHandle, int MaterialIndex, int Enable, int Mode, int Param ) ;	// 指定のマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト )  Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0〜255 ) )
+extern	int				MV1SetMaterialDrawAlphaTestBase( int MBHandle, int MaterialIndex, int Enable, int Mode, int Param ) ;	// 指定のマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト )  Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0～255 ) )
 extern	int				MV1GetMaterialDrawAlphaTestEnableBase( int MBHandle, int MaterialIndex ) ;				// 指定のマテリアルの描画時のアルファテストを行うかどうかを取得する( 戻り値  TRUE:アルファテストを行う  FALSE:アルファテストを行わない )
 extern	int				MV1GetMaterialDrawAlphaTestModeBase( int MBHandle, int MaterialIndex ) ;				// 指定のマテリアルの描画時のアルファテストのテストモードを取得する( 戻り値  テストモード( DX_CMP_GREATER等 ) )
-extern	int				MV1GetMaterialDrawAlphaTestParamBase( int MBHandle, int MaterialIndex ) ;				// 指定のマテリアルの描画時のアルファテストの描画アルファ地との比較に使用する値( 0〜255 )を取得する
+extern	int				MV1GetMaterialDrawAlphaTestParamBase( int MBHandle, int MaterialIndex ) ;				// 指定のマテリアルの描画時のアルファテストの描画アルファ地との比較に使用する値( 0～255 )を取得する
 extern	int				MV1SetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int Red, int Green, int Blue ) ;		// 指定のマテリアルの描画時の加算カラーを設定する
 extern	int				MV1GetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int *Red, int *Green, int *Blue ) ;	// 指定のマテリアルの描画時の加算カラーを取得する
 
@@ -2212,6 +2226,7 @@ extern	int				MV1SaveModelToMV1File_WCHAR_T( int MHandle, const wchar_t *FileNam
 #ifndef DX_NON_SAVEFUNCTION
 extern	int				MV1SaveModelToXFile_WCHAR_T(   int MHandle, const wchar_t *FileName, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE ) ;
 #endif // DX_NON_SAVEFUNCTION
+extern	int				MV1SetNotSaveTopFrameName_WCHAR_T(		const wchar_t *FrameName ) ;
 extern	const wchar_t *	MV1GetAnimName_WCHAR_T(					int MHandle, int AnimIndex ) ;
 extern	int				MV1SetAnimName_WCHAR_T(					int MHandle, int AnimIndex, const wchar_t *AnimName ) ;
 extern	int				MV1GetAnimIndex_WCHAR_T(				int MHandle, const wchar_t *AnimName ) ;
@@ -2282,7 +2297,7 @@ extern	int			NS_MV1SetLoadModelDisablePhysicsNameWordMode( int DisableNameWordMo
 extern	int			NS_MV1SetLoadModelAnimFilePath( const TCHAR *FileName ) ;										// 読み込むモデルに適用するアニメーションファイルのパスを設定する( 現在は PMD,PMX のみに効果あり )
 extern	int			NS_MV1SetLoadModelAnimFilePathWithStrLen(				const TCHAR *FileName, size_t FileNameLength ) ;					// 読み込むモデルに適用するアニメーションファイルのパスを設定する、NULLを渡すと設定リセット( 現在は PMD,PMX のみに効果あり )
 extern	int			NS_MV1SetLoadModelUsePackDraw(			int Flag ) ;														// 読み込むモデルを同時複数描画に対応させるかどうかを設定する( TRUE:対応させる  FALSE:対応させない( デフォルト ) )、( 「対応させる」にすると描画が高速になる可能性がある代わりに消費VRAMが増えます )
-extern	int			NS_MV1SetLoadModelTriangleListUseMaxBoneNum( int UseMaxBoneNum ) ;											// 読み込むモデルのひとつのトライアングルリストで使用できる最大ボーン数を設定する( UseMaxBoneNum で指定できる値の範囲は 8 〜 54、 0 を指定するとデフォルト動作に戻る )
+extern	int			NS_MV1SetLoadModelTriangleListUseMaxBoneNum( int UseMaxBoneNum ) ;											// 読み込むモデルのひとつのトライアングルリストで使用できる最大ボーン数を設定する( UseMaxBoneNum で指定できる値の範囲は 8 ～ 54、 0 を指定するとデフォルト動作に戻る )
 extern	int			NS_MV1SetLoadModelTextureLoad(							int Flag ) ;														// 読み込むモデルで使用するテクスチャファイルを読み込むかどうかを設定する( TRUE:読み込む(デフォルト) FALSE:読み込まない )
 extern	int			NS_MV1SetLoadModelIgnoreIK(							int IgnoreFlag ) ;													// 読み込むモデルのIK情報を無視するかどうかを設定する( TRUE:無視する  FALSE:無視しない(デフォルト) )
 
@@ -2293,6 +2308,8 @@ extern	int			NS_MV1SaveModelToMV1FileWithStrLen(	int MHandle, const TCHAR *FileN
 extern	int			NS_MV1SaveModelToXFile(   int MHandle, const TCHAR *FileName, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE ) ;	// 指定のパスにモデルをＸファイル形式で保存する( 戻り値  0:成功  -1:メモリ不足  -2:使われていないアニメーションがあった )
 extern	int			NS_MV1SaveModelToXFileWithStrLen(		int MHandle, const TCHAR *FileName, size_t FileNameLength, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE ) ;	// 指定のパスにモデルをＸファイル形式で保存する( 戻り値  0:成功  -1:メモリ不足  -2:使われていないアニメーションがあった )
 #endif // DX_NON_SAVEFUNCTION
+extern	int			NS_MV1SetNotSaveTopFrameName(			const TCHAR *FrameName ) ;											// MV1SaveModelToMV1File で保存を除外するトップフレーム名を設定する
+extern	int			NS_MV1SetNotSaveTopFrameNameWithStrLen( const TCHAR *FrameName, size_t FrameNameLength ) ;					// MV1SaveModelToMV1File で保存を除外するトップフレーム名を設定する
 
 // モデル描画関係
 extern	int			NS_MV1DrawModel( int MHandle ) ;														// モデルを描画する
@@ -2340,8 +2357,8 @@ extern	COLOR_F		NS_MV1GetEmiColorScale( int MHandle ) ;													// モデル
 extern	int			NS_MV1SetAmbColorScale( int MHandle, COLOR_F Scale ) ;									// モデルのアンビエントカラーのスケール値を設定する( デフォルト値は 1.0f )
 extern	COLOR_F		NS_MV1GetAmbColorScale( int MHandle ) ;													// モデルのアンビエントカラーのスケール値を取得する( デフォルト値は 1.0f )
 extern	int			NS_MV1GetSemiTransState( int MHandle ) ;												// モデルに半透明要素があるかどうかを取得する( 戻り値 TRUE:ある  FALSE:ない )
-extern	int			NS_MV1SetOpacityRate( int MHandle, float Rate ) ;										// モデルの不透明度を設定する( 不透明 1.0f 〜 透明 0.0f )
-extern	float		NS_MV1GetOpacityRate( int MHandle ) ;													// モデルの不透明度を取得する( 不透明 1.0f 〜 透明 0.0f )
+extern	int			NS_MV1SetOpacityRate( int MHandle, float Rate ) ;										// モデルの不透明度を設定する( 不透明 1.0f ～ 透明 0.0f )
+extern	float		NS_MV1GetOpacityRate( int MHandle ) ;													// モデルの不透明度を取得する( 不透明 1.0f ～ 透明 0.0f )
 extern	int			NS_MV1SetUseDrawMulAlphaColor(			int MHandle, int Flag ) ;											// モデルを描画する際にRGB値に対してA値を乗算するかどうかを設定する( 描画結果が乗算済みアルファ画像になります )( Flag   TRUE:RGB値に対してA値を乗算する  FALSE:乗算しない(デフォルト) )
 extern	int			NS_MV1GetUseDrawMulAlphaColor(			int MHandle ) ;														// モデルを描画する際にRGB値に対してA値を乗算するかどうかを取得する( 描画結果が乗算済みアルファ画像になります )( 戻り値 TRUE:RGB値に対してA値を乗算する  FALSE:乗算しない(デフォルト) )
 extern	int			NS_MV1SetUseZBuffer( int MHandle, int Flag ) ;											// モデルを描画する際にＺバッファを使用するかどうかを設定する
@@ -2443,6 +2460,12 @@ extern	int			NS_MV1SetMaterialSpcMapTexture( int MHandle, int MaterialIndex, int
 extern	int			NS_MV1GetMaterialSpcMapTexture( int MHandle, int MaterialIndex ) ;							// 指定のマテリアルでスペキュラマップとして使用されているテクスチャのインデックスを取得する
 extern	int			NS_MV1SetMaterialNormalMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;			// 指定のマテリアルで法線マップとして使用するテクスチャを指定する
 extern	int			NS_MV1GetMaterialNormalMapTexture( int MHandle, int MaterialIndex ) ;					// 指定のマテリアルで法線マップとして使用されているテクスチャのインデックスを取得する
+extern	int			NS_MV1SetMaterialEmissiveMapTexture(	int MHandle, int MaterialIndex, int TexIndex ) ;						// 指定のマテリアルでエミッシブマップとして使用するテクスチャを指定する
+extern	int			NS_MV1GetMaterialEmissiveMapTexture(	int MHandle, int MaterialIndex ) ;										// 指定のマテリアルでエミッシブマップとして使用されているテクスチャのインデックスを取得する
+extern	int			NS_MV1SetMaterialShininessMapTexture(	int MHandle, int MaterialIndex, int TexIndex ) ;						// 指定のマテリアルでラフネスマップとして使用するテクスチャを指定する
+extern	int			NS_MV1GetMaterialShininessMapTexture(	int MHandle, int MaterialIndex ) ;										// 指定のマテリアルでラフネスマップとして使用されているテクスチャのインデックスを取得する
+extern	int			NS_MV1SetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;					// 指定のマテリアルでメタリックマップとして使用するテクスチャを指定する
+extern	int			NS_MV1GetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex ) ;								// 指定のマテリアルでメタリックマップとして使用されているテクスチャのインデックスを取得する
 //extern	const char *NS_MV1GetMaterialDifMapTexPath( int MHandle, int MaterialIndex ) ;					// 指定のマテリアルのディフューズマップテクスチャのパスを取得する
 //extern	const char *NS_MV1GetMaterialSpcMapTexPath( int MHandle, int MaterialIndex ) ;					// 指定のマテリアルのスペキュラマップテクスチャのパスを取得する
 //extern	const char *NS_MV1GetMaterialNormalMapTexPath( int MHandle, int MaterialIndex ) ;					// 指定のマテリアルの法線マップテクスチャのパスを取得する
@@ -2472,10 +2495,10 @@ extern	int			NS_MV1SetMaterialDrawBlendMode( int MHandle, int MaterialIndex, int
 extern	int			NS_MV1SetMaterialDrawBlendParam( int MHandle, int MaterialIndex, int BlendParam ) ;		// 指定のマテリアルの描画ブレンドパラメータを設定する
 extern	int			NS_MV1GetMaterialDrawBlendMode( int MHandle, int MaterialIndex ) ;						// 指定のマテリアルの描画ブレンドモードを取得する( DX_BLENDMODE_ALPHA 等 )
 extern	int			NS_MV1GetMaterialDrawBlendParam( int MHandle, int MaterialIndex ) ;						// 指定のマテリアルの描画ブレンドパラメータを設定する
-extern	int			NS_MV1SetMaterialDrawAlphaTest(		int MHandle, int MaterialIndex,	int Enable, int Mode, int Param ) ;		// 指定のマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト )  Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0〜255 ) )
+extern	int			NS_MV1SetMaterialDrawAlphaTest(		int MHandle, int MaterialIndex,	int Enable, int Mode, int Param ) ;		// 指定のマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト )  Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0～255 ) )
 extern	int			NS_MV1GetMaterialDrawAlphaTestEnable( int MHandle, int MaterialIndex ) ;										// 指定のマテリアルの描画時のアルファテストを行うかどうかを取得する( 戻り値  TRUE:アルファテストを行う  FALSE:アルファテストを行わない )
 extern	int			NS_MV1GetMaterialDrawAlphaTestMode(	int MHandle, int MaterialIndex ) ;										// 指定のマテリアルの描画時のアルファテストのテストモードを取得する( 戻り値  テストモード( DX_CMP_GREATER等 ) )
-extern	int			NS_MV1GetMaterialDrawAlphaTestParam( int MHandle, int MaterialIndex ) ;										// 指定のマテリアルの描画時のアルファテストの描画アルファ地との比較に使用する値( 0〜255 )を取得する
+extern	int			NS_MV1GetMaterialDrawAlphaTestParam( int MHandle, int MaterialIndex ) ;										// 指定のマテリアルの描画時のアルファテストの描画アルファ地との比較に使用する値( 0～255 )を取得する
 extern	int			NS_MV1SetMaterialTypeAll(				int MHandle,                    int Type ) ;						// 全てのマテリアルのタイプを変更する( Type : DX_MATERIAL_TYPE_NORMAL など )
 extern	int			NS_MV1SetMaterialTypeParamAll(			int MHandle,                    ... ) ;									// 全てのマテリアルのタイプ別パラメータを変更する( マテリアルタイプ DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR などで使用 )
 extern	int			NS_MV1SetMaterialDifGradBlendTypeAll(	int MHandle,                    int BlendType ) ;						// 全てのマテリアルのトゥーンレンダリングで使用するディフューズグラデーションマップとディフューズカラーの合成方法を設定する( DX_MATERIAL_BLENDTYPE_ADDITIVE など )
@@ -2486,7 +2509,7 @@ extern	int			NS_MV1SetMaterialOutLineDotWidthAll(	int MHandle,                  
 extern	int			NS_MV1SetMaterialOutLineColorAll(		int MHandle,                    COLOR_F Color ) ;						// 全てのマテリアルのトゥーンレンダリングで使用する輪郭線の色を設定する
 extern	int			NS_MV1SetMaterialDrawBlendModeAll(		int MHandle,                    int BlendMode ) ;						// 全てのマテリアルの描画ブレンドモードを設定する( DX_BLENDMODE_ALPHA 等 )
 extern	int			NS_MV1SetMaterialDrawBlendParamAll(	int MHandle,                    int BlendParam ) ;						// 全てのマテリアルの描画ブレンドパラメータを設定する
-extern	int			NS_MV1SetMaterialDrawAlphaTestAll(		int MHandle,                    int Enable, int Mode, int Param ) ;		// 全てのマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト ) ) Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0〜255 ) )
+extern	int			NS_MV1SetMaterialDrawAlphaTestAll(		int MHandle,                    int Enable, int Mode, int Param ) ;		// 全てのマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト ) ) Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0～255 ) )
 extern	int			NS_MV1SetMaterialDrawAddColorAll(		int MHandle,                    int Red, int Green, int Blue ) ;		// 全てのマテリアルの描画時の加算カラーを設定する
 extern	int			NS_MV1SetMaterialDrawAddColor(			int MHandle, int MaterialIndex, int Red, int Green, int Blue ) ;		// 指定のマテリアルの描画時の加算カラーを設定する
 extern	int			NS_MV1GetMaterialDrawAddColor(			int MHandle, int MaterialIndex, int *Red, int *Green, int *Blue ) ;		// 指定のマテリアルの描画時の加算カラーを取得する
@@ -2567,8 +2590,8 @@ extern	COLOR_F		NS_MV1GetFrameSpcColorScale( int MHandle, int FrameIndex ) ;				
 extern	COLOR_F		NS_MV1GetFrameEmiColorScale( int MHandle, int FrameIndex ) ;						// 指定のフレームのエミッシブカラーのスケール値を取得する( デフォルト値は 1.0f )
 extern	COLOR_F		NS_MV1GetFrameAmbColorScale( int MHandle, int FrameIndex ) ;						// 指定のフレームのアンビエントカラーのスケール値を取得する( デフォルト値は 1.0f )
 extern	int			NS_MV1GetFrameSemiTransState( int MHandle, int FrameIndex ) ;							// 指定のフレームに半透明要素があるかどうかを取得する( 戻り値 TRUE:ある  FALSE:ない )
-extern	int			NS_MV1SetFrameOpacityRate( int MHandle, int FrameIndex, float Rate ) ;					// 指定のフレームの不透明度を設定する( 不透明 1.0f 〜 透明 0.0f )
-extern	float		NS_MV1GetFrameOpacityRate( int MHandle, int FrameIndex ) ;								// 指定のフレームの不透明度を取得する( 不透明 1.0f 〜 透明 0.0f )
+extern	int			NS_MV1SetFrameOpacityRate( int MHandle, int FrameIndex, float Rate ) ;					// 指定のフレームの不透明度を設定する( 不透明 1.0f ～ 透明 0.0f )
+extern	float		NS_MV1GetFrameOpacityRate( int MHandle, int FrameIndex ) ;								// 指定のフレームの不透明度を取得する( 不透明 1.0f ～ 透明 0.0f )
 extern	int			NS_MV1SetFrameBaseVisible( int MHandle, int FrameIndex, int VisibleFlag ) ;				// 指定のフレームの初期表示状態を設定する( TRUE:表示  FALSE:非表示 )
 extern	int			NS_MV1GetFrameBaseVisible( int MHandle, int FrameIndex ) ;								// 指定のフレームの初期表示状態を取得する( TRUE:表示  FALSE:非表示 )
 extern	int			NS_MV1SetFrameTextureAddressTransform( int MHandle, int FrameIndex, float TransU, float TransV, float ScaleU, float ScaleV, float RotCenterU, float RotCenterV, float Rotate ) ;	// 指定のフレームのテクスチャ座標変換パラメータを設定する
@@ -2590,8 +2613,8 @@ extern	COLOR_F		NS_MV1GetMeshDifColorScale( int MHandle, int MeshIndex ) ;						
 extern	COLOR_F		NS_MV1GetMeshSpcColorScale( int MHandle, int MeshIndex ) ;							// 指定のメッシュのスペキュラカラーのスケール値を取得する( デフォルト値は 1.0f )
 extern	COLOR_F		NS_MV1GetMeshEmiColorScale( int MHandle, int MeshIndex ) ;							// 指定のメッシュのエミッシブカラーのスケール値を取得する( デフォルト値は 1.0f )
 extern	COLOR_F		NS_MV1GetMeshAmbColorScale( int MHandle, int MeshIndex ) ;							// 指定のメッシュのアンビエントカラーのスケール値を取得する( デフォルト値は 1.0f )
-extern	int			NS_MV1SetMeshOpacityRate( int MHandle, int MeshIndex, float Rate ) ;					// 指定のメッシュの不透明度を設定する( 不透明 1.0f 〜 透明 0.0f )
-extern	float		NS_MV1GetMeshOpacityRate( int MHandle, int MeshIndex ) ;								// 指定のメッシュの不透明度を取得する( 不透明 1.0f 〜 透明 0.0f )
+extern	int			NS_MV1SetMeshOpacityRate( int MHandle, int MeshIndex, float Rate ) ;					// 指定のメッシュの不透明度を設定する( 不透明 1.0f ～ 透明 0.0f )
+extern	float		NS_MV1GetMeshOpacityRate( int MHandle, int MeshIndex ) ;								// 指定のメッシュの不透明度を取得する( 不透明 1.0f ～ 透明 0.0f )
 extern	int			NS_MV1SetMeshDrawBlendMode( int MHandle, int MeshIndex, int BlendMode ) ;				// 指定のメッシュの描画ブレンドモードを設定する( DX_BLENDMODE_ALPHA 等 )
 extern	int			NS_MV1SetMeshDrawBlendParam( int MHandle, int MeshIndex, int BlendParam ) ;				// 指定のメッシュの描画ブレンドパラメータを設定する
 extern	int			NS_MV1GetMeshDrawBlendMode( int MHandle, int MeshIndex ) ;								// 指定のメッシュの描画ブレンドモードを取得する( DX_BLENDMODE_ALPHA 等 )
@@ -2618,9 +2641,9 @@ extern	int			NS_MV1SearchShapeWithStrLen(			int MHandle, const TCHAR *ShapeName,
 extern	const TCHAR	*NS_MV1GetShapeName( int MHandle, int ShapeIndex ) ;											// 指定シェイプの名前を取得する
 extern	int			NS_MV1GetShapeTargetMeshNum( int MHandle, int ShapeIndex ) ;											// 指定シェイプが対象としているメッシュの数を取得する
 extern	int			NS_MV1GetShapeTargetMesh( int MHandle, int ShapeIndex, int Index ) ;								// 指定シェイプが対象としているメッシュのメッシュインデックスを取得する
-extern	int			NS_MV1SetShapeRate( int MHandle, int ShapeIndex, float Rate, int Type ) ;						// 指定シェイプの有効率を設定する( Rate  0.0f:0% 〜 1.0f:100% )
-extern	float		NS_MV1GetShapeRate( int MHandle, int ShapeIndex ) ;											// 指定シェイプの有効率を取得する( 戻り値  0.0f:0% 〜 1.0f:100% )
-extern	float		NS_MV1GetShapeApplyRate( int MHandle, int ShapeIndex ) ;											// 指定シェイプの有効率を取得する( 戻り値  0.0f:0% 〜 1.0f:100% )( MV1SetShapeRate で指定した値がそのまま戻り値となる MV1GetShapeRate と異なりアニメーションのシェイプ情報なども加味した値が戻り値となります )
+extern	int			NS_MV1SetShapeRate( int MHandle, int ShapeIndex, float Rate, int Type ) ;						// 指定シェイプの有効率を設定する( Rate  0.0f:0% ～ 1.0f:100% )
+extern	float		NS_MV1GetShapeRate( int MHandle, int ShapeIndex ) ;											// 指定シェイプの有効率を取得する( 戻り値  0.0f:0% ～ 1.0f:100% )
+extern	float		NS_MV1GetShapeApplyRate( int MHandle, int ShapeIndex ) ;											// 指定シェイプの有効率を取得する( 戻り値  0.0f:0% ～ 1.0f:100% )( MV1SetShapeRate で指定した値がそのまま戻り値となる MV1GetShapeRate と異なりアニメーションのシェイプ情報なども加味した値が戻り値となります )
 
 // トライアングルリスト関係
 extern	int			NS_MV1GetTriangleListNum( int MHandle ) ;												// トライアングルリストの数を取得する
@@ -2693,6 +2716,8 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1SaveModelToXFile							MV1SaveModelToXFile
 #define NS_MV1SaveModelToXFileWithStrLen				MV1SaveModelToXFileWithStrLen
 #endif // DX_NON_SAVEFUNCTION
+#define NS_MV1SetNotSaveTopFrameName					MV1SetNotSaveTopFrameName
+#define NS_MV1SetNotSaveTopFrameNameWithStrLen			MV1SetNotSaveTopFrameNameWithStrLen
 
 // モデル描画関係
 #define NS_MV1DrawModel									MV1DrawModel
@@ -2836,6 +2861,12 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1GetMaterialSpcMapTexture					MV1GetMaterialSpcMapTexture
 #define NS_MV1SetMaterialNormalMapTexture				MV1SetMaterialNormalMapTexture
 #define NS_MV1GetMaterialNormalMapTexture				MV1GetMaterialNormalMapTexture
+#define NS_MV1SetMaterialEmissiveMapTexture				MV1SetMaterialEmissiveMapTexture
+#define NS_MV1GetMaterialEmissiveMapTexture				MV1GetMaterialEmissiveMapTexture
+#define NS_MV1SetMaterialShininessMapTexture			MV1SetMaterialShininessMapTexture
+#define NS_MV1GetMaterialShininessMapTexture			MV1GetMaterialShininessMapTexture
+#define NS_MV1SetMaterialReflectionFactorMapTexture		MV1SetMaterialReflectionFactorMapTexture
+#define NS_MV1GetMaterialReflectionFactorMapTexture		MV1GetMaterialReflectionFactorMapTexture
 #define NS_MV1SetMaterialDifGradTexture					MV1SetMaterialDifGradTexture
 #define NS_MV1GetMaterialDifGradTexture					MV1GetMaterialDifGradTexture
 #define NS_MV1SetMaterialSpcGradTexture					MV1SetMaterialSpcGradTexture

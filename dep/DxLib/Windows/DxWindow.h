@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ウインドウプログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -259,7 +259,9 @@ struct WINDATA
 	int						NotActive_WindowMoveOrSystemMenu ;	// WM_ENTERSIZEMOVE や WM_ENTERMENULOOP によって非アクティブになっている
 	int						SetClipCursorFlag ;					// ClipCursor の設定が有効になっているかどうかフラグ
 	int						SysCommandOffFlag ;					// タスクスイッチを抑制する処理を行うかフラグ
+#ifndef DX_NON_STOPTASKSWITCH
 	HHOOK					TaskHookHandle ;					// フックハンドル
+#endif // DX_NON_STOPTASKSWITCH
 	HHOOK					GetMessageHookHandle ;				// WH_GETMESSAGE フックハンドル
 	HHOOK					KeyboardHookHandle ;				// WH_KEYBOARD_LL フックハンドル
 	int						LockInitializeFlag ;				// ロックをかけろというフラグ
