@@ -2498,11 +2498,11 @@ int main(int argc, char** argv) {
 					}
 				}
 				else {
-					if (1 <= gs.gameplay.bgaLayer1 && gs.gameplay.bgaLayer1 < 6479) {
+					if (1 <= gs.gameplay.bgaLayer1 && gs.gameplay.bgaLayer1 < SLOTS - 1) {
 						SeekMovieToGraph(gs.gameplay.bgaHandle[gs.gameplay.bgaLayer1], GetTimeWrap() - gs.gameplay.layer1ChangeTime);
 						PlayMovieToGraph(gs.gameplay.bgaHandle[gs.gameplay.bgaLayer1], 1, 0);
 					}
-					if (1 <= gs.gameplay.bgaLayer2 && gs.gameplay.bgaLayer2 < 6479) {
+					if (1 <= gs.gameplay.bgaLayer2 && gs.gameplay.bgaLayer2 < SLOTS - 1) {
 						SeekMovieToGraph(gs.gameplay.bgaHandle[gs.gameplay.bgaLayer2], GetTimeWrap() - gs.gameplay.layer2ChangeTime);
 						PlayMovieToGraph(gs.gameplay.bgaHandle[gs.gameplay.bgaLayer2], 1, 0);
 					}

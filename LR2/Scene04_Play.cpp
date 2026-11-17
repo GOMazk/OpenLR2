@@ -1396,7 +1396,7 @@ int ProcGame(game *g) {
 				if (g->gameplay.courseType == 1) {
 					g->gameplay.courseBgaLayer1[stage] = val;
 					g->gameplay.isBgaPlaying = 1;
-					if (1 <= val && val < 6479) {
+					if (1 <= val && val < SLOTS - 1) {
 						SeekMovieToGraph(g->gameplay.bgaHandle[val], 0);
 						if (val == 1295 && g->gameplay.bgaHandle[1295] != -1 && g->gameplay.soundonly) {
 							PlayMovieToGraph(g->gameplay.bgaHandle[1295], 3, 0);
@@ -1411,7 +1411,7 @@ int ProcGame(game *g) {
 				else {
 					g->gameplay.bgaLayer1 = val;
 					g->gameplay.isBgaPlaying = 1;
-					if (1 <= val && val < 6479) {
+					if (1 <= val && val < SLOTS - 1) {
 						SeekMovieToGraph(g->gameplay.bgaHandle[val], 0);
 						if (val == 1295 && g->gameplay.bgaHandle[1295] != -1 && g->gameplay.soundonly) {
 							PlayMovieToGraph(g->gameplay.bgaHandle[1295], 3, 0);
@@ -1441,7 +1441,7 @@ int ProcGame(game *g) {
 				if (g->gameplay.courseType == 1) {
 					g->gameplay.courseBgaLayer2[stage] = val;
 					g->gameplay.isBgaPlaying = 1;
-					if (1 <= val && val < 6479) {
+					if (1 <= val && val < SLOTS - 1) {
 						SeekMovieToGraph(g->gameplay.bgaHandle[val], 0);
 						PlayMovieToGraph(g->gameplay.bgaHandle[val], 1, 0);
 						g->gameplay.layer2ChangeTime = GetTimeWrap();
@@ -1451,7 +1451,7 @@ int ProcGame(game *g) {
 				else {
 					g->gameplay.bgaLayer2 = val;
 					g->gameplay.isBgaPlaying = 1;
-					if (1 <= val && val < 6479) {
+					if (1 <= val && val < SLOTS - 1) {
 						SeekMovieToGraph(g->gameplay.bgaHandle[val], 0);
 						PlayMovieToGraph(g->gameplay.bgaHandle[val], 1, 0);
 						g->gameplay.layer2ChangeTime = GetTimeWrap();
