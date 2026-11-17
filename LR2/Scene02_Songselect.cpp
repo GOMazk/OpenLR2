@@ -3,11 +3,19 @@
 #include "LR2.h"
 #include "LR2_songmanage.h"
 #include "filesystem.h"
+#include <algorithm>
+#include <cmath>
 #include <filesystem>
 #include <format>
 #include <functional>
+#include <optional>
+#include <random>
+#include <ranges>
 #include <stdio.h>
 #include <string>
+#include <string_view>
+#include <variant>
+#include <vector>
 #ifndef _WIN32
 #include "En_dxlibstub.h"
 #endif // _WIN32
@@ -15,6 +23,11 @@
 struct glb_dbgame {
 	struct sqlite3 * pSql;
 	struct game * pGame;
+};
+
+template <class... Ts> struct overloaded : Ts...
+{
+    using Ts::operator()...;
 };
 
 int SetTarget(game *g) {
@@ -1106,8 +1119,160 @@ int SetObjectStrings_SongSelect(game *g) {
 	return 1;
 }
 
+bool KeyLayoutRandomizerImpl::from_string(std::string_view s, std::span<ColumnRandom> layout)
+{
+	if(s.size() != layout.size())
+		return false;
+	std::vector<uint8_t> specifics;
+	for(auto [c, v] : std::views::zip(s, layout))
+		switch(c)
+		{
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+			v = Specific{.column = static_cast<uint8_t>(c - '0')};
+			specifics.push_back(static_cast<uint8_t>(c - '0'));
+			break;
+		case 'B':
+		case 'b': v = Blue{}; break;
+		case 'W':
+		case 'w': v = White{}; break;
+		case 'X':
+		case 'x': v = Any{}; break;
+		default: return false;
+		}
+	{
+		size_t sz = specifics.size();
+		std::ranges::sort(specifics);
+		specifics.erase(std::ranges::unique(specifics).begin(), specifics.end());
+		if(sz != specifics.size()) // duplicate Specific found
+			return false;
+	}
+	std::mt19937 gen{0};
+	if(get_layout(layout, gen) == 0)
+		return false;
+	return true;
+}
+
+std::string KeyLayoutRandomizerImpl::to_string(std::span<const ColumnRandom> layout)
+{
+	std::string out;
+	for(auto column : layout)
+		std::visit(overloaded{
+					   [&out](Any v) { out += 'x'; },
+					   [&out](Blue v) { out += 'b'; },
+					   [&out](White v) { out += 'w'; },
+					   [&out](Specific v) { out += std::to_string(v.column); },
+				   },
+				   column);
+	return out;
+}
+
+// std::shuffle algorithm is not standard-defined and differs between standard libraries.
+template <class RandomIt, class URBG> static void platorm_consistent_shuffle(RandomIt first, RandomIt last, URBG&& gen)
+{
+	// https://en.cppreference.com/cpp/algorithm/random_shuffle#Version_3
+	typedef typename std::iterator_traits<RandomIt>::difference_type diff_t;
+	typedef std::uniform_int_distribution<diff_t> distr_t;
+	typedef typename distr_t::param_type param_t;
+	distr_t D;
+	for(diff_t i = last - first - 1; i > 0; --i)
+	{
+		using std::swap;
+		swap(first[i], first[D(gen, param_t(0, i))]);
+	}
+}
+
+unsigned int KeyLayoutRandomizerImpl::get_layout(std::span<const ColumnRandom> value, std::mt19937& gen)
+{
+	unsigned int layout{};
+
+	std::vector<uint8_t> free_blue;
+	for(uint8_t blue = 2; blue <= value.size(); blue += 2)
+		if(!std::ranges::contains(value, ColumnRandom{Specific{blue}}))
+			free_blue.emplace_back(blue);
+	platorm_consistent_shuffle(free_blue.begin(), free_blue.end(), gen);
+
+	std::vector<uint8_t> free_white;
+	for(uint8_t white = 1; white <= value.size(); white += 2)
+		if(!std::ranges::contains(value, ColumnRandom{Specific{white}}))
+			free_white.emplace_back(white);
+	platorm_consistent_shuffle(free_white.begin(), free_white.end(), gen);
+
+	auto get_random_bool = [roll = std::uniform_int_distribution<int>(1, 100)](std::mt19937& gen) mutable {
+		return roll(gen) <= 50;
+	};
+
+	static constexpr auto pop = [](std::vector<uint8_t>& free_) -> uint8_t {
+		auto v = free_.back();
+		free_.pop_back();
+		return v;
+	};
+	for(auto [i, column] : value | std::views::enumerate)
+	{
+		auto visitor = overloaded{
+			[](Any v) -> int { return -1; },
+			[&free_blue](Blue v) -> int { return free_blue.empty() ? 0 : pop(free_blue); },
+			[&free_white](White v) -> int { return free_white.empty() ? 0 : pop(free_white); },
+			[](Specific v) -> int { return v.column; },
+		};
+		auto resolved_column = std::visit(visitor, column);
+		if(resolved_column == 0)
+			return 0;
+		if(resolved_column == -1)
+			continue;
+		layout += static_cast<unsigned int>(std::pow(10, value.size() - i - 1) * resolved_column);
+	}
+	// Any placeholders are resolved later to avoid starving Blue and White placeholders
+	for(auto [i, column] : value | std::views::enumerate)
+	{
+		auto visitor = overloaded{
+			[&free_blue, &free_white, &get_random_bool, &gen](Any v) -> int {
+				if(!free_blue.empty() && !free_white.empty())
+					return get_random_bool(gen) ? pop(free_blue) : pop(free_white);
+				if(!free_blue.empty())
+					return pop(free_blue);
+				if(!free_white.empty())
+					return pop(free_white);
+				return 0;
+			},
+			[](Blue v) -> int { return -1; },
+			[](White v) -> int { return -1; },
+			[](Specific v) -> int { return -1; },
+		};
+		auto resolved_column = std::visit(visitor, column);
+		if(resolved_column == 0)
+			return 0;
+		if(resolved_column == -1)
+			continue;
+		layout += static_cast<unsigned int>(std::pow(10, value.size() - i - 1) * resolved_column);
+	}
+	return layout;
+}
 
 int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
+	auto display_random = [&cmd, &g]() {
+		std::string s;
+		if (g->gameplay.forceRandomLayout5k)
+		{
+			s += g->gameplay.forceRandomLayout5k->to_string();
+			s += ' ';
+		}
+		if (g->gameplay.forceRandomLayout7k)
+		{
+			s += g->gameplay.forceRandomLayout7k->to_string();
+			s += ' ';
+		}
+		if (!s.empty())
+			s.pop_back();
+		*cmd = s.empty() ? "OFF" : s.c_str();
+	};
 
 	cmd->lower();
 
@@ -1287,32 +1452,45 @@ int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
 		}
 	}
 	else if (cmd->isSame("/random")) {
-		*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
+		display_random();
 		return 1;
 	}
 	else if (cmd->starts_with("/random ")) {
-		auto s = std::string_view{ cmd->body }.substr(std::string_view{ "/random " }.length());
-		unsigned int val;
-		auto [ptr, ec] = std::from_chars(s.data(), s.data() + s.size(), val);
-		if (ec != std::errc()) {
-			*cmd = ("INVALID NUMBER: " + std::string(s)).c_str();
+		auto s = std::string_view{cmd->body}.substr(std::string_view{"/random "}.length());
+		std::string last_random;
+		if(s == "last")
+		{
+			last_random = std::to_string(g->gameplay.randomLayoutForDisplay[0]); // keep it simple
+			s = last_random;
+		}
+		if(s == "0" || s == "off")
+		{
+			g->gameplay.forceRandomLayout5k = {};
+			g->gameplay.forceRandomLayout7k = {};
+			*cmd = "OFF";
 			return 1;
 		}
-		if (val == 0) {
-			g->gameplay.forceRandomLayout = 0;
-			*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
+		switch(s.size())
+		{
+		case 5:
+			if(auto res = KeyLayoutRandomizer<5>::from_string(s); res)
+			{
+				g->gameplay.forceRandomLayout5k = *res;
+				break;
+			}
+			*cmd = ("BAD 5K RANDOM: " + std::string(s)).c_str();
+			return 1;
+		case 7:
+			if(auto res = KeyLayoutRandomizer<7>::from_string(s); res)
+			{
+				g->gameplay.forceRandomLayout7k = *res;
+				break;
+			}
+			*cmd = ("BAD 7K RANDOM: " + std::string(s)).c_str();
+			return 1;
+		default: *cmd = ("BAD RANDOM: " + std::string(s)).c_str(); return 1;
 		}
-		else if (val >= 12345 && val <= 54321) {
-			g->gameplay.forceRandomLayout = val * 100 + 67;
-			*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
-		}
-		else if (val >= 1234567 && val <= 7654321) {
-			g->gameplay.forceRandomLayout = val;
-			*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
-		}
-		else {
-			*cmd = ("OUT OF RANGE NUMBER: " + std::to_string(val)).c_str();
-		}
+		display_random();
 		return 1;
 	}
 	else {

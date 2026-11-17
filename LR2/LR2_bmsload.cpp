@@ -9,6 +9,7 @@
 #include <atomic>
 #include <cmath>
 #include <mutex>
+#include <random>
 #include <ranges>
 #include <thread>
 #include <unordered_map>
@@ -2131,15 +2132,31 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 	}
 	else if (gp->replay.status != 2) {
 		gp->randomseed = 0xFFFF;
-		if (cfg->play.random[PLAYER_1] == OPTION_RANDOM_RANDOM && gp->forceRandomLayout != 0) {
-			ErrorLogFmtAdd("Force random layout %d for keymode %d\n", gp->forceRandomLayout, gp->keymode);
-			switch (gp->keymode) {
-			case 5: gp->randomseed = GetSeed5K(gp->forceRandomLayout); break;
-			case 7: gp->randomseed = GetSeed7K(gp->forceRandomLayout); break;
-			default: ErrorLogAdd("Unsupported keymode for forcing random layout\n"); break;
+		switch(gp->keymode)
+		{
+		case 5:
+			if(cfg->play.random[PLAYER_1] == OPTION_RANDOM_RANDOM && gp->forceRandomLayout5k)
+			{
+				std::mt19937 gen{std::random_device{}()};
+				unsigned int layout = gp->forceRandomLayout5k->get_layout(gen);
+				ErrorLogFmtAdd("Force random layout %d (%s) for keymode %d", layout,
+							   gp->forceRandomLayout5k->to_string().c_str(), gp->keymode);
+				gp->randomseed = GetSeed5K(layout * 100 + 67);
+				if(gp->randomseed == 0xFFFF)
+					ErrorLogAdd("Impossible random layout\n");
+				break;
 			}
-			if (gp->randomseed == 0xFFFF) {
-				ErrorLogAdd("Impossible random layout\n");
+		case 7:
+			if(cfg->play.random[PLAYER_1] == OPTION_RANDOM_RANDOM && gp->forceRandomLayout7k)
+			{
+				std::mt19937 gen{std::random_device{}()};
+				unsigned int layout = gp->forceRandomLayout7k->get_layout(gen);
+				ErrorLogFmtAdd("Force random layout %d (%s) for keymode %d", layout,
+							   gp->forceRandomLayout7k->to_string().c_str(), gp->keymode);
+				gp->randomseed = GetSeed7K(layout);
+				if(gp->randomseed == 0xFFFF)
+					ErrorLogAdd("Impossible random layout\n");
+				break;
 			}
 		}
 		if (gp->randomseed == 0xFFFF) {
@@ -3465,9 +3482,13 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 		}
 	}
 
-	for (int p : { PLAYER_1, PLAYER_2 }) {
-		gp->randomLayoutForDisplay[p] = 0;
-		for (int i = 1; i < 1 + key; ++i) gp->randomLayoutForDisplay[p] += std::pow(10, p * 10 + key - noteRandomTable[p][i]) * i;
+	if (gp->isPreviewLoad == 0) {
+		for (int p : { PLAYER_1, PLAYER_2 }) {
+			gp->randomLayoutForDisplay[p] = 0;
+			for (int i = 1; i < 1 + key; ++i) {
+				gp->randomLayoutForDisplay[p] += std::pow(10, p * 10 + key - noteRandomTable[p][i]) * i;
+			}
+		}
 	}
 
 	double p1LastTiming = 0.0, p2LastTiming = 0.0;

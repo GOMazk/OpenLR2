@@ -333,6 +333,9 @@ set_target_properties(OpenLR2 PROPERTIES CXX_STANDARD 23)
 target_link_libraries(OpenLR2 PUBLIC OpenLR2Lib)
 set_target_properties(OpenLR2 PROPERTIES OUTPUT_NAME "OpenLR2${ARCH_SUFFIX}")
 
+enable_testing()
+add_test(NAME AllTests COMMAND OpenLR2 -test)
+
 set(IR_CONF_SUFFIX $<$<CONFIG:Debug>:_D>)
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(IR_ARCH_SUFFIX ".x64")
