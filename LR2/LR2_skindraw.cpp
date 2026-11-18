@@ -929,7 +929,7 @@ void LRDrawTextInput(int* hFont, DSTdraw *dstd, int* hInput, ImageFont *imgfont)
 		}
 		else if (dstd->h != 0.0 || dstd->w != 0.0) {
 			pIME = (IMEINPUTDATA*)GetIMEInputData();
-			dstd->w = 640.0; //TODO_RESOULUTION
+			dstd->w = (double)skinSizeX;
 			LRDrawText(hFont, dstd, &buf, imgfont);
 			grLen = 0;
 			if (GetKeyInputCursorPosition(*hInput)) {
@@ -965,8 +965,8 @@ void LRDrawTextInput(int* hFont, DSTdraw *dstd, int* hInput, ImageFont *imgfont)
 				// Especially noticeable with Wine on gamescope.
 				buf.fillzero();
 			}
-			dstd->y = 480.0 - dstd->h;
-			dstd->x = 640.0; //TODO_RESOULUTION
+			dstd->y = (double)skinSizeY - dstd->h;
+			dstd->x = (double)skinSizeX;
 			dstd->align = 2;
 			LRDrawText(hFont, dstd, &buf, imgfont);
 		}

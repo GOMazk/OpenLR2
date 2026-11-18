@@ -316,7 +316,7 @@ int DrawLunaris(game *g) {
 		}
 		else if (g->config.play.m_HIDSUD[PLAYER_1] == 2) {
 			g->skstruct.drBuf.top[i] = dstd.sortID * 0.6;
-			g->skstruct.drBuf.bottom[i] = 480;
+			g->skstruct.drBuf.bottom[i] = skinSizeY;
 		}
 		else if (g->config.play.m_HIDSUD[PLAYER_1] == 3) {
 			g->skstruct.drBuf.top[i] = dstd.sortID * 0.55;
@@ -324,7 +324,7 @@ int DrawLunaris(game *g) {
 		}
 		else {
 			g->skstruct.drBuf.top[i] = 0;
-			g->skstruct.drBuf.bottom[i] = 480;
+			g->skstruct.drBuf.bottom[i] = skinSizeY;
 		}
 	}
 
@@ -338,7 +338,7 @@ int DrawLunaris(game *g) {
 		}
 		else if (g->config.play.m_HIDSUD[PLAYER_2] == 2) {
 			g->skstruct.drBuf.top[i] = (100 - g->config.play.lanecoverv[PLAYER_1]) * dstd.sortID / 200 + g->config.play.lanecoverv[PLAYER_1] * dstd.sortID / 100;
-			g->skstruct.drBuf.bottom[i] = 480;
+			g->skstruct.drBuf.bottom[i] = skinSizeY;
 		}
 		else if (g->config.play.m_HIDSUD[PLAYER_2] == 3) {
 			g->skstruct.drBuf.top[i] = (100 - g->config.play.lanecoverv[PLAYER_1]) * dstd.sortID / 100 * 4 / 10 + g->config.play.lanecoverv[PLAYER_1] * dstd.sortID / 100;
@@ -346,7 +346,7 @@ int DrawLunaris(game *g) {
 		}
 		else {
 			g->skstruct.drBuf.top[i] = 0;
-			g->skstruct.drBuf.bottom[i] = 480;
+			g->skstruct.drBuf.bottom[i] = skinSizeY;
 		}
 	}
 

@@ -40,7 +40,7 @@ float GetLiftOffsetY(const skstruct &sk, const CONFIG_PLAY &cfg, int player) {
 			laneH = (int)fabs(sk.dst_NOTE[noteKey].draw->y);
 		}
 	}
-	if (laneH <= 0) laneH = 480;
+	if (laneH <= 0) laneH = skinSizeY;
 	return -(float)(liftv * laneH) / 100.f;
 }
 
@@ -335,7 +335,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 		}
 		else if (cfg->m_HIDSUD[PLAYER_1] == 2) {
 			sk->drBuf.top[i] = tDdraw.sortID * 0.6;
-			sk->drBuf.bottom[i] = 480;
+			sk->drBuf.bottom[i] = skinSizeY;
 		}
 		else if (cfg->m_HIDSUD[PLAYER_1] == 3) {
 			sk->drBuf.top[i] = tDdraw.sortID * 0.55;
@@ -343,7 +343,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 		}
 		else {
 			sk->drBuf.top[i] = 0;
-			sk->drBuf.bottom[i] = 480;
+			sk->drBuf.bottom[i] = skinSizeY;
 		}
 	}
 	for (int i = 10; i < 20; i++) {
@@ -356,7 +356,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 		}
 		else if (cfg->m_HIDSUD[PLAYER_2] == 2) {
 			sk->drBuf.top[i] = (100 - cfg->lanecoverv[PLAYER_1]) * tDdraw.sortID / 200 + cfg->lanecoverv[PLAYER_1] * tDdraw.sortID / 100;
-			sk->drBuf.bottom[i] = 480;
+			sk->drBuf.bottom[i] = skinSizeY;
 		}
 		else if (cfg->m_HIDSUD[PLAYER_2] == 3) {
 			sk->drBuf.top[i] = (100 - cfg->lanecoverv[PLAYER_1]) * tDdraw.sortID / 100 * 4 / 10 + cfg->lanecoverv[PLAYER_1] * tDdraw.sortID / 100;
@@ -364,7 +364,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 		}
 		else {
 			sk->drBuf.top[i] = 0;
-			sk->drBuf.bottom[i] = 480;
+			sk->drBuf.bottom[i] = skinSizeY;
 		}
 	}
 	g->gameplay.nabeatsu_x = 0.0;
