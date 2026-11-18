@@ -187,6 +187,26 @@ static void MoveWindowToDisplay(int targetDisplayIndex, int sourceDisplayIndex) 
 	SetWindowPosition(targetX + wx - sourceX, targetY + wy - sourceY);
 }
 
+// A borderless window is rebuilt out of the windowed one, and Windows does not hand the
+// foreground to the replacement. A window that is not foreground cannot acquire the
+// DirectInput keyboard, so every later key read fails. Ask for the foreground once the
+// new mode is in place.
+static void ForceWindowForeground() {
+#ifdef _WIN32
+	const HWND mainWindow = GetMainWindowHandle();
+	if (mainWindow == nullptr) return;
+	const HWND foreground = GetForegroundWindow();
+	if (foreground == mainWindow) return;
+	const DWORD foregroundThread = foreground != nullptr ? GetWindowThreadProcessId(foreground, nullptr) : 0;
+	const DWORD ownThread = GetCurrentThreadId();
+	const bool attached = foregroundThread != 0 && foregroundThread != ownThread
+		&& AttachThreadInput(foregroundThread, ownThread, TRUE) != 0;
+	BringWindowToTop(mainWindow);
+	SetForegroundWindow(mainWindow);
+	if (attached) AttachThreadInput(foregroundThread, ownThread, FALSE);
+#endif
+}
+
 static void ApplyScreenMode(int screenmode) {
 	// DxLib picks exclusive vs borderless through SetFullScreenResolutionMode;
 	// ChangeWindowMode only toggles windowed(1)/fullscreen(0).
@@ -206,6 +226,9 @@ static void ApplyScreenMode(int screenmode) {
 		{
 			const int displayIndex = FindMonitorThatContainsWindowCenter();
 			g_exclusiveDisplayIndex = -1;
+			// Restore the mode windowed startup leaves in place; entering fullscreen
+			// with DESKTOP or BORDERLESS left it latched for the next windowed rebuild.
+			SetFullScreenResolutionMode(DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW);
 			ChangeWindowMode(1);
 			const int restoredDisplayIndex = FindMonitorThatContainsWindowCenter();
 			if (displayIndex >= 0 && restoredDisplayIndex >= 0 && displayIndex != restoredDisplayIndex) {
@@ -223,6 +246,7 @@ static void ApplyScreenMode(int screenmode) {
 			break;
 		}
 	}
+	if (screenmode != 1) ForceWindowForeground();
 }
 
 static double GetFrameLimiterRefreshRate() {
@@ -2569,9 +2593,14 @@ int main(int argc, char** argv) {
 			for (int i = 0; i < 10; i++) {
 				gs.skstruct.ImageFonts[i].filepath[0] = 0;
 			}
-			SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate()); //redundant?
+			SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate());
 			SetWaitVSyncFlag(0); //VSYNC
 			ApplyScreenMode(gs.config.system.screenmode);
+			if (gs.config.system.screenmode == 1) {
+				// ChangeWindowMode rebuilt the window; re-apply the graph mode so the
+				// client area matches the render size again.
+				SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate());
+			}
 			SetWaitVSyncFlag(0); //VSYNC
 			SetDrawScreen(DX_SCREEN_BACK);
 			for (int i = 0; i < 900; i++) {

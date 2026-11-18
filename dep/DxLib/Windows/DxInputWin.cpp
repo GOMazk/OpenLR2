@@ -10,6 +10,7 @@
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
+#include <stdio.h>
 #include "../DxBaseFunc.h"
 
 #ifndef DX_NON_INPUT
@@ -2453,13 +2454,22 @@ extern int UpdateKeyboardInputState_PF( int UseProcessMessage )
 //		if( hr == DIERR_INPUTLOST )
 		if( hr != D_DI_OK )
 		{
-			if( InputSysData.PF.KeyboardDeviceObject->Acquire() == D_DI_OK )
+			hr = InputSysData.PF.KeyboardDeviceObject->Acquire() ;
+			if( hr == D_DI_OK )
 			{
 				hr = InputSysData.PF.KeyboardDeviceObject->GetDeviceState( sizeof( InputSysData.KeyInputBuf ) , ( LPVOID )InputSysData.KeyInputBuf ) ;
-				if( hr != D_DI_OK ) goto ENDFUNCTION ;
+				if( hr != D_DI_OK )
+				{
+					// Report no keys rather than the previous frame: a device that cannot be
+					// read would otherwise keep its last successful state forever, which the
+					// game sees as keys held down that never release.
+					_MEMSET( &InputSysData.KeyInputBuf, 0, sizeof( InputSysData.KeyInputBuf ) ) ;
+					goto ENDFUNCTION ;
+				}
 			}
 			else
 			{
+				_MEMSET( &InputSysData.KeyInputBuf, 0, sizeof( InputSysData.KeyInputBuf ) ) ;
 				goto ENDFUNCTION ;
 			}
 		}

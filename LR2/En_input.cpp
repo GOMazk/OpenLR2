@@ -202,7 +202,14 @@ static void ProcessInput(inputStructure* is, int interval) {
 	char new_keyInput[256];
 	int keyError;
 
-	if (GetWindowActiveFlag() == 0) return;
+	if (GetWindowActiveFlag() == 0) {
+		// Nothing can be read while the window is not foreground, and returning before
+		// touching the state leaves the last keys latched down, which then never release.
+		std::ranges::fill_n(is->inputID, 0x600, 0);
+		std::ranges::fill(is->p1_buttonInput, 0);
+		std::ranges::fill(is->p2_buttonInput, 0);
+		return;
+	}
 
 	GetMousePoint(&mouseX, &mouseY);
 #ifdef _WIN32
