@@ -100,33 +100,6 @@ static GUID *g_MFVideoFormatGUIDTable[ D_MFVIDEOFORMAT_TYPE_UNKNOWN ] =
 
 #ifndef DX_NON_MEDIA_FOUNDATION
 // Media Foundation を使用した動画ファイルのオープンを試みる
-// Configure the decoder itself, not just our outer DecodeThread. Set this after
-// output-type negotiation and before the first ReadSample starts streaming.
-static HRESULT MediaFoundationMovie_LimitDecoderThreads( D_IMFSourceReader *Reader )
-{
-	// IMFTransform IID and CODECAPI_AVDecNumWorkerThreads from the Windows SDK.
-	// Keep the existing DxLib COM declarations and dynamic MF loading.
-	static const GUID TransformIID = { 0xbf94c121, 0x5b05, 0x4e6f, { 0x80, 0x00, 0xba, 0x59, 0x89, 0x61, 0x41, 0x4d } } ;
-	static const GUID WorkerThreadsKey = { 0x9561c3e8, 0xea9e, 0x4435, { 0x9b, 0x1e, 0xa9, 0x3e, 0x69, 0x18, 0x94, 0xd8 } } ;
-	D_IMFTransform *Decoder = NULL ;
-	D_IMFAttributes *Attributes = NULL ;
-	HRESULT Result = Reader->GetServiceForStream( ( DWORD )D_MF_SOURCE_READER_FIRST_VIDEO_STREAM,
-		_GUID_NULL, TransformIID, ( void ** )&Decoder ) ;
-	if( SUCCEEDED( Result ) && Decoder != NULL )
-	{
-		Result = Decoder->GetAttributes( &Attributes ) ;
-		if( SUCCEEDED( Result ) && Attributes != NULL )
-		{
-			// 1 means decoder-selected concurrency, not a single worker.
-			// Two workers leave CPU time for rendering without changing quality.
-			Result = Attributes->SetUINT32( WorkerThreadsKey, 2 ) ;
-		}
-	}
-	if( Attributes != NULL ) Attributes->Release() ;
-	if( Decoder != NULL ) Decoder->Release() ;
-	return Result ;
-}
-
 static int MediaFoundationOpenMovieFile(
 	MOVIEGRAPH * Movie,
 	const wchar_t *FileName,
@@ -198,6 +171,288 @@ extern int TerminateMovieManage_PF( void )
 #ifndef DX_NON_MEDIA_FOUNDATION
 
 // Media Foundation を使用した動画ファイルのオープンを試みる
+// Configure the decoder itself, not just our outer DecodeThread. Set this after
+// output-type negotiation and before the first ReadSample starts streaming.
+static HRESULT MediaFoundationMovie_LimitDecoderThreads( D_IMFSourceReader *Reader )
+{
+	// IMFTransform IID and CODECAPI_AVDecNumWorkerThreads from the Windows SDK.
+	// Keep the existing DxLib COM declarations and dynamic MF loading.
+	static const GUID TransformIID = { 0xbf94c121, 0x5b05, 0x4e6f, { 0x80, 0x00, 0xba, 0x59, 0x89, 0x61, 0x41, 0x4d } } ;
+	static const GUID WorkerThreadsKey = { 0x9561c3e8, 0xea9e, 0x4435, { 0x9b, 0x1e, 0xa9, 0x3e, 0x69, 0x18, 0x94, 0xd8 } } ;
+	D_IMFTransform *Decoder = NULL ;
+	D_IMFAttributes *Attributes = NULL ;
+	HRESULT Result = Reader->GetServiceForStream( ( DWORD )D_MF_SOURCE_READER_FIRST_VIDEO_STREAM,
+		_GUID_NULL, TransformIID, ( void ** )&Decoder ) ;
+	if( SUCCEEDED( Result ) && Decoder != NULL )
+	{
+		Result = Decoder->GetAttributes( &Attributes ) ;
+		if( SUCCEEDED( Result ) && Attributes != NULL )
+		{
+			// 1 means decoder-selected concurrency, not a single worker.
+			// Two workers leave CPU time for rendering without changing quality.
+			Result = Attributes->SetUINT32( WorkerThreadsKey, 2 ) ;
+		}
+	}
+	if( Attributes != NULL ) Attributes->Release() ;
+	if( Decoder != NULL ) Decoder->Release() ;
+	return Result ;
+}
+
+// Three CPU frames, plus the displayed buffers. No graphics calls on the worker.
+enum { MF_FRAME_FREE, MF_FRAME_WRITING, MF_FRAME_READY, MF_FRAME_COUNT = 3 } ;
+struct MF_READY_FRAME
+{
+	void *Y, *UV, *RGB ;
+	int State, Frame ;
+	LONGLONG TimeStamp ;
+} ;
+struct MF_DECODE_WORKER
+{
+	CRITICAL_SECTION Lock ;
+	HANDLE Wake, Started, Thread ;
+	volatile LONG Stop, Generation ;
+	LONG ActiveGeneration ; // Only the worker reads/writes this field.
+	HRESULT InitResult ; // Written once, before Started is signalled.
+	int RequestedFrame, SeekPending, SeekFrame, Failed, Finished, UseRGB ;
+	LONGLONG SeekTime ;
+	MOVIEGRAPH Decode ; // Private CPU-only snapshot, never passed to graphics/audio.
+	MF_READY_FRAME Frames[ MF_FRAME_COUNT ] ;
+} ;
+
+static int MediaFoundationMovie_SetupImageSync( MOVIEGRAPH *Movie, int BaseImage,
+	int YUVGrHandle, int ASyncThread, int ReadImage, int DecodeOnly ) ;
+
+static int MediaFoundationMovie_DecodeCancelled( MOVIEGRAPH *Movie )
+{
+	MF_DECODE_WORKER *Worker = Movie->PF.MFWorker ;
+	return Worker != NULL &&
+		( InterlockedCompareExchange( &Worker->Stop, 0, 0 ) != 0 ||
+		  InterlockedCompareExchange( &Worker->Generation, 0, 0 ) != Worker->ActiveGeneration ) ;
+}
+
+static DWORD WINAPI MediaFoundationMovie_DecodeThread( void *Param )
+{
+	MF_DECODE_WORKER *Worker = ( MF_DECODE_WORKER * )Param ;
+	MOVIEGRAPH *Decode = &Worker->Decode ;
+	HRESULT ComResult = WinAPIData.Win32Func.CoInitializeExFunc( NULL, COINIT_MULTITHREADED ) ;
+	Worker->InitResult = ComResult ;
+	int NextFrame = Decode->PF.MFLastReadSampleFrame + 1 ;
+	EnterCriticalSection( &Worker->Lock ) ;
+	Worker->Failed = FAILED( ComResult ) ;
+	LeaveCriticalSection( &Worker->Lock ) ;
+	SetEvent( Worker->Started ) ;
+	if( FAILED( ComResult ) ) return 0 ;
+
+	while( InterlockedCompareExchange( &Worker->Stop, 0, 0 ) == 0 )
+	{
+		int Slot = -1, Seek = FALSE, Target = 0, Result = 0 ;
+		LONGLONG SeekTime = 0 ;
+		EnterCriticalSection( &Worker->Lock ) ;
+		Worker->ActiveGeneration = Worker->Generation ;
+		if( Worker->SeekPending )
+		{
+			Seek = TRUE ;
+			SeekTime = Worker->SeekTime ;
+			NextFrame = Worker->SeekFrame ;
+			Worker->SeekPending = FALSE ;
+			Worker->Failed = Worker->Finished = FALSE ;
+		}
+		if( !Worker->Failed && !Worker->Finished )
+		{
+			Target = NextFrame > Worker->RequestedFrame ? NextFrame : Worker->RequestedFrame ;
+			if( Target >= Decode->PF.MFTotalFrame ) Worker->Finished = TRUE ;
+			else for( int i = 0 ; i < MF_FRAME_COUNT ; ++i )
+			{
+				if( Worker->Frames[ i ].State == MF_FRAME_FREE )
+				{
+					Slot = i ;
+					Worker->Frames[ i ].State = MF_FRAME_WRITING ;
+					break ;
+				}
+			}
+		}
+		LeaveCriticalSection( &Worker->Lock ) ;
+
+		if( Seek )
+		{
+			D_PROPVARIANT Position ;
+			_MEMSET( &Position, 0, sizeof( Position ) ) ;
+			Position.vt = D_VT_I8 ;
+			Position.hVal.QuadPart = SeekTime ;
+			Result = Decode->PF.pMFReader->SetCurrentPosition( _GUID_NULL, Position ) == S_OK ? 0 : -1 ;
+			Decode->PF.MFLastReadSampleFrame = -1 ;
+			Decode->PF.MFLastReadSampleTimeStamp = -1 ;
+		}
+		if( Slot >= 0 )
+		{
+			MF_READY_FRAME &Frame = Worker->Frames[ Slot ] ;
+			Decode->PF.MFCurrentFrame = Target ;
+			Decode->PF.MFYBuffer = Frame.Y ;
+			Decode->PF.MFUVBuffer = Frame.UV ;
+			Decode->PF.MFImageBuffer = Frame.RGB ;
+			Decode->NowImage.GraphData = Frame.RGB ;
+			Decode->PF.MFBaseImageSetup = 0 ;
+			if( Result == 0 && !MediaFoundationMovie_DecodeCancelled( Decode ) )
+				Result = MediaFoundationMovie_SetupImageSync( Decode, Worker->UseRGB, 0, FALSE, TRUE, TRUE ) ;
+			EnterCriticalSection( &Worker->Lock ) ;
+			if( !Worker->Stop && Worker->Generation == Worker->ActiveGeneration && Result == 0 )
+			{
+				Frame.Frame = Decode->PF.MFLastReadSampleFrame ;
+				Frame.TimeStamp = Decode->PF.MFLastReadSampleTimeStamp ;
+				Frame.State = MF_FRAME_READY ;
+				NextFrame = Frame.Frame + 1 ;
+			}
+			else
+			{
+				Frame.State = MF_FRAME_FREE ;
+				if( Worker->Generation == Worker->ActiveGeneration ) Worker->Failed = Result != 0 ;
+			}
+			LeaveCriticalSection( &Worker->Lock ) ;
+		}
+		else
+		{
+			WaitForSingleObject( Worker->Wake, INFINITE ) ;
+		}
+	}
+	WinAPIData.Win32Func.CoUninitializeFunc() ;
+	return 0 ;
+}
+
+static void MediaFoundationMovie_StopWorker( MOVIEGRAPH *Movie )
+{
+	MF_DECODE_WORKER *Worker = Movie->PF.MFWorker ;
+	if( Worker == NULL ) return ;
+	InterlockedExchange( &Worker->Stop, TRUE ) ;
+	if( Worker->Wake != NULL ) SetEvent( Worker->Wake ) ;
+	// Joining is restricted to destruction, never the playback/update path.
+	if( Worker->Thread != NULL )
+	{
+		WaitForSingleObject( Worker->Thread, INFINITE ) ;
+		CloseHandle( Worker->Thread ) ;
+	}
+	if( Worker->Wake != NULL ) CloseHandle( Worker->Wake ) ;
+	if( Worker->Started != NULL ) CloseHandle( Worker->Started ) ;
+	for( int i = 0 ; i < MF_FRAME_COUNT ; ++i )
+	{
+		if( Worker->Frames[ i ].Y ) DXFREE( Worker->Frames[ i ].Y ) ;
+		if( Worker->Frames[ i ].UV ) DXFREE( Worker->Frames[ i ].UV ) ;
+		if( Worker->Frames[ i ].RGB ) DXFREE( Worker->Frames[ i ].RGB ) ;
+	}
+	DeleteCriticalSection( &Worker->Lock ) ;
+	DXFREE( Worker ) ;
+	Movie->PF.MFWorker = NULL ;
+}
+
+static int MediaFoundationMovie_StartWorker( MOVIEGRAPH *Movie )
+{
+	MF_DECODE_WORKER *Worker = ( MF_DECODE_WORKER * )DXALLOC( sizeof( MF_DECODE_WORKER ) ) ;
+	if( Worker == NULL ) return -1 ;
+	_MEMSET( Worker, 0, sizeof( *Worker ) ) ;
+	InitializeCriticalSection( &Worker->Lock ) ;
+	Movie->PF.MFWorker = Worker ;
+	Worker->Decode = *Movie ;
+	Worker->RequestedFrame = Movie->PF.MFCurrentFrame ;
+	Worker->UseRGB = TRUE ;
+#ifndef DX_NON_FILTER
+	Worker->UseRGB = !GSYS.HardInfo.UseShader || Movie->PF.MFNotUseYUVGrHandle ;
+#endif
+	// Bound x86 memory usage; all frame storage is allocated before playback.
+	for( int i = 0 ; i < MF_FRAME_COUNT ; ++i )
+	{
+		MF_READY_FRAME &Frame = Worker->Frames[ i ] ;
+		Frame.Y = DXALLOC( ( size_t )Movie->PF.MFYStride * Movie->PF.MFYHeight ) ;
+		Frame.UV = DXALLOC( ( size_t )Movie->PF.MFUVStride * Movie->PF.MFUVHeight ) ;
+		if( Worker->UseRGB ) Frame.RGB = DXALLOC( ( size_t )Movie->NowImage.Pitch * Movie->NowImage.Height ) ;
+		if( !Frame.Y || !Frame.UV || ( Worker->UseRGB && !Frame.RGB ) )
+		{
+			MediaFoundationMovie_StopWorker( Movie ) ;
+			return -1 ;
+		}
+	}
+	Worker->Wake = CreateEventW( NULL, FALSE, FALSE, NULL ) ;
+	Worker->Started = CreateEventW( NULL, FALSE, FALSE, NULL ) ;
+	if( Worker->Wake && Worker->Started )
+		Worker->Thread = CreateThread( NULL, 0, MediaFoundationMovie_DecodeThread, Worker, 0, NULL ) ;
+	if( Worker->Thread != NULL ) WaitForSingleObject( Worker->Started, INFINITE ) ;
+	if( Worker->Thread == NULL || FAILED( Worker->InitResult ) )
+	{
+		MediaFoundationMovie_StopWorker( Movie ) ;
+		return -1 ;
+	}
+	return 0 ;
+}
+
+static HRESULT MediaFoundationMovie_RequestSeek( MOVIEGRAPH *Movie, const D_PROPVARIANT &Position, int Frame )
+{
+	MF_DECODE_WORKER *Worker = Movie->PF.MFWorker ;
+	if( Worker == NULL ) return Movie->PF.pMFReader->SetCurrentPosition( _GUID_NULL, Position ) ;
+	// This lock protects metadata only; decoding and COM calls never hold it.
+	EnterCriticalSection( &Worker->Lock ) ;
+	InterlockedIncrement( &Worker->Generation ) ;
+	Worker->SeekTime = Position.hVal.QuadPart ;
+	Worker->SeekFrame = Worker->RequestedFrame = Frame ;
+	Worker->SeekPending = TRUE ;
+	for( int i = 0 ; i < MF_FRAME_COUNT ; ++i )
+		if( Worker->Frames[ i ].State == MF_FRAME_READY ) Worker->Frames[ i ].State = MF_FRAME_FREE ;
+	LeaveCriticalSection( &Worker->Lock ) ;
+	SetEvent( Worker->Wake ) ;
+	return S_OK ; // Accepted asynchronously; the old image stays visible until ready.
+}
+
+static int MediaFoundationMovie_SetupImage( MOVIEGRAPH *Movie, int BaseImage, int YUVGrHandle, int ASyncThread )
+{
+	MF_DECODE_WORKER *Worker = Movie->PF.MFWorker ;
+	if( Worker == NULL ) return MediaFoundationMovie_SetupImageSync( Movie, BaseImage, YUVGrHandle, ASyncThread, TRUE, FALSE ) ;
+	if( TryEnterCriticalSection( &Worker->Lock ) )
+	{
+		int Selected = -1 ;
+		int Notify = Worker->RequestedFrame != Movie->PF.MFCurrentFrame ;
+		Worker->RequestedFrame = Movie->PF.MFCurrentFrame ;
+		for( int i = 0 ; i < MF_FRAME_COUNT ; ++i )
+		{
+			MF_READY_FRAME &Frame = Worker->Frames[ i ] ;
+			if( Frame.State == MF_FRAME_READY && Frame.Frame <= Movie->PF.MFCurrentFrame &&
+				( Selected < 0 || Frame.Frame > Worker->Frames[ Selected ].Frame ) ) Selected = i ;
+		}
+		// After a seek, the first available timestamp can round just past the
+		// requested frame. Allow that first result even while playback is paused.
+		if( Selected < 0 && Movie->PF.MFLastReadSampleFrame < 0 )
+			for( int i = 0 ; i < MF_FRAME_COUNT ; ++i )
+				if( Worker->Frames[ i ].State == MF_FRAME_READY &&
+					( Selected < 0 || Worker->Frames[ i ].Frame < Worker->Frames[ Selected ].Frame ) ) Selected = i ;
+		if( Selected >= 0 )
+		{
+			Notify = TRUE ;
+			MF_READY_FRAME &Frame = Worker->Frames[ Selected ] ;
+			void *OldY = Movie->PF.MFYBuffer, *OldUV = Movie->PF.MFUVBuffer ;
+			Movie->PF.MFYBuffer = Frame.Y ; Frame.Y = OldY ;
+			Movie->PF.MFUVBuffer = Frame.UV ; Frame.UV = OldUV ;
+			if( Worker->UseRGB )
+			{
+				void *OldRGB = Movie->PF.MFImageBuffer ;
+				Movie->PF.MFImageBuffer = Frame.RGB ; Frame.RGB = OldRGB ;
+				Movie->NowImage.GraphData = Movie->PF.MFImageBuffer ;
+			}
+			Movie->PF.MFLastReadSampleFrame = Frame.Frame ;
+			Movie->PF.MFLastReadSampleTimeStamp = Frame.TimeStamp ;
+			Movie->PF.MFBaseImageSetup = Worker->UseRGB ;
+#ifndef DX_NON_FILTER
+			Movie->PF.MFYUVGrHandleSetup = 0 ;
+#endif
+			Movie->NowImageUpdateFlag = TRUE ;
+			for( int i = 0 ; i < MF_FRAME_COUNT ; ++i )
+				if( Worker->Frames[ i ].State == MF_FRAME_READY &&
+					Worker->Frames[ i ].Frame <= Movie->PF.MFLastReadSampleFrame ) Worker->Frames[ i ].State = MF_FRAME_FREE ;
+		}
+		LeaveCriticalSection( &Worker->Lock ) ;
+		if( Notify ) SetEvent( Worker->Wake ) ;
+	}
+	// Only upload/display work is allowed here. Explicit CPU-image requests retain
+	// the existing YUV-to-RGB conversion when the normal playback path uses shaders.
+	return MediaFoundationMovie_SetupImageSync( Movie, BaseImage, YUVGrHandle, ASyncThread, FALSE, FALSE ) ;
+}
+
+
 static int MediaFoundationOpenMovieFile(
 	MOVIEGRAPH * Movie,
 	const wchar_t *FileName,
@@ -222,6 +477,7 @@ static int MediaFoundationOpenMovieFile(
 	_MEMSET( &Movie->OverlaySrcRect, 0, sizeof( RECT ) ) ;
 	_MEMSET( &Movie->OverlayDestRect, 0, sizeof( RECT ) ) ;
 
+	Movie->PF.MFWorker = NULL ;
 	Movie->PF.MFImageBuffer = NULL ;
 	Movie->PF.MFYBuffer = NULL ;
 	Movie->PF.MFUVBuffer = NULL ;
@@ -516,10 +772,23 @@ static int MediaFoundationOpenMovieFile(
 		}
 	}
 
+	if( MediaFoundationMovie_StartWorker( Movie ) != 0 )
+	{
+#ifndef DX_NON_SOUND
+		if( Movie->PF.MFSoundHandle > 0 )
+		{
+			SubHandle( Movie->PF.MFSoundHandle, FALSE, FALSE ) ;
+			Movie->PF.MFSoundHandle = 0 ;
+		}
+#endif
+		goto ERR ;
+	}
+
 	// 正常終了
 	return 0 ;
 
 ERR :
+	MediaFoundationMovie_StopWorker( Movie ) ;
 	if( Movie->PF.pMFReader != NULL						){		Movie->PF.pMFReader->Release() ;						Movie->PF.pMFReader = NULL ; }
 	if( Movie->PF.pMFMediaTypeVideoStream != NULL		){		Movie->PF.pMFMediaTypeVideoStream->Release() ;			Movie->PF.pMFMediaTypeVideoStream = NULL ; }
 	if( Movie->PF.pMFMediaTypeOutputVideoStream != NULL	){		Movie->PF.pMFMediaTypeOutputVideoStream->Release() ;	Movie->PF.pMFMediaTypeOutputVideoStream = NULL ; }
@@ -531,11 +800,13 @@ ERR :
 }
 
 // カレントフレームのRGB画像を作成する( 戻り値  1:作成された  0:されなかった )
-static int MediaFoundationMovie_SetupImage(
+static int MediaFoundationMovie_SetupImageSync(
 	MOVIEGRAPH * Movie,
 	int BaseImage,
 	int YUVGrHandle,
-	int ASyncThread
+	int ASyncThread,
+	int ReadImage,
+	int DecodeOnly
 )
 {
 	unsigned char *d, *ys, *uvs ;
@@ -553,7 +824,7 @@ static int MediaFoundationMovie_SetupImage(
 	LONGLONG llTimestamp ;
 
 	// 現在のフレームの画像がセットアップされていれば何もせず終了
-	if( 
+	if( !DecodeOnly &&
 #ifndef DX_NON_FILTER
 		( ( YUVGrHandle && Movie->PF.MFYUVGrHandleSetup ) || YUVGrHandle == 0 || Movie->PF.MFNotUseYUVGrHandle == TRUE  ) &&
 #endif // DX_NON_FILTER
@@ -561,11 +832,12 @@ static int MediaFoundationMovie_SetupImage(
 		return 0 ;
 
 	// イメージデータの読み込み
-	if( Movie->PF.MFLastReadSampleFrame < Movie->PF.MFCurrentFrame )
+	if( ReadImage && Movie->PF.MFLastReadSampleFrame < Movie->PF.MFCurrentFrame )
 	{
 		for(;;)
 		{
 			int CurFrame ;
+			if( DecodeOnly && MediaFoundationMovie_DecodeCancelled( Movie ) ) goto ERR ;
 
 			if( pSample != NULL )
 			{
@@ -1029,6 +1301,14 @@ static int MediaFoundationMovie_IncToFrame(
 
 	// カレントフレームを変更
 	Movie->PF.MFCurrentFrame += AddFrame ;
+	if( Movie->PF.MFWorker != NULL )
+	{
+#ifndef DX_NON_FILTER
+		if( GSYS.HardInfo.UseShader ) return MediaFoundationMovie_SetupImage( Movie, 0, 1, FALSE ) ;
+#endif
+		return MediaFoundationMovie_SetupImage( Movie, 1, 0, FALSE ) ;
+	}
+
 
 	// 要求されるフレームがデコード済みのフレームより番号が若い場合はセットアップフラグを倒さない
 	if( Movie->PF.MFLastReadSampleFrame < Movie->PF.MFCurrentFrame )
@@ -1362,6 +1642,10 @@ extern int TerminateMovieHandle_PF( HANDLEINFO *HandleInfo )
 {
 	MOVIEGRAPH *Movie = ( MOVIEGRAPH * )HandleInfo ;
 
+#ifndef DX_NON_MEDIA_FOUNDATION
+	MediaFoundationMovie_StopWorker( Movie ) ;
+#endif
+
 #if !defined( DX_NON_MEDIA_FOUNDATION ) || !defined( DX_NON_DSHOW_MOVIE )
 	SETUP_WIN_API
 
@@ -1561,7 +1845,7 @@ extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 		_MEMSET( &variant, 0, sizeof( variant ) ) ;
 		variant.vt = D_VT_I8 ;
 		variant.hVal.QuadPart = ( ULONGLONG )Time * 10000 ;
-		Result = Movie->PF.pMFReader->SetCurrentPosition( _GUID_NULL, variant ) ;
+		Result = MediaFoundationMovie_RequestSeek( Movie, variant, NewCurrentFrame ) ;
 		if( Result != S_OK )
 		{
 			return -1 ;
@@ -1920,7 +2204,7 @@ extern int SeekMovieToFrame_PF( MOVIEGRAPH * Movie, int Frame )
 		_MEMSET( &variant, 0, sizeof( variant ) ) ;
 		variant.vt = D_VT_I8 ;
 		variant.hVal.QuadPart = ( ULONGLONG )Movie->PF.MFFrameRateDenominator * ( ULONGLONG )Frame * ( ULONGLONG )10000000 / Movie->PF.MFFrameRateNumerator ;
-		Result = Movie->PF.pMFReader->SetCurrentPosition( _GUID_NULL, variant ) ;
+		Result = MediaFoundationMovie_RequestSeek( Movie, variant, Frame ) ;
 		if( Result != S_OK )
 		{
 			return -1 ;
@@ -2063,7 +2347,7 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 			// 希望のフレームが現在バッファに格納されているフレームと違う場合はバッファを更新する
 			if( Movie->PF.MFCurrentFrame != NowFrame )
 			{
-				Movie->NowImageUpdateFlag = TRUE ;
+				if( Movie->PF.MFWorker == NULL ) Movie->NowImageUpdateFlag = TRUE ;
 
 				// 加算するフレーム数を算出
 				if( NowFrame < Movie->PF.MFCurrentFrame )
@@ -2134,6 +2418,16 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 					MediaFoundationMovie_SetupImage( Movie, 1, 0, FALSE ) ;
 				}
 			}
+		}
+
+		// Poll even when the clock did not advance (also completes paused seeks).
+		if( Movie->PF.MFWorker != NULL )
+		{
+#ifndef DX_NON_FILTER
+			if( GSYS.HardInfo.UseShader ) MediaFoundationMovie_SetupImage( Movie, 0, 1, FALSE ) ;
+			else
+#endif
+			MediaFoundationMovie_SetupImage( Movie, 1, 0, FALSE ) ;
 		}
 
 		// イメージの構築

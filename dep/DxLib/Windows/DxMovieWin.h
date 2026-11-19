@@ -31,11 +31,14 @@ namespace DxLib
 // 構造体定義 --------------------------------------------------------------------
 
 // ムービーグラフィック環境依存データ型
+struct MF_DECODE_WORKER ;
+
 struct MOVIEGRAPH_PF
 {
 	int						Dummy ;
 
 #ifndef DX_NON_MEDIA_FOUNDATION
+	MF_DECODE_WORKER		*MFWorker ; // Bounded asynchronous CPU frame queue.
 	D_IMFSourceReader		*pMFReader ;					// ソースリーダー
 	D_IMFMediaType			*pMFMediaTypeVideoStream ;		// 変換前のビデオストリームメディア属性
 	D_IMFMediaType			*pMFMediaTypeOutputVideoStream ;// 変換後のビデオストリームメディア属性
