@@ -1,4 +1,5 @@
 ﻿#include "Scene04_Play.h"
+#include "../dep/DxLib/Windows/OpenLR2FrameTrace.h"
 #include "Scene08_Lunaris.h"
 //drawing part
 #include <math.h>
@@ -1242,6 +1243,7 @@ int ProcGame(game *g) {
 	}
 	g->timer1.maxGAP = (t41 - g->timer1.GAPclock > g->timer1.maxGAP) ? (t41 - g->timer1.GAPclock) : g->timer1.maxGAP;
 	if (t41 > 0) g->timer1.avgGAP = t41 / (double)g->timer1.GAPtick;
+	OpenLR2FrameTrace::Boundary(t41 - g->timer1.GAPclock, g->timer1.avgGAP);
 	g->timer1.GAPclock = t41;
 	//TEST END
 
@@ -1760,6 +1762,7 @@ void ProcGameThread(game *g) {
 	//TEST:
 	g->timer1.GAPtick = 0;
 	g->timer1.GAPclock = 0;
+	OpenLR2FrameTrace::Reset();
 	g->timer1.maxGAP = 0;
 	g->timer1.avgGAP = 0;
 	g->timer1.GAPcount = 0;

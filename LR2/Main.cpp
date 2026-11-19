@@ -1,4 +1,5 @@
 ﻿#include "structure.h"
+#include "../dep/DxLib/Windows/OpenLR2FrameTrace.h"
 #include "Engine.h"
 #include "LR2.h"
 #include "Scenes.h"
@@ -245,6 +246,7 @@ static double GetFrameLimiterRefreshRate() {
 }
 
 int main(int argc, char** argv) {
+	OpenLR2FrameTrace::Session frameTraceSession;
 #ifdef _WIN32
 #ifndef NDEBUG
 	while (!IsDebuggerPresent()) std::this_thread::sleep_for(std::chrono::milliseconds(200));
@@ -2178,6 +2180,8 @@ int main(int argc, char** argv) {
 				}
 			}
 		}
+		{
+		OpenLR2FrameTrace::Scope drawTrace(OpenLR2FrameTrace::Draw);
 		for (int i = 0; i < gs.skstruct.drBuf.count; i++) {
 			int quake_x = 0, quake_y = 0;
 			if (((gs.procPhase == 1) && (gs.procSelecter == 4)) && (0 < gs.config.play.m_earthquake)) {
@@ -2188,6 +2192,7 @@ int main(int argc, char** argv) {
 			if (gs.config.system.thread == 0 && gs.gameplay.flag_gameinput != 0) {
 				//ProcGame(&gs); //why this is here
 			}
+		}
 		}
 		{
 			int oldMode, oldParam;
@@ -2512,7 +2517,10 @@ int main(int argc, char** argv) {
 
 			if (GetWaitVSyncFlag()) SetWaitVSyncFlag(0); //TEST
 
-			ScreenFlip(); //DXlib Vsync works on here
+			{
+				OpenLR2FrameTrace::Scope flipTrace(OpenLR2FrameTrace::Flip);
+				ScreenFlip(); //DXlib Vsync works on here
+			}
 			GetTimeWrap();
 
 			GetTimeWrap();

@@ -15,6 +15,7 @@
 
 // インクルード----------------------------------------------------------------
 #include "DxMovieWin.h"
+#include "OpenLR2FrameTrace.h"
 #include "DxWinAPI.h"
 #include "DxFileWin.h"
 #include "../DxGraphics.h"
@@ -1968,6 +1969,7 @@ extern LONGLONG GetOneFrameTimeMovie_PF( MOVIEGRAPH * Movie )
 // ムービーの更新を行う処理の環境依存処理
 extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 {
+	OpenLR2FrameTrace::Scope movieTrace( OpenLR2FrameTrace::Movie ) ;
 #ifndef DX_NON_MEDIA_FOUNDATION
 	if( Movie->PF.pMFReader != NULL )
 	{

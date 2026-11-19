@@ -17,6 +17,7 @@
 
 // インクルード ---------------------------------------------------------------
 #include "DxGraphicsD3D9.h"
+#include "OpenLR2FrameTrace.h"
 #include "DxGraphicsWin.h"
 #include "DxMaskD3D9.h"
 #include "DxWindow.h"
@@ -28112,7 +28113,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 					// テクスチャをロック
 					if( UseSysMemSurface == FALSE )
 					{
-						hr = Direct3DCubeTexture9_LockRect_ASync(
+						hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DCubeTexture9_LockRect_ASync(
 							( D_IDirect3DCubeTexture9 * )UseTex,
 							( D_D3DCUBEMAP_FACES )i,
 							( UINT )j,
@@ -28120,7 +28121,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 							NULL,
 							0,
 							ASyncThread
-						) ;
+						); }) ;
 					}
 					else
 					{
@@ -28153,13 +28154,13 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 
 						UseSurface = GD3D9.SysMemTexSurf.Surface[ UseSysMemSurfaceIndex ].MemSurface ;
 
-						hr = Direct3DSurface9_LockRect_ASync(
+						hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DSurface9_LockRect_ASync(
 							UseSurface,
 							&LockRect,
 							NULL,
 							D_D3DLOCK_DISCARD,
 							ASyncThread
-						) ;
+						); }) ;
 					}
 					if( hr != D_D3D_OK )
 					{
@@ -28173,16 +28174,16 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 					// ロック解除
 					if( UseSysMemSurface == FALSE )
 					{
-						Direct3DCubeTexture9_UnlockRect_ASync(
+						OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DCubeTexture9_UnlockRect_ASync(
 							( D_IDirect3DCubeTexture9 * )UseTex,
 							( D_D3DCUBEMAP_FACES )i,
 							( UINT )j,
 							ASyncThread
-						) ;
+						); }) ;
 					}
 					else
 					{
-						Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ) ;
+						OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ); }) ;
 
 						Direct3DCubeTexture9_GetCubeMapSurface_ASync(
 							( D_IDirect3DCubeTexture9 * )UseTex,
@@ -28192,13 +28193,13 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 							ASyncThread
 						) ;
 
-						Direct3DDevice9_UpdateSurface_ASync(
+						OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Upload, [&]() { return Direct3DDevice9_UpdateSurface_ASync(
 							UseSurface,
 							NULL,
 							DestSurface,
 							NULL,
 							ASyncThread
-						) ; 
+						); }) ;
 
 						Direct3D9_ObjectRelease_ASync( DestSurface, ASyncThread ) ;
 
@@ -28246,7 +28247,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 				// テクスチャをロック
 				if( UseSysMemSurface == FALSE )
 				{
-					hr = Direct3DTexture9_LockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, &LockRect, NULL, 0, ASyncThread ) ;
+					hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DTexture9_LockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, &LockRect, NULL, 0, ASyncThread ); }) ;
 				}
 				else
 				{
@@ -28279,13 +28280,13 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 
 					UseSurface = GD3D9.SysMemTexSurf.Surface[ UseSysMemSurfaceIndex ].MemSurface ;
 
-					hr = Direct3DSurface9_LockRect_ASync(
+					hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DSurface9_LockRect_ASync(
 						UseSurface,
 						&LockRect,
 						NULL,
 						D_D3DLOCK_DISCARD,
 						ASyncThread
-					) ;
+					); }) ;
 				}
 				if( hr != D_D3D_OK )
 				{
@@ -28299,11 +28300,11 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 				// ロック解除
 				if( UseSysMemSurface == FALSE )
 				{
-					Direct3DTexture9_UnlockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, ASyncThread ) ;
+					OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DTexture9_UnlockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, ASyncThread ); }) ;
 				}
 				else
 				{
-					Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ) ;
+					OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ); }) ;
 
 					Direct3DTexture9_GetSurfaceLevel_ASync(
 						( D_IDirect3DTexture9 * )UseTex,
@@ -28312,13 +28313,13 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 						ASyncThread
 					) ;
 
-					Direct3DDevice9_UpdateSurface_ASync(
+					OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Upload, [&]() { return Direct3DDevice9_UpdateSurface_ASync(
 						UseSurface,
 						NULL,
 						DestSurface,
 						NULL,
 						ASyncThread
-					) ; 
+					); }) ;
 
 					Direct3D9_ObjectRelease_ASync( DestSurface, ASyncThread ) ;
 
@@ -28376,7 +28377,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 							// テクスチャをロック
 							if( UseSysMemSurface == FALSE )
 							{
-								hr = Direct3DCubeTexture9_LockRect_ASync(
+								hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DCubeTexture9_LockRect_ASync(
 									( D_IDirect3DCubeTexture9 * )UseTex,
 									( D_D3DCUBEMAP_FACES )i,
 									( UINT )j,
@@ -28384,7 +28385,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 									NULL,
 									0,
 									ASyncThread
-								) ;
+								); }) ;
 							}
 							else
 							{
@@ -28415,7 +28416,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 								}
 								UseSurface = GD3D9.SysMemTexSurf.Surface[ UseSysMemSurfaceIndex ].MemSurface ;
 
-								hr = Direct3DSurface9_LockRect_ASync( UseSurface, &LockRect, NULL, D_D3DLOCK_DISCARD, ASyncThread ) ;
+								hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DSurface9_LockRect_ASync( UseSurface, &LockRect, NULL, D_D3DLOCK_DISCARD, ASyncThread ); }) ;
 							}
 							if( hr != D_D3D_OK )
 							{
@@ -28429,15 +28430,15 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 							// ロック解除
 							if( UseSysMemSurface == FALSE )
 							{
-								Direct3DCubeTexture9_UnlockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, ( UINT )j, ASyncThread ) ;
+								OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DCubeTexture9_UnlockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, ( UINT )j, ASyncThread ); }) ;
 							}
 							else
 							{
-								Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ) ;
+								OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ); }) ;
 
 								Direct3DCubeTexture9_GetCubeMapSurface_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, ( UINT )j, &DestSurface, ASyncThread ) ;
 
-								Direct3DDevice9_UpdateSurface_ASync( UseSurface, NULL, DestSurface, NULL, ASyncThread ) ; 
+								OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Upload, [&]() { return Direct3DDevice9_UpdateSurface_ASync( UseSurface, NULL, DestSurface, NULL, ASyncThread ); }) ;
 
 								Direct3D9_ObjectRelease_ASync( DestSurface, ASyncThread ) ;
 
@@ -28474,7 +28475,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 						// テクスチャをロック
 						if( UseSysMemSurface == FALSE )
 						{
-							hr = Direct3DTexture9_LockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, &LockRect, NULL, 0, ASyncThread ) ;
+							hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DTexture9_LockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, &LockRect, NULL, 0, ASyncThread ); }) ;
 						}
 						else
 						{
@@ -28491,7 +28492,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 							}
 							UseSurface = GD3D9.SysMemTexSurf.Surface[ UseSysMemSurfaceIndex ].MemSurface ;
 
-							hr = Direct3DSurface9_LockRect_ASync( UseSurface, &LockRect, NULL, D_D3DLOCK_DISCARD, ASyncThread ) ;
+							hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DSurface9_LockRect_ASync( UseSurface, &LockRect, NULL, D_D3DLOCK_DISCARD, ASyncThread ); }) ;
 						}
 						if( hr != D_D3D_OK )
 						{
@@ -28505,15 +28506,15 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 						// ロック解除
 						if( UseSysMemSurface == FALSE )
 						{
-							Direct3DTexture9_UnlockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, ASyncThread ) ;
+							OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DTexture9_UnlockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, ASyncThread ); }) ;
 						}
 						else
 						{
-							Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ) ;
+							OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ); }) ;
 
 							Direct3DTexture9_GetSurfaceLevel_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, &DestSurface, ASyncThread ) ;
 
-							Direct3DDevice9_UpdateSurface_ASync( UseSurface, NULL, DestSurface, NULL, ASyncThread ) ; 
+							OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Upload, [&]() { return Direct3DDevice9_UpdateSurface_ASync( UseSurface, NULL, DestSurface, NULL, ASyncThread ); }) ;
 
 							Direct3D9_ObjectRelease_ASync( DestSurface, ASyncThread ) ;
 
@@ -28575,7 +28576,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 						if( j == 0 )
 						{
 							// level0 の時は等倍の出力フォーマット画像を作成する
-							NS_GraphColorMatchBltVer2(
+							OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Convert, [&]() { return NS_GraphColorMatchBltVer2(
 											   Image1,        ImagePitch,              DestColor,
 								( BYTE * )RgbBaseImage->GraphData   + ImageSize * i,      RgbBaseImage->Pitch,   &RgbBaseImage->ColorData,
 								( BYTE * )AlphaBaseImage->GraphData + AlphaImageSize * i, AlphaBaseImage->Pitch, &AlphaBaseImage->ColorData,
@@ -28583,7 +28584,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 								UseTransColorConvAlpha && ( DestColor->AlphaWidth != 0 && AlphaBaseImage->GraphData == NULL ), Orig->TransCode,
 								BASEIM.ImageShavedMode, FALSE,
 								RedIsAlphaFlag, FALSE,
-								FALSE ) ;
+								FALSE ); }) ;
 							ImageD = Image1 ;
 						}
 						else
@@ -28613,7 +28614,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 						{
 							if( Orig->FormatDesc.CubeMapTextureFlag )
 							{
-								if( Direct3DCubeTexture9_LockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, ( UINT )j, &LockRect, &DestRectT, 0, ASyncThread ) != D_D3D_OK )
+								if( OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DCubeTexture9_LockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, ( UINT )j, &LockRect, &DestRectT, 0, ASyncThread ); }) != D_D3D_OK )
 								{
 									DXFREE( ImageBuffer ) ;
 									ImageBuffer = NULL ;
@@ -28623,7 +28624,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 							}
 							else
 							{
-								if( Direct3DTexture9_LockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, &LockRect, &DestRectT, 0, ASyncThread ) != D_D3D_OK )
+								if( OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DTexture9_LockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, &LockRect, &DestRectT, 0, ASyncThread ); }) != D_D3D_OK )
 								{
 									DXFREE( ImageBuffer ) ;
 									ImageBuffer = NULL ;
@@ -28650,7 +28651,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 							}
 							UseSurface = GD3D9.SysMemTexSurf.Surface[ UseSysMemSurfaceIndex ].MemSurface ;
 
-							if( Direct3DSurface9_LockRect_ASync( UseSurface, &LockRect, &DestRectT, D_D3DLOCK_DISCARD, ASyncThread ) != D_D3D_OK )
+							if( OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DSurface9_LockRect_ASync( UseSurface, &LockRect, &DestRectT, D_D3DLOCK_DISCARD, ASyncThread ); }) != D_D3D_OK )
 							{
 								DXFREE( ImageBuffer ) ;
 								ImageBuffer = NULL ;
@@ -28664,23 +28665,23 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 						SrcRectT.top    = 0 ;
 						SrcRectT.right  = ImageDW ;
 						SrcRectT.bottom = ImageDH ;
-						NS_GraphColorMatchBltVer2(
+						OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Convert, [&]() { return NS_GraphColorMatchBltVer2(
 							LockRect.pBits, LockRect.Pitch,  DestColor,
 									ImageD,     ImagePitch,  DestColor,
 									  NULL,              0,       NULL,
 							DestPoint, &SrcRectT, FALSE,
-							FALSE, 0, 0, FALSE, FALSE, FALSE, FALSE ) ;
+							FALSE, 0, 0, FALSE, FALSE, FALSE, FALSE ); }) ;
 
 						// ロック解除
 						if( UseSysMemSurface == FALSE )
 						{
 							if( Orig->FormatDesc.CubeMapTextureFlag )
 							{
-								Direct3DCubeTexture9_UnlockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, ( UINT )j, ASyncThread ) ;
+								OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DCubeTexture9_UnlockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, ( UINT )j, ASyncThread ); }) ;
 							}
 							else
 							{
-								Direct3DTexture9_UnlockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, ASyncThread ) ;
+								OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DTexture9_UnlockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, ( UINT )j, ASyncThread ); }) ;
 							}
 						}
 						else
@@ -28688,7 +28689,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 							D_IDirect3DSurface9 *DestSurfaceP = NULL ;
 							POINT DestSurfacePoint ;
 
-							Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ) ;
+							OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ); }) ;
 
 							if( Orig->FormatDesc.CubeMapTextureFlag )
 							{
@@ -28701,7 +28702,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_MipMapBlt(
 
 							DestSurfacePoint.x = DestRectT.left ;
 							DestSurfacePoint.y = DestRectT.top ;
-							Direct3DDevice9_UpdateSurface_ASync( UseSurface, &DestRectT, DestSurfaceP, &DestSurfacePoint, ASyncThread ) ; 
+							OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Upload, [&]() { return Direct3DDevice9_UpdateSurface_ASync( UseSurface, &DestRectT, DestSurfaceP, &DestSurfacePoint, ASyncThread ); }) ;
 
 							Direct3D9_ObjectRelease_ASync( DestSurfaceP, ASyncThread ) ;
 
@@ -28810,11 +28811,11 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 		{
 			if( Orig->FormatDesc.CubeMapTextureFlag )
 			{
-				hr = Direct3DCubeTexture9_LockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, 0, &LockRect, &DestRectT, 0, ASyncThread ) ;
+				hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DCubeTexture9_LockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, 0, &LockRect, &DestRectT, 0, ASyncThread ); }) ;
 			}
 			else
 			{
-				hr = Direct3DTexture9_LockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, 0, &LockRect, &DestRectT, 0, ASyncThread ) ;
+				hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DTexture9_LockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, 0, &LockRect, &DestRectT, 0, ASyncThread ); }) ;
 			}
 			UseSysMemSurfaceIndex = -1 ;
 		}
@@ -28833,7 +28834,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 			}
 			UseSurface = GD3D9.SysMemTexSurf.Surface[ UseSysMemSurfaceIndex ].MemSurface ;
 
-			hr = Direct3DSurface9_LockRect_ASync( UseSurface, &LockRect, &DestRectT, D_D3DLOCK_DISCARD, ASyncThread ) ;
+			hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DSurface9_LockRect_ASync( UseSurface, &LockRect, &DestRectT, D_D3DLOCK_DISCARD, ASyncThread ); }) ;
 		}
 		if( hr != D_D3D_OK )
 		{
@@ -28869,7 +28870,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 
 				SrcRgbAddr   = ( BYTE * )RgbBaseImage->GraphData   + i * ImageSize ;
 				SrcAlphaAddr = ( BYTE * )AlphaBaseImage->GraphData + i * AlphaImageSize ;
-				NS_GraphColorMatchBltVer2(
+				OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Convert, [&]() { return NS_GraphColorMatchBltVer2(
 					LockRect.pBits, LockRect.Pitch,    DestColor,
 					SrcRgbAddr,     RgbBaseImage->Pitch,   &RgbBaseImage->ColorData,
 					SrcAlphaAddr,   AlphaBaseImage->Pitch, &AlphaBaseImage->ColorData,
@@ -28877,7 +28878,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 					UseTransColorConvAlpha && ( DestColor->AlphaWidth != 0 && AlphaBaseImage->GraphData == NULL ), Orig->TransCode,
 					BASEIM.ImageShavedMode, FALSE,
 					RedIsAlphaFlag, FALSE,
-					FALSE ) ;
+					FALSE ); }) ;
 
 				if( BottomLineFillFlag )
 				{
@@ -28927,11 +28928,11 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 		{
 			if( Orig->FormatDesc.CubeMapTextureFlag )
 			{
-				Direct3DCubeTexture9_UnlockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, 0, ASyncThread ) ;
+				OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DCubeTexture9_UnlockRect_ASync( ( D_IDirect3DCubeTexture9 * )UseTex, ( D_D3DCUBEMAP_FACES )i, 0, ASyncThread ); }) ;
 			}
 			else
 			{
-				Direct3DTexture9_UnlockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, 0, ASyncThread ) ;
+				OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DTexture9_UnlockRect_ASync( ( D_IDirect3DTexture9 * )UseTex, 0, ASyncThread ); }) ;
 			}
 		}
 		else
@@ -28939,7 +28940,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 			D_IDirect3DSurface9 *DestSurface = NULL ;
 			POINT                DestSurfacePoint ;
 
-			Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ) ;
+			OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DSurface9_UnlockRect_ASync( UseSurface, ASyncThread ); }) ;
 
 			if( Orig->FormatDesc.CubeMapTextureFlag )
 			{
@@ -28952,7 +28953,7 @@ static int Graphics_D3D9_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 
 			DestSurfacePoint.x = DestRectT.left ;
 			DestSurfacePoint.y = DestRectT.top ;
-			Direct3DDevice9_UpdateSurface_ASync( UseSurface, &DestRectT, DestSurface, &DestSurfacePoint, ASyncThread ) ; 
+			OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Upload, [&]() { return Direct3DDevice9_UpdateSurface_ASync( UseSurface, &DestRectT, DestSurface, &DestSurfacePoint, ASyncThread ); }) ;
 
 			Direct3D9_ObjectRelease_ASync( DestSurface, ASyncThread ) ;
 
@@ -28979,6 +28980,7 @@ extern	int		Graphics_Hardware_D3D9_BltBmpOrBaseImageToGraph3_PF(
 	      int		ASyncThread
 )
 {
+	OpenLR2FrameTrace::Scope textureTrace(OpenLR2FrameTrace::Texture, OpenLR2FrameTrace::Thread().depth[OpenLR2FrameTrace::Movie]>0);
 	IMAGEDATA					*Image ;
 	IMAGEDATA_ORIG				*Orig ;
 	IMAGEDATA_ORIG_HARD_TEX		*OrigTex ;
@@ -29070,14 +29072,14 @@ extern	int		Graphics_Hardware_D3D9_BltBmpOrBaseImageToGraph3_PF(
 			}
 
 			// システムメモリサーフェスをロック
-			Direct3DSurface9_LockRect_ASync( SMSurface[ i ], &LockRect, NULL, D_D3DLOCK_DISCARD, ASyncThread ) ;
+			OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DSurface9_LockRect_ASync( SMSurface[ i ], &LockRect, NULL, D_D3DLOCK_DISCARD, ASyncThread ); }) ;
 
 			// 内容を転送
 			MoveRect.left   = 0 ;
 			MoveRect.top    = 0 ;
 			MoveRect.right  = SrcWidth ;
 			MoveRect.bottom = SrcHeight ;
-			NS_GraphColorMatchBltVer2(
+			OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Convert, [&]() { return NS_GraphColorMatchBltVer2(
 				LockRect.pBits,                                                               LockRect.Pitch,    DestColor,
 				( BYTE * )RgbBaseImage->GraphData   + RgbBaseImage->Pitch   * RgbBaseImage->Height   * i, RgbBaseImage->Pitch,   &RgbBaseImage->ColorData,
 				( BYTE * )AlphaBaseImage->GraphData + AlphaBaseImage->Pitch * AlphaBaseImage->Height * i, AlphaBaseImage->Pitch, &AlphaBaseImage->ColorData,
@@ -29085,10 +29087,10 @@ extern	int		Graphics_Hardware_D3D9_BltBmpOrBaseImageToGraph3_PF(
 				UseTransColorConvAlpha && ( DestColor->AlphaWidth != 0 && AlphaBaseImage->GraphData == NULL ), Orig->TransCode,
 				BASEIM.ImageShavedMode, FALSE,
 				RedIsAlphaFlag, FALSE,
-				FALSE ) ;
+				FALSE ); }) ;
 
 			// システムメモリサーフェスのロックを解除
-			Direct3DSurface9_UnlockRect_ASync( SMSurface[ i ], ASyncThread ) ;
+			OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DSurface9_UnlockRect_ASync( SMSurface[ i ], ASyncThread ); }) ;
 		}
 
 		// オフスクリーンサーフェスの作成に失敗したらテクスチャの作成を試みる
@@ -29135,14 +29137,14 @@ extern	int		Graphics_Hardware_D3D9_BltBmpOrBaseImageToGraph3_PF(
 				}
 
 				// システムメモリテクスチャをロック
-				hr = Direct3DTexture9_LockRect_ASync( SMTexture, 0, &LockRect, NULL, D_D3DLOCK_DISCARD, ASyncThread ) ;
+				hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Lock, [&]() { return Direct3DTexture9_LockRect_ASync( SMTexture, 0, &LockRect, NULL, D_D3DLOCK_DISCARD, ASyncThread ); }) ;
 
 				// 内容を転送
 				MoveRect.left   = 0 ;
 				MoveRect.top    = 0 ;
 				MoveRect.right  = SrcWidth ;
 				MoveRect.bottom = SrcHeight ;
-				NS_GraphColorMatchBltVer2(
+				OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Convert, [&]() { return NS_GraphColorMatchBltVer2(
 					LockRect.pBits,                                                                                  LockRect.Pitch,                  DestColor,
 					( BYTE * )RgbBaseImage->GraphData   + RgbBaseImage->Pitch   * RgbBaseImage->Height   * i,   RgbBaseImage->Pitch,   &RgbBaseImage->ColorData,
 					( BYTE * )AlphaBaseImage->GraphData + AlphaBaseImage->Pitch * AlphaBaseImage->Height * i, AlphaBaseImage->Pitch, &AlphaBaseImage->ColorData,
@@ -29150,10 +29152,10 @@ extern	int		Graphics_Hardware_D3D9_BltBmpOrBaseImageToGraph3_PF(
 					UseTransColorConvAlpha && ( DestColor->AlphaWidth != 0 && AlphaBaseImage->GraphData == NULL ), Orig->TransCode,
 					BASEIM.ImageShavedMode, FALSE,
 					RedIsAlphaFlag, FALSE,
-					FALSE ) ;
+					FALSE ); }) ;
 
 				// システムメモリテクスチャのロックを解除
-				hr = Direct3DTexture9_UnlockRect_ASync( SMTexture, 0, ASyncThread ) ;
+				hr = OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Unlock, [&]() { return Direct3DTexture9_UnlockRect_ASync( SMTexture, 0, ASyncThread ); }) ;
 
 				// テクスチャの更新
 				hr = Direct3DDevice9_UpdateTexture_ASync( SMTexture, TargetTexture, ASyncThread ) ;
@@ -29197,15 +29199,15 @@ extern	int		Graphics_Hardware_D3D9_BltBmpOrBaseImageToGraph3_PF(
 				DestPoint.y = DestRect.top ;
 				for( j = 0 ; j < ImageNum ; j ++ )
 				{
-					Direct3DDevice9_UpdateSurface_ASync(
+					OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Upload, [&]() { return Direct3DDevice9_UpdateSurface_ASync(
 						SMSurface[ j ],				&MoveRect,
-						OrigTex->PF->D3D9.Surface[ j ],	&DestPoint, ASyncThread ) ;
+						OrigTex->PF->D3D9.Surface[ j ],	&DestPoint, ASyncThread ); }) ;
 				}
 				if( OrigTex->PF->D3D9.RenderTargetSurface )
 				{
-					Direct3DDevice9_UpdateSurface_ASync(
+					OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Upload, [&]() { return Direct3DDevice9_UpdateSurface_ASync(
 						SMSurface[ 0 ],						&MoveRect,
-						OrigTex->PF->D3D9.RenderTargetSurface,	&DestPoint, ASyncThread ) ;
+						OrigTex->PF->D3D9.RenderTargetSurface,	&DestPoint, ASyncThread ); }) ;
 				}
 			}
 			else
@@ -29340,9 +29342,9 @@ extern	int		Graphics_Hardware_D3D9_BltBmpOrBaseImageToGraph3_PF(
 				DestPoint.y = DestRect.top ;
 				for( j = 0 ; j < ImageNum ; j ++ )
 				{
-					if( Direct3DDevice9_UpdateSurface_ASync(
+					if( OpenLR2FrameTrace::MeasureMovie(OpenLR2FrameTrace::Upload, [&]() { return Direct3DDevice9_UpdateSurface_ASync(
 							SMSurface[ j ],             &MoveRect,
-							DrawTex->Tex->PF->D3D9.Surface[ j ], &DestPoint, ASyncThread ) != D_D3D_OK )
+							DrawTex->Tex->PF->D3D9.Surface[ j ], &DestPoint, ASyncThread ); }) != D_D3D_OK )
 					{
 						DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xef\x53\xfd\x80\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x78\x30\x6e\x30\x3b\x75\xcf\x50\x6e\x30\xe2\x8e\x01\x90\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"描画可能テクスチャへの画像の転送に失敗しました\n" @*/ ) ;
 						goto ERR ;
