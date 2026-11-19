@@ -421,6 +421,7 @@
       <AdditionalManifestFiles>$(SolutionDir)OpenLR2.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
     </Manifest>
   </ItemDefinitionGroup>
+  <Import Project="OpenLR2FFmpeg.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

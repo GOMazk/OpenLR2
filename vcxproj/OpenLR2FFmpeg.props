@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <OpenLR2FFmpegRoot Condition="'$(OpenLR2FFmpegRoot)'==''">$(MSBuildThisFileDirectory)..\vcpkg_installed\ffmpeg\x86-ffmpeg</OpenLR2FFmpegRoot>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(OpenLR2FFmpegRoot)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32' and '$(ConfigurationType)'=='Application'">
+    <Link>
+      <AdditionalLibraryDirectories>$(OpenLR2FFmpegRoot)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>avformat.lib;avcodec.lib;swscale.lib;avutil.lib;ncrypt.lib;crypt32.lib;ws2_32.lib;bcrypt.lib;secur32.lib;mfplat.lib;mfuuid.lib;strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Target Name="ValidateOpenLR2FFmpeg" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(Configuration)|$(Platform)'!='Release|Win32'" Text="The FFmpeg experiment supports Release / x86 (Win32 projects) only. Use dxlib_video_mf for the Media Foundation build." />
+    <Error Condition="!Exists('$(OpenLR2FFmpegRoot)\include\libavformat\avformat.h') or !Exists('$(OpenLR2FFmpegRoot)\lib\avformat.lib') or !Exists('$(OpenLR2FFmpegRoot)\lib\avcodec.lib') or !Exists('$(OpenLR2FFmpegRoot)\lib\swscale.lib') or !Exists('$(OpenLR2FFmpegRoot)\lib\avutil.lib')" Text="FFmpeg dependencies were not found under $(OpenLR2FFmpegRoot). Run tools/video/ffmpeg/Install-FFmpeg.ps1 -VcpkgExe PATH_TO_VCPKG_EXE, or set /p:OpenLR2FFmpegRoot to an existing x86 static Release installation. See docs/video-playback.md." />
+  </Target>
+</Project>
