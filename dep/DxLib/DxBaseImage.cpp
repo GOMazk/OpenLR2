@@ -11,6 +11,9 @@
 
 // インクルード----------------------------------------------------------------
 #include "DxBaseImage.h"
+#if defined(_M_X64) || (defined(_M_IX86_FP) && _M_IX86_FP >= 2)
+#include <emmintrin.h>
+#endif
 #include "DxMemory.h"
 #include "DxBaseFunc.h"
 #include "DxGraphics.h"
@@ -11535,6 +11538,30 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 				  DColor.GreenMask 	== 0x0000ff00 &&
 				  DColor.BlueMask 	== 0x00ff0000 ) )
 			{
+#if defined(_M_X64) || (defined(_M_IX86_FP) && _M_IX86_FP >= 2)
+                // Preserve the scalar channel replication, including alpha bytes.
+                // Full vectors only: no source overread or destination padding writes.
+                do
+                {
+                    int x = 0;
+                    for(; x <= BltWidth - 16; x += 16)
+                    {
+                        __m128i v = _mm_loadu_si128((const __m128i *)(Src + x * 1));
+                        __m128i lo = _mm_unpacklo_epi8(v, v);
+                        __m128i hi = _mm_unpackhi_epi8(v, v);
+                        _mm_storeu_si128((__m128i *)(Dest + x * 4), _mm_unpacklo_epi16(lo, lo));
+                        _mm_storeu_si128((__m128i *)(Dest + x * 4 + 16), _mm_unpackhi_epi16(lo, lo));
+                        _mm_storeu_si128((__m128i *)(Dest + x * 4 + 32), _mm_unpacklo_epi16(hi, hi));
+                        _mm_storeu_si128((__m128i *)(Dest + x * 4 + 48), _mm_unpackhi_epi16(hi, hi));
+                    }
+                    for(; x < BltWidth; ++x)
+                    {
+                        Dest[x*4] = Dest[x*4+1] = Dest[x*4+2] = Dest[x*4+3] = Src[x];
+                    }
+                    Dest += DestPitch;
+                    Src += SrcPitch;
+                }while(--BltHeight);
+#else
 				BlockNum = BltWidth / 8 ;
 				OneNum   = BltWidth - BlockNum * 8 ;
 
@@ -11573,6 +11600,8 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 					Dest += DestAddPitch ;
 					Src  += SrcAddPitch ;
 				}while( -- BltHeight ) ;
+
+#endif
 
 				return 0 ;
 			}
@@ -11646,6 +11675,27 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 				  DColor.GreenMask 	== 0x0000ff00 &&
 				  DColor.BlueMask 	== 0x00ff0000 ) )
 			{
+#if defined(_M_X64) || (defined(_M_IX86_FP) && _M_IX86_FP >= 2)
+                // Preserve the scalar channel replication, including alpha bytes.
+                // Full vectors only: no source overread or destination padding writes.
+                do
+                {
+                    int x = 0;
+                    for(; x <= BltWidth - 8; x += 8)
+                    {
+                        __m128i v = _mm_loadu_si128((const __m128i *)(Src + x * 2));
+                        _mm_storeu_si128((__m128i *)(Dest + x * 4), _mm_unpacklo_epi16(v, v));
+                        _mm_storeu_si128((__m128i *)(Dest + x * 4 + 16), _mm_unpackhi_epi16(v, v));
+                    }
+                    for(; x < BltWidth; ++x)
+                    {
+                        Dest[x*4] = Dest[x*4+2] = Src[x*2];
+                        Dest[x*4+1] = Dest[x*4+3] = Src[x*2+1];
+                    }
+                    Dest += DestPitch;
+                    Src += SrcPitch;
+                }while(--BltHeight);
+#else
 				BlockNum = BltWidth / 8 ;
 				OneNum   = BltWidth - BlockNum * 8 ;
 
@@ -11684,6 +11734,8 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 					Dest += DestAddPitch ;
 					Src  += SrcAddPitch ;
 				}while( -- BltHeight ) ;
+
+#endif
 
 				return 0 ;
 			}
