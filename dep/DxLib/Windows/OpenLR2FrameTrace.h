@@ -1,4 +1,4 @@
-#ifndef OPENLR2_FRAME_TRACE_H
+﻿#ifndef OPENLR2_FRAME_TRACE_H
 #define OPENLR2_FRAME_TRACE_H
 #ifdef _WIN32
 #include <windows.h>
@@ -148,7 +148,7 @@ inline void Shutdown() {
    _snwprintf_s(slash+1,remain,_TRUNCATE,L"frame-gap-%lu-%llu.csv",GetCurrentProcessId(),stamp);
    FILE *f=NULL;
    if(_wfopen_s(&f,path,L"wb")==0&&f) {
-    fprintf(f,"# version=1,qpc_frequency=%lld,main_tid=%lu,slow_total=%llu,capacity=%d,overwritten=%llu,contention_dropped=%ld\n",g.frequency,g.mainThread,g.total,Capacity,g.total>Capacity?g.total-Capacity:0,g.dropped);
+    fprintf(f,"# version=1,variant=ffmpeg,qpc_frequency=%lld,main_tid=%lu,slow_total=%llu,capacity=%d,overwritten=%llu,contention_dropped=%ld\n",g.frequency,g.mainThread,g.total,Capacity,g.total>Capacity?g.total-Capacity:0,g.dropped);
     fprintf(f,"song,tid,begin_qpc,end_qpc,display_gap_ms,qpc_gap_ms,draw_ms,movie_ms,flip_ms,covered_ms,other_ms\n");
     unsigned long long first=g.total>Capacity?g.total-Capacity:0;
     double scale=1000.0/g.frequency;
@@ -161,7 +161,7 @@ inline void Shutdown() {
    _snwprintf_s(slash+1,remain,_TRUNCATE,L"frame-summary-%lu-%llu.csv",GetCurrentProcessId(),stamp);
    f=NULL;
    if(_wfopen_s(&f,path,L"wb")==0&&f) {
-    fprintf(f,"# version=3,qpc_frequency=%lld,main_tid=%lu,contention_dropped=%ld,summary_overflow=%llu,histogram_bin_ms=0.05,histogram_tail_ms=20,percentiles=upper_bound,first_boundary_per_song=excluded\n",g.frequency,g.mainThread,g.dropped,g.summaryOverflow);
+    fprintf(f,"# version=3,variant=ffmpeg,qpc_frequency=%lld,main_tid=%lu,contention_dropped=%ld,summary_overflow=%llu,histogram_bin_ms=0.05,histogram_tail_ms=20,percentiles=upper_bound,first_boundary_per_song=excluded\n",g.frequency,g.mainThread,g.dropped,g.summaryOverflow);
     fprintf(f,"song,begin_qpc,end_qpc,display_avg_gap_ms,metric,frames,mean_ms,min_ms,max_ms,p50_upper_ms,p95_upper_ms,p99_upper_ms,below_3ms,below_5ms,at_least_10ms,above_2ms,excess_over_2ms_sum,excess_over_2ms_max,qpc_gap_over_2ms_frames,mean_when_qpc_gap_over_2ms\n");
     const char *names[MetricCount]={"display_gap","qpc_gap","draw","movie","flip","covered","other","movie_texture_total","movie_convert_copy","movie_lock","movie_unlock","movie_update_surface"};
     for(int i=0;i<SongCapacity;i++) {

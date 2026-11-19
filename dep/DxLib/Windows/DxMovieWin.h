@@ -19,6 +19,8 @@
 #include "../DxLib.h"
 #include "../DxFile.h"
 
+class OpenLR2FFReader;
+
 #ifndef DX_NON_NAMESPACE
 
 namespace DxLib
@@ -38,6 +40,7 @@ struct MOVIEGRAPH_PF
 	int						Dummy ;
 
 #ifndef DX_NON_MEDIA_FOUNDATION
+	::OpenLR2FFReader *pFFReader;
 	MF_DECODE_WORKER		*MFWorker ; // Bounded asynchronous CPU frame queue.
 	D_IMFSourceReader		*pMFReader ;					// ソースリーダー
 	D_IMFMediaType			*pMFMediaTypeVideoStream ;		// 変換前のビデオストリームメディア属性

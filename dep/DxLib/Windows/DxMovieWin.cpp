@@ -15,6 +15,7 @@
 
 // インクルード----------------------------------------------------------------
 #include "DxMovieWin.h"
+#include "OpenLR2FFReader.h"
 #include "OpenLR2FrameTrace.h"
 #include "DxWinAPI.h"
 #include "DxFileWin.h"
@@ -279,7 +280,7 @@ static DWORD WINAPI MediaFoundationMovie_DecodeThread( void *Param )
 			_MEMSET( &Position, 0, sizeof( Position ) ) ;
 			Position.vt = D_VT_I8 ;
 			Position.hVal.QuadPart = SeekTime ;
-			Result = Decode->PF.pMFReader->SetCurrentPosition( _GUID_NULL, Position ) == S_OK ? 0 : -1 ;
+			Result = Decode->PF.pFFReader->Seek( SeekTime ) < 0 ? -1 : 0 ;
 			Decode->PF.MFLastReadSampleFrame = -1 ;
 			Decode->PF.MFLastReadSampleTimeStamp = -1 ;
 		}
@@ -385,7 +386,7 @@ static int MediaFoundationMovie_StartWorker( MOVIEGRAPH *Movie )
 static HRESULT MediaFoundationMovie_RequestSeek( MOVIEGRAPH *Movie, const D_PROPVARIANT &Position, int Frame )
 {
 	MF_DECODE_WORKER *Worker = Movie->PF.MFWorker ;
-	if( Worker == NULL ) return Movie->PF.pMFReader->SetCurrentPosition( _GUID_NULL, Position ) ;
+	if( Worker == NULL ) return Movie->PF.pFFReader->Seek( Position.hVal.QuadPart ) < 0 ? E_FAIL : S_OK ;
 	// This lock protects metadata only; decoding and COM calls never hold it.
 	EnterCriticalSection( &Worker->Lock ) ;
 	InterlockedIncrement( &Worker->Generation ) ;
@@ -478,6 +479,7 @@ static int MediaFoundationOpenMovieFile(
 	_MEMSET( &Movie->OverlayDestRect, 0, sizeof( RECT ) ) ;
 
 	Movie->PF.MFWorker = NULL ;
+	Movie->PF.pFFReader = NULL ;
 	Movie->PF.MFImageBuffer = NULL ;
 	Movie->PF.MFYBuffer = NULL ;
 	Movie->PF.MFUVBuffer = NULL ;
@@ -526,150 +528,26 @@ static int MediaFoundationOpenMovieFile(
 		}
 	}
 
-	// ファイルを開く
-	if( WinAPIData.Win32Func.MFCreateSourceReaderFromURLFunc( Movie->PF.FileName, NULL, &Movie->PF.pMFReader ) != S_OK )
-	{
-		DWORD_PTR fp ;
-		HANDLE FileHandle ;
-		void *TempBuffer ;
-		size_t CompSize, MoveSize ;
-		DWORD WriteSize ;
-		size_t FileSize ;
-		const DWORD BufferSize = 0x100000 ;
-
-		// 既にテンポラリファイルを作成している場合は、
-		// 更にテンポラリファイルを作成することはしない
-		if( Movie->PF.UseTemporaryFile == TRUE )
-			goto ERR ;
-
-		// ファイルが開けなかったらアーカイブされている可能性がある
-#ifdef UNICODE
-		fp = DX_FOPEN( Movie->PF.FileName ) ;
-#else
-		fp = DX_FOPEN( FileName ) ;
-#endif
-		if( fp == 0 ) goto ERR ;
-		
-		// 開けた場合はテンポラリファイルに書き出す
-		{
-			// ファイルサイズの取得
-			DX_FSEEK( fp, 0L, SEEK_END ) ;
-			FileSize = ( size_t )DX_FTELL( fp ) ;
-			DX_FSEEK( fp, 0L, SEEK_SET ) ;
-
-			// 一時的にデータを格納するバッファを確保
-			TempBuffer = DXALLOC( BufferSize ) ;
-			if( TempBuffer == NULL )
-			{
-				DX_FCLOSE( fp ) ;
-				goto ERR ;
-			}
-
-			// テンポラリファイルの作成
-			FileHandle = CreateTemporaryFile( Movie->PF.FileName, sizeof( Movie->PF.FileName ) ) ;
-
-			if( FileHandle == NULL )
-			{
-				DX_FCLOSE( fp ) ;
-				DXFREE( TempBuffer ) ;
-				goto ERR ;
-			}
-			Movie->PF.UseTemporaryFile = TRUE ;
-
-			// テンポラリファイルにデータを書き出す
-			CompSize = 0 ;
-			while( CompSize < FileSize )
-			{
-				MoveSize = CompSize - FileSize ;
-				if( MoveSize > BufferSize ) MoveSize = BufferSize ;
-
-				DX_FREAD( TempBuffer, MoveSize, 1, fp ) ;
-				WinAPIData.Win32Func.WriteFileFunc( FileHandle, TempBuffer, ( DWORD )MoveSize, &WriteSize, NULL ) ;
-
-				if( MoveSize != WriteSize ) break ;
-				CompSize += MoveSize ;
-			}
-
-			// ファイルを閉じ、メモリを解放する
-			DX_FCLOSE( fp ) ;
-			WinAPIData.Win32Func.CloseHandleFunc( FileHandle ) ;
-			DXFREE( TempBuffer ) ;
-		}
-
-		// 改めてファイルを開く
-		if( WinAPIData.Win32Func.MFCreateSourceReaderFromURLFunc( Movie->PF.FileName, NULL, &Movie->PF.pMFReader ) != S_OK )
-		{
-			// テンポラリファイルを削除
-			DeleteFileWFunc( Movie->PF.FileName ) ;
-			goto ERR ;
-		}
-	}
-
-	// ファイルの情報を取得する
-	if( Movie->PF.pMFReader->GetCurrentMediaType(
-			( DWORD )D_MF_SOURCE_READER_FIRST_VIDEO_STREAM, 
-			&Movie->PF.pMFMediaTypeVideoStream ) != S_OK )
-		goto ERR ;
-
-	// サイズの取得
-	if( D_MFGetAttributeSize( Movie->PF.pMFMediaTypeVideoStream, D_MF_MT_FRAME_SIZE, &Movie->PF.MFFrameSizeX, &Movie->PF.MFFrameSizeY ) != S_OK )
-		goto ERR ;
-
-	// サイズの取得のみの場合はここで終了
-	if( ImageSizeGetOnly )
-	{
-		if( Width  ) *Width  = ( int )Movie->PF.MFFrameSizeX ;
-		if( Height ) *Height = ( int )Movie->PF.MFFrameSizeY ;
-
-		return 0 ;
-	}
-
-	// フレームレートの取得
-	if( D_MFGetAttributeRatio( Movie->PF.pMFMediaTypeVideoStream, D_MF_MT_FRAME_RATE, &Movie->PF.MFFrameRateNumerator, &Movie->PF.MFFrameRateDenominator ) != S_OK )
-		goto ERR ;
-
-	// アスペクト比の取得
-	if( D_MFGetAttributeRatio( Movie->PF.pMFMediaTypeVideoStream, D_MF_MT_PIXEL_ASPECT_RATIO, &Movie->PF.MFAspectRatioX, &Movie->PF.MFAspectRatioY ) != S_OK )
-		goto ERR ;
-
-	// 再生時間を取得
-	if( Movie->PF.pMFReader->GetPresentationAttribute( ( DWORD )D_MF_SOURCE_READER_MEDIASOURCE, D_MF_PD_DURATION, &Movie->PF.MFDuration ) != S_OK )
-		goto ERR ;
-	Movie->StopTime = Movie->PF.MFDuration.hVal.QuadPart ;
-
-	// 総フレーム数を算出
-	{
-		LONGLONG Temp64_1, Temp64_2 ;
-		DWORD Temp128[ 4 ] ;
-
-		Temp64_1 = Movie->PF.MFFrameRateNumerator ;
-		_MUL128_1( ( DWORD * )&Movie->PF.MFDuration.hVal.QuadPart, ( DWORD * )&Temp64_1, Temp128 ) ;
-		Temp64_1 = ( LONGLONG )10000000 * ( LONGLONG )Movie->PF.MFFrameRateDenominator ;
-		_DIV128_1( Temp128, ( DWORD * )&Temp64_1, ( DWORD * )&Temp64_2 ) ;
-		Movie->PF.MFTotalFrame = ( int )Temp64_2 ;
-	}
-
-	// 出力形式を作成
-	WinAPIData.Win32Func.MFCreateMediaTypeFunc( &Movie->PF.pMFMediaTypeOutputVideoStream ) ;
-	Movie->PF.pMFMediaTypeOutputVideoStream->SetGUID( D_MF_MT_MAJOR_TYPE, D_MFMEDIATYPE_VIDEO ) ;
-	Movie->PF.pMFMediaTypeOutputVideoStream->SetGUID( D_MF_MT_SUBTYPE, D_MFVIDEOFORMAT_IYUV ) ;
-	Movie->PF.pMFMediaTypeOutputVideoStream->SetUINT32( D_MF_MT_DEFAULT_STRIDE, Movie->PF.MFFrameSizeX ) ;
-	D_MFSetAttributeRatio( ( D_IMFAttributes * )Movie->PF.pMFMediaTypeOutputVideoStream, D_MF_MT_FRAME_RATE, Movie->PF.MFFrameRateNumerator, Movie->PF.MFFrameRateDenominator ) ;
-	D_MFSetAttributeSize( ( D_IMFAttributes * )Movie->PF.pMFMediaTypeOutputVideoStream, D_MF_MT_FRAME_SIZE, Movie->PF.MFFrameSizeX, Movie->PF.MFFrameSizeY ) ;
-//	Movie->PF.pMFMediaTypeOutputVideoStream->SetUINT32( D_MF_MT_INTERLACE_MODE, D_MFVideoInterlace_Progressive ) ;
-	Movie->PF.pMFMediaTypeOutputVideoStream->SetUINT32( D_MF_MT_ALL_SAMPLES_INDEPENDENT, TRUE ) ;
-	D_MFSetAttributeRatio( ( D_IMFAttributes * )Movie->PF.pMFMediaTypeOutputVideoStream, D_MF_MT_PIXEL_ASPECT_RATIO, Movie->PF.MFAspectRatioX, Movie->PF.MFAspectRatioY ) ;
-
-	// 出力形式をセット
-	hr = Movie->PF.pMFReader->SetCurrentMediaType(
-			( DWORD )D_MF_SOURCE_READER_FIRST_VIDEO_STREAM,
-			NULL,
-			Movie->PF.pMFMediaTypeOutputVideoStream ) ;
-	if( hr != S_OK )
-		goto ERR ;
-
-	// Optional tuning: unsupported decoders retain their normal playback path.
-	MediaFoundationMovie_LimitDecoderThreads( Movie->PF.pMFReader ) ;
+	// FFmpeg experiment: keep the existing queue and rendering path.
+ Movie->PF.pFFReader = new (std::nothrow) OpenLR2FFReader;
+ if( !Movie->PF.pFFReader ) goto ERR;
+ { int result = Movie->PF.pFFReader->Open(Movie->PF.FileName);
+   if( result < 0 ) { Movie->PF.pFFReader->Log("movie_open_failed",result); goto ERR; } }
+ Movie->PF.MFFrameSizeX = Movie->PF.pFFReader->width;
+ Movie->PF.MFFrameSizeY = Movie->PF.pFFReader->height;
+ Movie->PF.MFFrameRateNumerator = Movie->PF.pFFReader->rate.num;
+ Movie->PF.MFFrameRateDenominator = Movie->PF.pFFReader->rate.den;
+ Movie->PF.MFAspectRatioX = Movie->PF.pFFReader->aspect.num;
+ Movie->PF.MFAspectRatioY = Movie->PF.pFFReader->aspect.den;
+ Movie->PF.MFDuration.vt = D_VT_I8;
+ Movie->PF.MFDuration.hVal.QuadPart = Movie->PF.pFFReader->duration;
+ Movie->StopTime = Movie->PF.MFDuration.hVal.QuadPart;
+ Movie->PF.MFTotalFrame = (int)av_rescale_q_rnd(Movie->StopTime, AVRational{1,10000000}, av_inv_q(Movie->PF.pFFReader->rate), AV_ROUND_DOWN);
+ if( ImageSizeGetOnly ) {
+  if( Width ) *Width = Movie->PF.MFFrameSizeX;
+  if( Height ) *Height = Movie->PF.MFFrameSizeY;
+  return 0;
+ }
 
 	// １フレーム辺りの時間をセット
 	if( Movie->PF.MFFrameRateNumerator == 0 )
@@ -763,12 +641,12 @@ static int MediaFoundationOpenMovieFile(
 
 		if( GSYS.HardInfo.UseShader )
 		{
-			MediaFoundationMovie_SetupImage( Movie, 0, 1, ASyncThread ) ;
+			if( MediaFoundationMovie_SetupImage( Movie, 0, 1, ASyncThread ) != 0 ) { Movie->PF.pFFReader->Log("first_frame_failed",-1); goto ERR; }
 		}
 		else
 #endif // DX_NON_FILTER
 		{
-			MediaFoundationMovie_SetupImage( Movie, 1, 0, ASyncThread ) ;
+			if( MediaFoundationMovie_SetupImage( Movie, 1, 0, ASyncThread ) != 0 ) { Movie->PF.pFFReader->Log("first_frame_failed",-1); goto ERR; }
 		}
 	}
 
@@ -784,12 +662,16 @@ static int MediaFoundationOpenMovieFile(
 		goto ERR ;
 	}
 
+	Movie->PF.pFFReader->Log("ready");
 	// 正常終了
 	return 0 ;
 
 ERR :
-	MediaFoundationMovie_StopWorker( Movie ) ;
-	if( Movie->PF.pMFReader != NULL						){		Movie->PF.pMFReader->Release() ;						Movie->PF.pMFReader = NULL ; }
+ MediaFoundationMovie_StopWorker( Movie );
+#ifndef DX_NON_SOUND
+ if( Movie->PF.MFSoundHandle > 0 ) { SubHandle( Movie->PF.MFSoundHandle, FALSE, FALSE ); Movie->PF.MFSoundHandle = 0; }
+#endif
+	if( Movie->PF.pFFReader ) { delete Movie->PF.pFFReader; Movie->PF.pFFReader = NULL; }
 	if( Movie->PF.pMFMediaTypeVideoStream != NULL		){		Movie->PF.pMFMediaTypeVideoStream->Release() ;			Movie->PF.pMFMediaTypeVideoStream = NULL ; }
 	if( Movie->PF.pMFMediaTypeOutputVideoStream != NULL	){		Movie->PF.pMFMediaTypeOutputVideoStream->Release() ;	Movie->PF.pMFMediaTypeOutputVideoStream = NULL ; }
 	if( Movie->PF.MFImageBuffer != NULL					){		DXFREE( Movie->PF.MFImageBuffer ) ;						Movie->PF.MFImageBuffer = NULL ; }
@@ -811,17 +693,6 @@ static int MediaFoundationMovie_SetupImageSync(
 {
 	unsigned char *d, *ys, *uvs ;
 	int i, j, r, g, b, ysadd, dadd, uvadd, w, h, dpitch, uvr, uvg, uvb, y, y2, y3, y4;
-	HRESULT hr ;
-	DWORD dwFlags = 0 ;
-	D_IMFSample *pSample = NULL;
-	D_IMFMediaBuffer *pBuffer = NULL;
-	D_IMF2DBuffer *p2DBuffer = NULL ;
-//	BYTE *pScanline = NULL ;
-//	LONG Pitch = 0 ;
-	BYTE *Buffer ;
-	DWORD MaxLength ;
-	DWORD CurrentLength ;
-	LONGLONG llTimestamp ;
 
 	// 現在のフレームの画像がセットアップされていれば何もせず終了
 	if( !DecodeOnly &&
@@ -832,256 +703,19 @@ static int MediaFoundationMovie_SetupImageSync(
 		return 0 ;
 
 	// イメージデータの読み込み
-	if( ReadImage && Movie->PF.MFLastReadSampleFrame < Movie->PF.MFCurrentFrame )
-	{
-		for(;;)
-		{
-			int CurFrame ;
-			if( DecodeOnly && MediaFoundationMovie_DecodeCancelled( Movie ) ) goto ERR ;
+ if( ReadImage && Movie->PF.MFLastReadSampleFrame < Movie->PF.MFCurrentFrame ) {
+  for(;;) {
+   if( DecodeOnly && MediaFoundationMovie_DecodeCancelled(Movie) ) goto ERR;
+   int64_t timestamp;
+   if( Movie->PF.pFFReader->Read(timestamp) < 0 ) goto ERR;
+   Movie->PF.MFLastReadSampleTimeStamp = timestamp;
+   Movie->PF.MFLastReadSampleFrame = (int)av_rescale_q_rnd(timestamp + Movie->PF.FrameTime / 4,
+    AVRational{1,10000000},av_inv_q(Movie->PF.pFFReader->rate),AV_ROUND_DOWN);
+   if( Movie->PF.MFLastReadSampleFrame >= Movie->PF.MFCurrentFrame ) break;
+  }
+  if( Movie->PF.pFFReader->Copy(Movie->PF.MFYBuffer,Movie->PF.MFYStride,Movie->PF.MFUVBuffer,Movie->PF.MFUVStride) < 0 ) goto ERR;
+ }
 
-			if( pSample != NULL )
-			{
-				pSample->Release() ;
-				pSample = NULL ;
-			}
-
-			hr = Movie->PF.pMFReader->ReadSample(
-				( DWORD )D_MF_SOURCE_READER_FIRST_VIDEO_STREAM,
-				0,
-				NULL,
-				&dwFlags,
-				&llTimestamp,
-				&pSample
-			) ;
-			if( hr != S_OK )
-			{
-				goto ERR ;
-			}
-
-			if( dwFlags & D_MF_SOURCE_READERF_CURRENTMEDIATYPECHANGED )
-			{
-				continue ;
-			}
-
-			if( dwFlags & D_MF_SOURCE_READERF_ENDOFSTREAM )
-			{
-				goto ERR ;
-			}
-
-			if( pSample == NULL )
-			{
-				goto ERR ;
-			}
-
-			// フレームを算出
-			{
-				LONGLONG Temp64_1, Temp64_2 ;
-				DWORD Temp128[ 4 ] ;
-
-				Temp64_1 = llTimestamp + Movie->PF.FrameTime / 4 ;
-				Temp64_2 = ( LONGLONG )Movie->PF.MFFrameRateNumerator * 0x1000 / Movie->PF.MFFrameRateDenominator ;
-				_MUL128_1( ( DWORD * )&Temp64_1, ( DWORD * )&Temp64_2, Temp128 ) ;
-
-				Temp64_2 = LL_NUM( 40960000000 ) /* 10000000 * 0x1000 */ ;
-				_DIV128_1( Temp128, ( DWORD * )&Temp64_2, ( DWORD * )&Temp64_1 ) ;
-
-				CurFrame = ( int )Temp64_1 ;
-			}
-
-			Movie->PF.MFLastReadSampleTimeStamp = llTimestamp ;
-			Movie->PF.MFLastReadSampleFrame     = CurFrame ;
-
-			if( CurFrame >= Movie->PF.MFCurrentFrame )
-			{
-				break ;
-			}
-			else
-			{
-				CurFrame = CurFrame ;
-			}
-		}
-
-		hr = pSample->GetBufferByIndex( 0, &pBuffer ) ;
-		if( hr != S_OK )
-		{
-			goto ERR ;
-		}
-
-//		hr = pBuffer->QueryInterface( IID_IMF2DBUFFER, ( void ** )&p2DBuffer ) ;
-//		if( hr != S_OK )
-//		{
-//			goto ERR ;
-//		}
-//
-//		hr = p2DBuffer->Lock2D( &pScanline, &Pitch ) ;
-//		if( hr != S_OK )
-//		{
-//			goto ERR ;
-//		}
-
-//		BOOL IsContiguous ;
-//		hr = p2DBuffer->IsContiguousFormat( &IsContiguous ) ;
-//		IsContiguous = IsContiguous ;
-
-		hr = pBuffer->Lock( &Buffer, &MaxLength, &CurrentLength ) ;
-		if( hr != S_OK )
-		{
-			goto ERR ;
-		}
-
-		// バッファにデータをコピーする
-		{
-			BYTE *yimage ;
-			BYTE *uimage ;
-			BYTE *vimage ;
-			DWORD ystride ;
-			DWORD uvstride ;
-			DWORD ysize ;
-			DWORD uvsize ;
-			DWORD totalsize ;
-
-			// イメージデータの Stride を検証する
-
-			// 最初は stride 16 の倍数、縦サイズ 32 の倍数で検証
-			ystride  =            ( ( Movie->PF.MFFrameSizeX     + 15 ) / 16 * 16 ) ;
-			uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 +  7 ) /  8 *  8 ) ;
-			ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 31 ) / 32 * 32 ) ;
-			uvsize   = uvstride * ( ( Movie->PF.MFFrameSizeY / 2 + 15 ) / 16 * 16 ) ;
-			totalsize = ysize + uvsize * 2 ;
-			if( CurrentLength < totalsize )
-			{
-				// stride 16 の倍数、縦サイズ 32 の倍数ではなかった場合は縦サイズ 16 の倍数で検証
-				ystride  =            ( ( Movie->PF.MFFrameSizeX     + 15 ) / 16 * 16 ) ;
-				uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 +  7 ) /  8 *  8 ) ;
-				ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 15 ) / 16 * 16 ) ;
-				uvsize   = uvstride * ( ( Movie->PF.MFFrameSizeY / 2 +  7 ) /  8 *  8 ) ;
-				totalsize = ysize + uvsize * 2 ;
-				if( CurrentLength < totalsize )
-				{
-					// 16 の倍数ではなかった場合は 8 の倍数で検証
-					ystride  =            ( ( Movie->PF.MFFrameSizeX     + 7 ) / 8 * 8 ) ;
-					uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 + 3 ) / 4 * 4 ) ;
-					ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 7 ) / 8 * 8 ) ;
-					uvsize   = uvstride * ( ( Movie->PF.MFFrameSizeY / 2 + 3 ) / 4 * 4 ) ;
-					totalsize = ysize + uvsize * 2 ;
-					if( CurrentLength < totalsize )
-					{
-						// 8 の倍数ではなかった場合は 4 の倍数を使用
-						ystride  =            ( ( Movie->PF.MFFrameSizeX     + 3 ) / 4 * 4 ) ;
-						uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 + 1 ) / 2 * 2 ) ;
-						ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 3 ) / 4 * 4 ) ;
-						uvsize   = uvstride * ( ( Movie->PF.MFFrameSizeY / 2 + 1 ) / 2 * 2 ) ;
-						totalsize = ysize + uvsize * 2 ;
-						if( CurrentLength < totalsize )
-						{
-							// 4 の倍数ではなかった場合は 2 の倍数を使用
-							ystride  =            ( ( Movie->PF.MFFrameSizeX     + 1 ) / 2 * 2 ) ;
-							uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 + 0 ) / 1 * 1 ) ;
-							ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 1 ) / 2 * 2 ) ;
-							uvsize   = uvstride * ( ( Movie->PF.MFFrameSizeY / 2 + 0 ) / 1 * 1 ) ;
-							totalsize = ysize + uvsize * 2 ;
-							if( CurrentLength < totalsize )
-							{
-								// 2の倍数でも駄目だった場合はエラー
-								pBuffer->Unlock() ;
-								goto ERR ;
-							}
-						}
-					}
-				}
-			}
-
-			yimage = ( BYTE * )Buffer ;
-			uimage = yimage + ysize ;
-			vimage = uimage + uvsize ;
-
-			// Yイメージをコピー
-
-			// ystride が出力先の stride と等しい場合は処理を分岐
-			if( ystride == Movie->PF.MFYStride )
-			{
-				_MEMCPY( Movie->PF.MFYBuffer, yimage, ( size_t )( Movie->PF.MFYStride * Movie->PF.MFFrameSizeY ) ) ;
-			}
-			else
-			{
-				DWORD n, m ;
-				BYTE *dst ;
-				BYTE *y_ ;
-				DWORD dwnum = Movie->PF.MFYWidth / 4 ;
-				DWORD btnum = Movie->PF.MFYWidth - dwnum * 4 ;
-
-				dst = ( BYTE * )Movie->PF.MFYBuffer ;
-				y_ = yimage ;
-				for( n = 0; n < ( DWORD )Movie->PF.MFYHeight ; n ++, dst += Movie->PF.MFYStride, y_ += ystride )
-				{
-					BYTE *y_t ;
-					BYTE *dst_t ;
-
-					dst_t = dst ;
-					y_t = y_ ;
-					for( m = 0 ; m < dwnum ; m ++, dst_t += 4, y_t += 4 )
-					{
-						*( ( DWORD * )dst_t ) = *( ( DWORD * )y_t ) ;
-					}
-					for( m = 0 ; m < btnum ; m ++, dst_t ++, y_t ++ )
-					{
-						*dst_t = *y_t ;
-					}
-				}
-			}
-
-			// UVイメージをコピー
-			{
-				DWORD n, m ;
-				DWORD bw ;
-				DWORD ow ;
-				BYTE *dst ;
-				BYTE *u, *v ;
-
-				bw = Movie->PF.MFUVWidth / 8 ;
-				ow = Movie->PF.MFUVWidth % 8 ;
-
-				dst = ( BYTE * )Movie->PF.MFUVBuffer ;
-				u = uimage ;
-				v = vimage ;
-				for( n = 0 ; n < ( DWORD )Movie->PF.MFUVHeight ; n ++, dst += Movie->PF.MFUVStride, u += uvstride, v += uvstride )
-				{
-					BYTE *u_t, *v_t ;
-					BYTE *dst_t ;
-
-					dst_t = dst ;
-					u_t = u ;
-					v_t = v ;
-					for( m = 0 ; m < bw ; m ++, dst_t += 2 * 8, u_t += 8, v_t += 8 )
-					{
-						dst_t[  0 ] = u_t[ 0 ] ;		dst_t[  1 ] = v_t[ 0 ] ;
-						dst_t[  2 ] = u_t[ 1 ] ;		dst_t[  3 ] = v_t[ 1 ] ;
-						dst_t[  4 ] = u_t[ 2 ] ;		dst_t[  5 ] = v_t[ 2 ] ;
-						dst_t[  6 ] = u_t[ 3 ] ;		dst_t[  7 ] = v_t[ 3 ] ;
-						dst_t[  8 ] = u_t[ 4 ] ;		dst_t[  9 ] = v_t[ 4 ] ;
-						dst_t[ 10 ] = u_t[ 5 ] ;		dst_t[ 11 ] = v_t[ 5 ] ;
-						dst_t[ 12 ] = u_t[ 6 ] ;		dst_t[ 13 ] = v_t[ 6 ] ;
-						dst_t[ 14 ] = u_t[ 7 ] ;		dst_t[ 15 ] = v_t[ 7 ] ;
-					}
-					for( m = 0 ; m < ow ; m ++, dst_t += 2, u_t ++, v_t ++ )
-					{
-						dst_t[ 0 ] = *u_t ;
-						dst_t[ 1 ] = *v_t ;
-					}
-				}
-			}
-		}
-
-//		if( p2DBuffer->Unlock2D() != S_OK )
-//		{
-//			goto ERR ;
-//		}
-
-		if( pBuffer->Unlock() != S_OK )
-		{
-			goto ERR ;
-		}
-	}
 
 #ifndef DX_NON_FILTER
 	// シェーダーが使用できる場合はYUVカラーのグラフィックハンドルを使用する
@@ -1244,47 +878,9 @@ static int MediaFoundationMovie_SetupImageSync(
 		Movie->PF.MFBaseImageSetup = 1 ;
 	}
 
-	if( pSample != NULL )
-	{
-		pSample->Release() ;
-		pSample = NULL ;
-	}
-
-	if( p2DBuffer != NULL )
-	{
-		p2DBuffer->Release() ;
-		p2DBuffer = NULL ;
-	}
-
-	if( pBuffer != NULL )
-	{
-		pBuffer->Release() ;
-		pBuffer = NULL ;
-	}
-
-	// 正常終了
-	return 0 ;
-
-ERR :
-	if( pBuffer != NULL )
-	{
-		pBuffer->Release() ;
-		pBuffer = NULL ;
-	}
-
-	if( pSample != NULL )
-	{
-		pSample->Release() ;
-		pSample = NULL ;
-	}
-
-	if( p2DBuffer != NULL )
-	{
-		p2DBuffer->Release() ;
-		p2DBuffer = NULL ;
-	}
-
-	return -1 ;
+ return 0;
+ERR:
+ return -1;
 }
 
 // Media Foundation を使用した動画ファイルのフレームを進める
@@ -1666,7 +1262,7 @@ extern int TerminateMovieHandle_PF( HANDLEINFO *HandleInfo )
 	}
 #endif // DX_NON_SOUND
 
-	if( Movie->PF.pMFReader != NULL						){		Movie->PF.pMFReader->Release() ;						Movie->PF.pMFReader = NULL ; }
+	if( Movie->PF.pFFReader ) { delete Movie->PF.pFFReader; Movie->PF.pFFReader = NULL; }
 	if( Movie->PF.pMFMediaTypeVideoStream != NULL		){		Movie->PF.pMFMediaTypeVideoStream->Release() ;			Movie->PF.pMFMediaTypeVideoStream = NULL ; }
 	if( Movie->PF.pMFMediaTypeOutputVideoStream != NULL	){		Movie->PF.pMFMediaTypeOutputVideoStream->Release() ;	Movie->PF.pMFMediaTypeOutputVideoStream = NULL ; }
 	if( Movie->PF.MFImageBuffer != NULL					){		DXFREE( Movie->PF.MFImageBuffer ) ;						Movie->PF.MFImageBuffer = NULL ; }
@@ -1704,17 +1300,8 @@ extern int OpenMovie_UseGParam_PF( MOVIEGRAPH * Movie, OPENMOVIE_GPARAM * /*GPar
 	}
 #endif // DX_NON_MEDIA_FOUNDATION
 
-#ifndef DX_NON_DSHOW_MOVIE
-	// DirectShow によるファイルのオープンを試みる
-	if( Flag == FALSE )
-	{
-		Movie->PF.UseTemporaryFile = FALSE ;
-		if( DirectShowOpenMovieFile( Movie, FileName, Width, Height,SurfaceMode, ImageSizeGetOnly, ASyncThread ) != -1 )
-		{
-			Flag = TRUE ;
-		}
-	}
-#endif // DX_NON_DSHOW_MOVIE
+// No DirectShow fallback in this comparison build: failed FFmpeg opens remain visible.
+
 
 	if( Flag == FALSE )
 	{
@@ -1735,7 +1322,7 @@ extern int OpenMovie_CustomGraphHandleGParam_PF( MOVIEGRAPH * /*Movie*/, struct 
 extern int PlayMovie__PF( MOVIEGRAPH *Movie, int PlayType, int /*SysPlay*/ )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		// １フレーム目をセットアップ
 #ifndef DX_NON_FILTER
@@ -1781,7 +1368,7 @@ extern int PlayMovie__PF( MOVIEGRAPH *Movie, int PlayType, int /*SysPlay*/ )
 extern 	int PauseMovie_PF( MOVIEGRAPH * Movie, int /*SysPause*/ )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		// サウンドの再生を停止する
 #ifndef DX_NON_SOUND
@@ -1814,7 +1401,7 @@ extern 	int PauseMovie_PF( MOVIEGRAPH * Movie, int /*SysPause*/ )
 extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		D_PROPVARIANT variant ;
 		HRESULT Result ;
@@ -1919,7 +1506,7 @@ extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 extern int SetPlaySpeedRateMovie_PF( MOVIEGRAPH * Movie, double SpeedRate )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		Movie->PF.MFPlaySpeedRate = SpeedRate ;
 #ifndef DX_NON_SOUND
@@ -1954,7 +1541,7 @@ extern int SetPlaySpeedRateMovie_PF( MOVIEGRAPH * Movie, double SpeedRate )
 extern int GetMovieState_PF( MOVIEGRAPH * Movie )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		return Movie->PlayFlag ;
 	}
@@ -2002,7 +1589,7 @@ extern int SetMovieVolume_PF( MOVIEGRAPH * Movie, int Volume )
 	}
 
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		// サウンドの音量をセット
 #ifndef DX_NON_SOUND
@@ -2030,7 +1617,7 @@ extern int SetMovieVolume_PF( MOVIEGRAPH * Movie, int Volume )
 extern	BASEIMAGE *GetMovieBaseImage_PF( MOVIEGRAPH * Movie, int *ImageUpdateFlag, int ImageUpdateFlagSetOnly )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		// ムービーのフレームを更新
 		UpdateMovie( Movie->HandleInfo.Handle ) ;
@@ -2101,7 +1688,7 @@ extern	BASEIMAGE *GetMovieBaseImage_PF( MOVIEGRAPH * Movie, int *ImageUpdateFlag
 extern int GetMovieTotalFrame_PF( MOVIEGRAPH * Movie )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		// 総フレーム数を返す
 		return Movie->PF.MFTotalFrame ;
@@ -2123,7 +1710,7 @@ extern int GetMovieTotalFrame_PF( MOVIEGRAPH * Movie )
 extern int TellMovie_PF( MOVIEGRAPH * Movie )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		// フレームを更新
 		UpdateMovie( Movie->HandleInfo.Handle ) ;
@@ -2156,7 +1743,7 @@ extern int TellMovie_PF( MOVIEGRAPH * Movie )
 extern int TellMovieToFrame_PF( MOVIEGRAPH * Movie )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		// フレームを更新
 		UpdateMovie( Movie->HandleInfo.Handle ) ;
@@ -2189,7 +1776,7 @@ extern int TellMovieToFrame_PF( MOVIEGRAPH * Movie )
 extern int SeekMovieToFrame_PF( MOVIEGRAPH * Movie, int Frame )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		D_PROPVARIANT variant ;
 		HRESULT Result ;
@@ -2285,7 +1872,7 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 {
 	OpenLR2FrameTrace::Scope movieTrace( OpenLR2FrameTrace::Movie ) ;
 #ifndef DX_NON_MEDIA_FOUNDATION
-	if( Movie->PF.pMFReader != NULL )
+	if( Movie->PF.pFFReader != NULL )
 	{
 		int NowFrame, AddFrame ;
 		LONGLONG NowTime ;
