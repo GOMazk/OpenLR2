@@ -73,7 +73,7 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
 
 ## Video playback experiment
 
-See [the Media Foundation experiment notes](docs/video-playback.md) for the changes, x86 build instructions, and frame-gap measurements on this branch.
+This branch uses an experimental FFmpeg video backend. See [the FFmpeg experiment notes](docs/video-ffmpeg.md) for the required x86 Release dependency setup, changes, and comparison results. The [shared Media Foundation optimizations and metrics](docs/video-playback.md) are also documented.
 
 ## Building
 

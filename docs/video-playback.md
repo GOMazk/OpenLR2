@@ -24,7 +24,7 @@ The branch starts at `047ae03c` on `dxlib_video`. Its changes are split into:
    the texture path, retaining scalar tails and the existing fallback.
 5. **Documentation.** Explain the experiment, measurement rules, and limitations.
 
-The separate `dxlib_video_ffmpeg` branch inherits these commits and replaces the
+The separate [`dxlib_video_ffmpeg` branch](video-ffmpeg.md) inherits these commits and replaces the
 video reader with an experimental FFmpeg backend. Comparing the two branches
 therefore isolates the backend changes from the shared queue and rendering work.
 
