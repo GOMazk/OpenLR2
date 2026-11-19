@@ -100,6 +100,33 @@ static GUID *g_MFVideoFormatGUIDTable[ D_MFVIDEOFORMAT_TYPE_UNKNOWN ] =
 
 #ifndef DX_NON_MEDIA_FOUNDATION
 // Media Foundation を使用した動画ファイルのオープンを試みる
+// Configure the decoder itself, not just our outer DecodeThread. Set this after
+// output-type negotiation and before the first ReadSample starts streaming.
+static HRESULT MediaFoundationMovie_LimitDecoderThreads( D_IMFSourceReader *Reader )
+{
+	// IMFTransform IID and CODECAPI_AVDecNumWorkerThreads from the Windows SDK.
+	// Keep the existing DxLib COM declarations and dynamic MF loading.
+	static const GUID TransformIID = { 0xbf94c121, 0x5b05, 0x4e6f, { 0x80, 0x00, 0xba, 0x59, 0x89, 0x61, 0x41, 0x4d } } ;
+	static const GUID WorkerThreadsKey = { 0x9561c3e8, 0xea9e, 0x4435, { 0x9b, 0x1e, 0xa9, 0x3e, 0x69, 0x18, 0x94, 0xd8 } } ;
+	D_IMFTransform *Decoder = NULL ;
+	D_IMFAttributes *Attributes = NULL ;
+	HRESULT Result = Reader->GetServiceForStream( ( DWORD )D_MF_SOURCE_READER_FIRST_VIDEO_STREAM,
+		_GUID_NULL, TransformIID, ( void ** )&Decoder ) ;
+	if( SUCCEEDED( Result ) && Decoder != NULL )
+	{
+		Result = Decoder->GetAttributes( &Attributes ) ;
+		if( SUCCEEDED( Result ) && Attributes != NULL )
+		{
+			// 1 means decoder-selected concurrency, not a single worker.
+			// Two workers leave CPU time for rendering without changing quality.
+			Result = Attributes->SetUINT32( WorkerThreadsKey, 2 ) ;
+		}
+	}
+	if( Attributes != NULL ) Attributes->Release() ;
+	if( Decoder != NULL ) Decoder->Release() ;
+	return Result ;
+}
+
 static int MediaFoundationOpenMovieFile(
 	MOVIEGRAPH * Movie,
 	const wchar_t *FileName,
@@ -384,6 +411,9 @@ static int MediaFoundationOpenMovieFile(
 			Movie->PF.pMFMediaTypeOutputVideoStream ) ;
 	if( hr != S_OK )
 		goto ERR ;
+
+	// Optional tuning: unsupported decoders retain their normal playback path.
+	MediaFoundationMovie_LimitDecoderThreads( Movie->PF.pMFReader ) ;
 
 	// １フレーム辺りの時間をセット
 	if( Movie->PF.MFFrameRateNumerator == 0 )
