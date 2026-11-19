@@ -71,6 +71,10 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
 
 # For developers
 
+## Video playback experiment
+
+See [the Media Foundation experiment notes](docs/video-playback.md) for the changes, x86 build instructions, and frame-gap measurements on this branch.
+
 ## Building
 
 Open the project folder in Visual Studio.
