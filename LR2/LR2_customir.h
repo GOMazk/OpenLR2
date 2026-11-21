@@ -27,25 +27,30 @@ public:
 	CUSTOMIR_MANAGER& operator=(CUSTOMIR_MANAGER&&) = delete;
 	~CUSTOMIR_MANAGER();
 
+	struct IRRankResult {
+		openlr2::IRRankResult result;
+		std::string songmd5;
+	};
+
 	// \note Delegates to the display IR
 	// \retval nullopt - Fail or not in cache
-	std::optional<openlr2::IRRankResult> RestoreCachedRank(const char* songmd5);
+	[[nodiscard]] std::optional<openlr2::IRRankResult> RestoreCachedRank(const char* songmd5);
 	// \retval nullopt - Fail
-	std::future<std::optional<openlr2::IRRankResult>>& GetResult() { return mResultIrFuture; };
+	[[nodiscard]] std::future<std::optional<IRRankResult>>& GetResult() { return mResultIrFuture; };
 	// Get the result with \ref GetResult
 	void BeginResultIr(game& game, sqlite3* sql, int player, std::string ghost);
 	void Initialize(const std::filesystem::path& directory, std::string activeProvider);
 	// Call Login() on each CustomIR in parallel.
 	// You must wait until all std::future are resolved.
 	// \return [{name, login_result}]
-	std::vector<std::pair<std::string_view, std::future<bool>>> Login();
+	[[nodiscard]] std::vector<std::pair<std::string_view, std::future<bool>>> Login();
 	[[nodiscard]] bool IsDisplayIrOnline() const;
 	// \note Delegates to the display IR
 	// \retval "" - Fail
 	[[nodiscard]] std::string GetWebRankingUrl(const char* songHash) const;
 	// \note Delegates to the display IR
 	// \retval nullopt - Fail
-	std::optional<openlr2::IRGhostResult> TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId);
+	[[nodiscard]] std::optional<openlr2::IRGhostResult> TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId);
 
 	struct RivalSyncTask {
 		std::string name;
@@ -63,7 +68,7 @@ public:
 	};
 	// Caller: only when getRival. Syncs every logged-in CustomIR that supports rivals.
 	// Returns async work; call ApplyRivalSyncResults after wait or soft skip.
-	RivalSyncBatch SyncRivals();
+	[[nodiscard]] RivalSyncBatch SyncRivals();
 	// Applies ready tasks only. Incomplete futures are parked (soft skip / no WinHTTP abort).
 	// Writes LR2files/CustomIRRival/<provider>/ for every provider; mRivalPaths only for display IR.
 	// Returns true if the display IR GetRivals succeeded (CustomIR owns rivals, even if the list is empty).
@@ -82,9 +87,9 @@ private:
 	bool mDisplayRivalActive{};
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;
-	std::vector<std::future<std::optional<openlr2::IRRankResult>>> mDiscardedResultIrFutures;
+	std::vector<std::future<std::optional<IRRankResult>>> mDiscardedResultIrFutures;
 	std::vector<std::future<std::optional<std::vector<openlr2::IRRivalScore>>>> mDiscardedRivalSyncFutures;
-	std::future<std::optional<openlr2::IRRankResult>> mResultIrFuture;
+	std::future<std::optional<IRRankResult>> mResultIrFuture;
 	std::string mDisplayIr;
 };
 

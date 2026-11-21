@@ -2500,6 +2500,21 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 
 	int l66c = g->sSelect.listSelectedBarFromScreenTop;
 
+	if(auto& resultFuture = g->net.customIR.GetResult();
+	   resultFuture.valid() && resultFuture.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready)
+	{
+		if(g->net.rankingData.showRanking == 0)
+			if(std::optional<CUSTOMIR_MANAGER::IRRankResult> result = resultFuture.get();
+			   result && result->songmd5 == g->sSelect.bmsList[g->sSelect.cur_song].hash.body)
+			{
+				g->net.WaitForRankingHandle();
+				openlr2::fill_ranking_from_customir(result->result, g->net.rankingData);
+				openlr2::fill_status_from_ranking(g->net.rankingData, false,
+												  g->sSelect.bmsList[g->sSelect.cur_song].mybest);
+				g->net.IRstatus = 2;
+			}
+	}
+
 	SubProcI_Select(g, sql);
 	g->sSelect.buttonObjClicked = 0;
 	if (g->sSelect.course.isCourseCreated == 1) {
