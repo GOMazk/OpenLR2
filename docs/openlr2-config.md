@@ -121,6 +121,17 @@ Name of the internet ranking you want to see in the song list and on the result 
 
 Leave it empty to keep the normal LR2 ranking display. If the name does not match a folder, that ranking is not shown.
 
+#### Arena (multiplayer)
+
+OpenLR2 Arena (`Insert` overlay) has two modes:
+
+| Mode | Role of `display_ir` |
+|---|---|
+| **IR (CustomIR)** | Set this to an Arena-capable CustomIR folder, log in, then join with a **room id** from that IR. OpenLR2 does not create rooms or talk to the network itself — the module does. |
+| **LAN** | Not used. Start server / Connect on port **2222**; username and host are saved in `LR2files/Config/arena.ini`. |
+
+Room size is controlled by the IR module / server (or LAN host), not by OpenLR2.
+
 ## Example
 
 ```xml

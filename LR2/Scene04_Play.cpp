@@ -1,4 +1,4 @@
-﻿#include "Scene04_Play.h"
+#include "Scene04_Play.h"
 #include "Scene08_Lunaris.h"
 //drawing part
 #include <math.h>
@@ -8,6 +8,7 @@
 
 #include "Engine.h"
 #include "LR2.h"
+#include "LR2_arena.h"
 
 #ifndef _WIN32
 #include <iostream>
@@ -211,6 +212,7 @@ int ApplyJudgeNote(int judge, game *g, int _player, int lane, Timer *T, char isR
 		case 2:
 			player.now_combo = 0;
 			player.now_combo_course = 0;
+			if (_player == 0) openlr2::arena::OnJudgeCombo(g, false);
 			break;
 		case 3:
 		case 4:
@@ -219,6 +221,7 @@ int ApplyJudgeNote(int judge, game *g, int _player, int lane, Timer *T, char isR
 			if (player.now_combo > player.max_combo) player.max_combo = player.now_combo;
 			player.now_combo_course++;
 			if (player.now_combo_course > player.max_combo_course) player.max_combo_course = player.now_combo_course;
+			if (_player == 0) openlr2::arena::OnJudgeCombo(g, true);
 			break;
 	}
 
@@ -238,6 +241,7 @@ int ApplyJudgeNote(int judge, game *g, int _player, int lane, Timer *T, char isR
 		g->gameplay.player[PLAYER_1].combo_song_draw = g->gameplay.player[PLAYER_1].now_combo;
 		g->gameplay.player[PLAYER_1].combo_draw = g->gameplay.player[PLAYER_1].now_combo_course;
 		SetTimeLapse(46, T);
+		openlr2::arena::OnScoreSnapshot(g, false);
 		return 1;
 	}
 	if (_player == 1 && lane >= 10) {
@@ -245,6 +249,9 @@ int ApplyJudgeNote(int judge, game *g, int _player, int lane, Timer *T, char isR
 		g->gameplay.player[PLAYER_2].combo_song_draw = g->gameplay.player[PLAYER_2].now_combo;
 		g->gameplay.player[PLAYER_2].combo_draw = g->gameplay.player[PLAYER_2].now_combo_course;
 		SetTimeLapse(47, T);
+	}
+	if (_player == 0) {
+		openlr2::arena::OnScoreSnapshot(g, false);
 	}
 	return 1;
 }
@@ -1282,6 +1289,7 @@ int ProcGame(game *g) {
 			t142 = GetTimeLapse(142, &g->timer1);
 			if (g->gameplay.isPreviewLoad == 0) {
 				ReactInput(g);
+				openlr2::arena::MutePlayButtonsIfMenuOpen(g);
 			}
 
 			if (g->is_starter || (g->procSelecter == 4 && g->procPhase != 2 && g->procPhase != 3)) {
@@ -1618,6 +1626,7 @@ int ProcGame(game *g) {
 	if (g->procSelecter != 2) {
 		if (g->is_recordmode == 0 || g->rec.recMode == 2) {
 			ReactInput(g);
+			openlr2::arena::MutePlayButtonsIfMenuOpen(g);
 			int gaugeType[PLAYER_MAX] = { g->gameplay.player[PLAYER_1].gaugeType, g->gameplay.player[PLAYER_2].gaugeType };
 			for (int p : { PLAYER_1, PLAYER_2 }) {
 				if (g->gameplay.player[p].HP_unk != g->gameplay.player[p].HP[gaugeType[p]]) {
@@ -1748,11 +1757,14 @@ void ProcGameThread(game *g) {
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(16));
 		ReactInput(g);
+		openlr2::arena::MutePlayButtonsIfMenuOpen(g);
 		if (g->gameplay.flag_closingPhase) {
 			g->gameplay.flag_threadExist = 0;
 			return;
 		}
 	}
+
+	openlr2::arena::OnLoadingCompleteWaitReady(g);
 
 	SetTimeLapse(41, &g->timer1);
 	SetTimeLapse(142, &g->timer1);
@@ -1894,6 +1906,22 @@ int ProcS_Play(game *g, sqlite3* sql) {
 		}
 		if (g->sSelect.metaSelected.keymode == 5 && g->config.play.battle == OPTION_BATTLE_OFF && g->skinData.Data[g->skinData.skinID[1]].type == SKINTYPE_7KEYS) {
 			scratchside = g->skstruct.scratchside_1 + g->skstruct.scratchside_2 * 2;
+		}
+
+		if (const int arenaSeed = openlr2::arena::TakeForcedRandomSeed(g); arenaSeed != 0) {
+			g->gameplay.randomseed = arenaSeed;
+		}
+		{
+			const std::string arenaTitle = openlr2::arena::FormatChartDisplayTitle(g);
+			const std::string arenaArtist = openlr2::arena::FormatChartDisplayArtist(g);
+			openlr2::arena::OnChartSelected(
+				g,
+				md5.body ? md5.body : "",
+				arenaTitle.c_str(),
+				arenaArtist.c_str(),
+				static_cast<unsigned>(g->config.play.random[PLAYER_1]),
+				static_cast<unsigned>(g->config.play.gaugeType[PLAYER_1])
+			);
 		}
 
 		int tmpBattle = g->config.play.battle;
