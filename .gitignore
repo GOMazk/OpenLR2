@@ -24,9 +24,18 @@ mono_crash.*
 [Rr]eleases/
 x64/
 x86/
+# Vendored msgpack uses folder names that collide with VS build-dir rules above/below
+!dep/msgpack/predef/architecture/x86/
+!dep/msgpack/predef/architecture/x86/**
+!dep/msgpack/predef/hardware/simd/x86/
+!dep/msgpack/predef/hardware/simd/x86/**
+!dep/msgpack/preprocessor/debug/
+!dep/msgpack/preprocessor/debug/**
 **/**/[Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
+!dep/msgpack/predef/hardware/simd/arm/
+!dep/msgpack/predef/hardware/simd/arm/**
 bld/
 [Bb]in/
 [Oo]bj/
