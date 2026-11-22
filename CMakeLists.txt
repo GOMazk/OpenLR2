@@ -21,6 +21,28 @@ add_library(SQLite STATIC dep/sqlite/sqlite3.c)
 target_include_directories(SQLite PUBLIC dep/sqlite)
 
 add_library(
+    ImGui
+    STATIC
+    dep/imgui/imgui.cpp
+    dep/imgui/imgui_draw.cpp
+    dep/imgui/imgui_tables.cpp
+    dep/imgui/imgui_widgets.cpp
+    dep/imgui/imgui_impl_win32.cpp
+    dep/imgui/imgui_impl_dx9.cpp
+    dep/imgui/imgui_impl_dx11.cpp
+    dep/imgui/implot.cpp
+    dep/imgui/implot_items.cpp
+)
+target_include_directories(ImGui PUBLIC dep/imgui)
+if(WIN32)
+    target_compile_definitions(ImGui PUBLIC NOMINMAX WIN32_LEAN_AND_MEAN)
+    target_link_libraries(ImGui PUBLIC d3d9.lib d3d11.lib dxgi.lib)
+endif()
+if(MSVC)
+    target_compile_options(ImGui PRIVATE /utf-8)
+endif()
+
+add_library(
     TinyXML
     STATIC
     dep/tinyxml/tinystr.cpp
@@ -246,6 +268,51 @@ endif()
 add_library(md5 STATIC dep/md5/md5.cpp)
 target_include_directories(md5 PUBLIC dep/md5)
 
+set(IXWEBSOCKET_SOURCES
+    dep/ixwebsocket/IXBench.cpp
+    dep/ixwebsocket/IXCancellationRequest.cpp
+    dep/ixwebsocket/IXConnectionState.cpp
+    dep/ixwebsocket/IXDNSLookup.cpp
+    dep/ixwebsocket/IXExponentialBackoff.cpp
+    dep/ixwebsocket/IXGetFreePort.cpp
+    dep/ixwebsocket/IXGzipCodec.cpp
+    dep/ixwebsocket/IXHttp.cpp
+    dep/ixwebsocket/IXHttpClient.cpp
+    dep/ixwebsocket/IXHttpServer.cpp
+    dep/ixwebsocket/IXNetSystem.cpp
+    dep/ixwebsocket/IXSelectInterrupt.cpp
+    dep/ixwebsocket/IXSelectInterruptFactory.cpp
+    dep/ixwebsocket/IXSelectInterruptPipe.cpp
+    dep/ixwebsocket/IXSelectInterruptEvent.cpp
+    dep/ixwebsocket/IXSetThreadName.cpp
+    dep/ixwebsocket/IXSocket.cpp
+    dep/ixwebsocket/IXSocketConnect.cpp
+    dep/ixwebsocket/IXSocketFactory.cpp
+    dep/ixwebsocket/IXSocketServer.cpp
+    dep/ixwebsocket/IXSocketTLSOptions.cpp
+    dep/ixwebsocket/IXStrCaseCompare.cpp
+    dep/ixwebsocket/IXUdpSocket.cpp
+    dep/ixwebsocket/IXUrlParser.cpp
+    dep/ixwebsocket/IXUuid.cpp
+    dep/ixwebsocket/IXUserAgent.cpp
+    dep/ixwebsocket/IXWebSocket.cpp
+    dep/ixwebsocket/IXWebSocketCloseConstants.cpp
+    dep/ixwebsocket/IXWebSocketHandshake.cpp
+    dep/ixwebsocket/IXWebSocketHttpHeaders.cpp
+    dep/ixwebsocket/IXWebSocketPerMessageDeflate.cpp
+    dep/ixwebsocket/IXWebSocketPerMessageDeflateCodec.cpp
+    dep/ixwebsocket/IXWebSocketPerMessageDeflateOptions.cpp
+    dep/ixwebsocket/IXWebSocketProxyServer.cpp
+    dep/ixwebsocket/IXWebSocketServer.cpp
+    dep/ixwebsocket/IXWebSocketTransport.cpp
+)
+add_library(IXWebSocket STATIC ${IXWEBSOCKET_SOURCES})
+target_include_directories(IXWebSocket PUBLIC dep)
+if(WIN32)
+    target_compile_definitions(IXWebSocket PRIVATE _CRT_SECURE_NO_WARNINGS)
+    target_link_libraries(IXWebSocket PUBLIC ws2_32)
+endif()
+
 # Separate target so that SkinEditor can use it
 add_library(
     OpenLR2Lib
@@ -262,6 +329,18 @@ add_library(
     LR2/LR2_bmsload.cpp
     LR2/LR2_configsave.cpp
     LR2/LR2_customir.cpp
+    LR2/LR2_arena.cpp
+    LR2/arena_backend.cpp
+    LR2/arena_backend_ir.cpp
+    LR2/arena_backend_lan.cpp
+    LR2/arena_lan_net.cpp
+    LR2/arena_lan_client.cpp
+    LR2/arena_lan_server.cpp
+    LR2/arena_imgui.cpp
+    LR2/arena_imgui_gui.cpp
+    LR2/arena_gui_util.cpp
+    LR2/arena_keys.cpp
+    LR2/arena_maniac.cpp
     LR2/LR2_gameloop.cpp
     LR2/LR2_ghost.cpp
     LR2/LR2_ir.cpp
@@ -290,9 +369,10 @@ add_library(
 )
 set_target_properties(OpenLR2Lib PROPERTIES CXX_STANDARD 23)
 target_include_directories(OpenLR2Lib PUBLIC dep)
+target_compile_definitions(OpenLR2Lib PUBLIC MSGPACK_NO_BOOST)
 target_link_libraries(
     OpenLR2Lib
-    PUBLIC DxLib FMOD SQLite TinyXML md5
+    PUBLIC DxLib FMOD SQLite TinyXML md5 ImGui IXWebSocket
 )
 
 if(WIN32)
