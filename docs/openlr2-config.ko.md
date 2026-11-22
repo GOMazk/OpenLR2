@@ -121,6 +121,17 @@ G-ATTACK은 바꾸지 않습니다.
 
 비워 두면 원래 LR2 랭킹 표시를 유지합니다. 폴더 이름과 맞지 않으면 그 랭킹은 나오지 않습니다.
 
+#### Arena (멀티플레이)
+
+OpenLR2 Arena(`Insert` 오버레이)에는 모드가 두 가지입니다.
+
+| 모드 | `display_ir` 역할 |
+|---|---|
+| **IR (CustomIR)** | Arena를 지원하는 CustomIR 폴더명으로 설정하고 로그인한 뒤, 그 IR의 **room id**로 Join. 방 생성·네트워크는 모듈이 담당합니다. |
+| **LAN** | 사용하지 않음. 포트 **2222**에서 Start server / Connect. Username·host는 `LR2files/Config/arena.ini`에 저장. |
+
+방 인원은 OpenLR2가 아니라 IR 모듈/서버(또는 LAN 호스트)가 정합니다.
+
 ## 예시
 
 ```xml

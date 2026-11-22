@@ -1,5 +1,6 @@
-﻿#include "LR2_bmsload.h"
+#include "LR2_bmsload.h"
 #include "Engine.h"
+#include "LR2_arena.h"
 #include "LR2_replay.h"
 #include "Unrandomizer_SeedMap5K.h"
 #include "Unrandomizer_SeedMap7K.h"
@@ -3461,6 +3462,11 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 						}
 					}
 				}
+			}
+			// random_flip (7-key RANDOM after shuffle).
+			if (cfg->play.random[p] == OPTION_RANDOM_RANDOM
+				&& (meta->keymode == 7 || meta->keymode == 14)) {
+				openlr2::arena::ApplyRandomFlip7(noteRandomTable[p]);
 			}
 		}
 	}

@@ -1,4 +1,6 @@
-﻿#include "En_graphic.h"
+#include "En_graphic.h"
+#include "arena_imgui.h"
+
 #include <DxLib.h>
 
 #include "En_dxlibstub.h"
@@ -30,10 +32,12 @@ int Resize(game* g, double skinX, double skinY, bool bit16) {
 	int oldXpos = 320, oldYpos = 240;
 
 	GetWindowPosition(&oldXpos, &oldYpos);
+	openlr2::arena_imgui::NotifyDeviceLost();
 	SetGraphMode(skinX, skinY, bit16? 16 : 32, GetRefreshRate());
 	SetWindowSizeExtendRate((double)g->config.system.windowsize_x / skinX, (double)g->config.system.windowsize_y / skinY);
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetWindowPosition(oldXpos, oldYpos);
+	openlr2::arena_imgui::NotifyDeviceReset();
 
 	skinSizeX = skinX;
 	skinSizeY = skinY;

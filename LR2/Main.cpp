@@ -1,9 +1,11 @@
-﻿#include "structure.h"
+#include "structure.h"
 #include "Engine.h"
 #include "LR2.h"
 #include "Scenes.h"
 #include "filesystem.h"
 #include "LR2_customir.h"
+#include "LR2_arena.h"
+#include "arena_imgui.h"
 #include "LR2_version.h"
 #include "En_dxlibstub.h"
 
@@ -190,6 +192,7 @@ static void MoveWindowToDisplay(int targetDisplayIndex, int sourceDisplayIndex) 
 static void ApplyScreenMode(int screenmode) {
 	// DxLib picks exclusive vs borderless through SetFullScreenResolutionMode;
 	// ChangeWindowMode only toggles windowed(1)/fullscreen(0).
+	openlr2::arena_imgui::NotifyDeviceLost();
 	switch (screenmode) {
 		case 0: {
 			const int displayInfoIndex = FindMonitorThatContainsWindowCenter();
@@ -223,6 +226,7 @@ static void ApplyScreenMode(int screenmode) {
 			break;
 		}
 	}
+	openlr2::arena_imgui::NotifyDeviceReset();
 }
 
 static double GetFrameLimiterRefreshRate() {
@@ -552,6 +556,7 @@ int main(int argc, char** argv) {
 		std::filesystem::path path(fs::make_preferred("LR2files/CustomIRs").data());
 		std::filesystem::create_directories(path, ec);
 		gs.net.customIR.Initialize(path, gs.config.network.displayIr.body ? gs.config.network.displayIr.body : "");
+		openlr2::arena::Init(&gs, nullptr);
 	}
 	auto ellipsis = [](size_t i, size_t count, size_t slow_down_factor) { return std::string((i / slow_down_factor % count) + 1, '.'); };
 	auto getLoginResultMessage = [](bool good) { return good ? "Logged in" : "Failed to log in"; };
@@ -646,6 +651,7 @@ int main(int argc, char** argv) {
 			SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_URI,
 			nullptr);
 	LoadLR2CustomFolder(sql3, &gs.config.jukebox, pathScoreDB, gs.is_starter, gs.cmd_directplay, gs.net.customIR);
+	openlr2::arena::SetSongDb(sql3);
 	if (gs.cmd_directplay == false) {
 		if (loadingGrHandle > 0) {
 			DrawExtendGraph(0, 0, resX, resY, loadingGrHandle, 0);
@@ -740,6 +746,7 @@ int main(int argc, char** argv) {
 	gs.skstruct.skinMD5.fillzero();
 	gs.skstruct.skinMD5.resize2(34);
 	if(AllocDrawingBuffer(&gs.skstruct.drBuf) == -1){
+		openlr2::arena::Shutdown();
 		DxLib_End();
 		MessageBoxA(NULL, "スキン描画用のメモリ取得に失敗しました。", "エラー", 0);
 		return -1;
@@ -789,6 +796,7 @@ int main(int argc, char** argv) {
 	gs.skstruct2.skinMD5.fillzero();
 	gs.skstruct2.skinMD5.resize2(34);
 	if (AllocDrawingBuffer(&gs.skstruct2.drBuf) == -1) {
+		openlr2::arena::Shutdown();
 		DxLib_End();
 		MessageBoxA(NULL, "スキン描画用のメモリ取得に失敗しました。", "エラー", 0);
 		return -1;
@@ -1054,6 +1062,7 @@ int main(int argc, char** argv) {
 
 			switch (gs.procSelecter) {
 				case SCENE_SELECT:
+					openlr2::arena::OnReturnToMenu(&gs);
 					gs.gameplay.ghostBattle = 0;
 					if (!gs.config.select.control) ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
 						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
@@ -2280,16 +2289,20 @@ int main(int argc, char** argv) {
 					for (int i = 0; i < 10; i++) {
 						gs.skstruct.ImageFonts[i].filepath[0] = 0;
 					}
+					openlr2::arena_imgui::NotifyDeviceLost();
 					SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate()); //redundant?
 					SetWaitVSyncFlag(0); //VSYNC
 					ChangeWindowMode(gs.config.system.screenmode);
 					SetWaitVSyncFlag(0); //VSYNC
+					openlr2::arena_imgui::NotifyDeviceReset();
 					SetDrawScreen(DX_SCREEN_BACK);
 					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
 					SetMouseDispFlag(0);
 					gs.is_clicked_screenModeChange = 0;
 					if (gs.config.system.screenmode == 0) {
+						openlr2::arena_imgui::NotifyDeviceLost();
 						ChangeWindowMode(1);
+						openlr2::arena_imgui::NotifyDeviceReset();
 						ErrorLogAdd("ウインドウを閉じます\n");
 #ifdef _WIN32
 						CloseWindow(GetMainWindowHandle());
@@ -2331,10 +2344,12 @@ int main(int argc, char** argv) {
 					for (int i = 0; i < 10; i++) {
 						gs.skstruct.ImageFonts[i].filepath[0] = 0;
 					}
+					openlr2::arena_imgui::NotifyDeviceLost();
 					SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate()); //redundant?
 					SetWaitVSyncFlag(0); //VSYNC
 					ChangeWindowMode(gs.config.system.screenmode);
 					SetWaitVSyncFlag(0); //VSYNC
+					openlr2::arena_imgui::NotifyDeviceReset();
 					SetDrawScreen(DX_SCREEN_BACK);
 					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
 					SetMouseDispFlag(0);
@@ -2512,6 +2527,7 @@ int main(int argc, char** argv) {
 
 			if (GetWaitVSyncFlag()) SetWaitVSyncFlag(0); //TEST
 
+			openlr2::arena::TickUi(&gs);
 			ScreenFlip(); //DXlib Vsync works on here
 			GetTimeWrap();
 
@@ -2530,6 +2546,9 @@ int main(int argc, char** argv) {
 		GetTimeWrap();
 		if (gs.gameplay.flag_gameinput == 0 || gs.gameplay.isPreviewLoad) {
 			ReactInput(&gs);
+			if (openlr2::arena::IsMenuBlockingInput()) {
+				openlr2::arena::MutePlayButtonsIfMenuOpen(&gs);
+			}
 		}
 		GetTimeWrap();
 
@@ -2569,7 +2588,9 @@ int main(int argc, char** argv) {
 			for (int i = 0; i < 10; i++) {
 				gs.skstruct.ImageFonts[i].filepath[0] = 0;
 			}
+			openlr2::arena_imgui::NotifyDeviceLost();
 			SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate()); //redundant?
+			openlr2::arena_imgui::NotifyDeviceReset();
 			SetWaitVSyncFlag(0); //VSYNC
 			ApplyScreenMode(gs.config.system.screenmode);
 			SetWaitVSyncFlag(0); //VSYNC
@@ -2599,7 +2620,9 @@ int main(int argc, char** argv) {
 			for (int i = 0; i < 10; i++) {
 				gs.skstruct.ImageFonts[i].filepath[0] = 0;
 			}
+			openlr2::arena_imgui::NotifyDeviceLost();
 			SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate()); //redundant?
+			openlr2::arena_imgui::NotifyDeviceReset();
 			SetDrawScreen(DX_SCREEN_BACK);
 			LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
 			SetWaitVSyncFlag(0); //VSYNC
@@ -2608,7 +2631,9 @@ int main(int argc, char** argv) {
 			gs.config.system.screenmode = GetWindowModeFlag();
 			SetObjectStrings_SongSelect(&gs);
 		}
-		SetMouseDispFlag((gs.KeyInput.mouse_oldX >= 0 && gs.KeyInput.mouse_oldX < skinSizeX && gs.KeyInput.mouse_oldY >= 0 && gs.KeyInput.mouse_oldY < skinSizeY) ? 0 : 1); //TODO_RESOULUTION
+		if (!openlr2::arena::WantsOsCursor()) {
+			SetMouseDispFlag((gs.KeyInput.mouse_oldX >= 0 && gs.KeyInput.mouse_oldX < skinSizeX && gs.KeyInput.mouse_oldY >= 0 && gs.KeyInput.mouse_oldY < skinSizeY) ? 0 : 1); //TODO_RESOULUTION
+		}
 		if ( (gs.procSelecter == 2 || gs.procSelecter == 9) && gs.KeyInput.inputID[KEY_INPUT_ESCAPE]
 				&& (GetTimeLapse(4,&gs.timer1) < 0.0 || GetTimeLapse(4, &gs.timer1) > 100.0) 
 				&& gs.txtStruct.st_text_num == -1 
@@ -2643,6 +2668,7 @@ int main(int argc, char** argv) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 		if (GetTimeWrap() - threadExitTimer > 5000.0) break;
 	}
+	openlr2::arena::Shutdown();
 	DxLib_End();
 	SQL_Run("COMMIT", sql3);
 	SQL_Run("DETACH rivaldb", sql3);

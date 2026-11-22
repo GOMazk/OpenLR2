@@ -28,6 +28,7 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
 
 ## New Features
 
+- Arena multiplayer – IR (via display CustomIR) or LAN (`ws://host:2222`). See [openlr2-arena.md](docs/openlr2-arena.md). Port referenced [SayakaIsBaka/LR2ArenaEx](https://github.com/SayakaIsBaka/LR2ArenaEx) source (behavior / LAN wire); OpenLR2 owns the implementation.
 - Proper fullscreen support – The game doesn't crash on Alt+Tab or when toggling window mode with F4 in-game.
 - Gauge Auto Shift (GAS) – Changes the gauge to the easier one automatically if you failed on the selected one. You can access GAS options in MANIAC OPTIONS by pressing F2 in-game and going to the 3rd page using the arrow keys.
 - Native fast/slow support
@@ -105,4 +106,5 @@ https://drive.google.com/file/d/1yruE-PLypH40WMsl-zNi2l6uWkoe360u/view?usp=shari
 # Thanks to
 
 - .red who wrote lr2skin specification
+- [SayakaIsBaka / LR2ArenaEx](https://github.com/SayakaIsBaka/LR2ArenaEx) — Arena feature reference
 - All contributors

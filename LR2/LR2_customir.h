@@ -77,6 +77,61 @@ public:
 	// May be empty while IsDisplayRivalActive() is true (module reported no rivals).
 	[[nodiscard]] std::span<const std::pair<int, std::filesystem::path>> RivalEntries() const;
 
+	// --- Arena (IR backend only) ---
+	// Thin EXE-side facade: every call forwards to the *display* CustomIR module's
+	// MethodTable Arena* entries (see LR2_customir_api.h). OpenLR2 never talks
+	// HTTP/WebSocket itself — vendor transport lives inside the DLL.
+	//
+	// Call sites: arena_backend_ir.cpp (+ Scene04/05 / TickUi via ArenaBackend).
+	// LAN does *not* use these; it uses arena_lan_* against ws://:2222.
+	//
+	// If display IR is missing or Arena* is nullptr: Join/Submit → Fail;
+	// Leave/Send*/Poll → no-op; IsConnected → false.
+	// Contracts / types: LR2_customir_api.h Arena* MethodTable comments.
+
+	// \note Delegates to display IR ArenaJoinRoom. Join by room code from UI.
+	// \retval Ok - live session should be up (IsConnected true soon after).
+	// \retval Retry - transient; caller may retry.
+	// \retval Fail - unsupported / hard error.
+	openlr2::GetStatus ArenaJoinRoom(const char* roomId, openlr2::ArenaJoinResult& out);
+	// \note Delegates to display IR. Tear down live session; void (no status).
+	void ArenaLeave();
+	// \note Delegates to display IR. True while module reports live session up.
+	[[nodiscard]] bool ArenaIsConnected() const;
+	// \note Delegates to display IR. Snapshot for TickUi; pendingItems drained by module.
+	void ArenaPollState(openlr2::ArenaRoomState& out);
+	// Host chart + seed (+ item mode). Guests may report own selection.
+	void ArenaSendSelectedChart(
+		int randomSeed,
+		const char* hash,
+		const char* title,
+		const char* artist,
+		unsigned option,
+		unsigned gauge,
+		bool itemModeEnabled
+	);
+	// Play score stream; finalScore=true at result screen.
+	void ArenaSendScore(const openlr2::ArenaPeerScore& score, bool finalScore);
+	// Loading complete (everyone-ready wait).
+	void ArenaSendReady();
+	// Chart cancel / return to menu.
+	void ArenaSendCancelled();
+	// UTF-8 chat line.
+	void ArenaSendChat(const char* message);
+	// Local chart missing for current room hash.
+	void ArenaSendMissingChart();
+	// Host only: transfer host (ArenaPeer::playerId).
+	void ArenaSetHost(int playerId);
+	// Host only: kick playerId.
+	void ArenaKickUser(int playerId);
+	// Ojama payload JSON object string.
+	void ArenaSendItemJson(const char* jsonObject);
+	// Host only: item weights / threshold JSON.
+	void ArenaSendItemSettingsJson(const char* jsonObject);
+	// \note Delegates to display IR. Persist room play result (JSON from OpenLR2).
+	// \retval Fail - unsupported / hard error.
+	openlr2::GetStatus ArenaSubmitRoomResult(const char* roomId, const char* chartHash, const char* resultJson);
+
 private:
 	std::vector<std::pair<int, std::filesystem::path>> mRivalPaths;
 	bool mDisplayRivalActive{};

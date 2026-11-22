@@ -121,6 +121,17 @@ G-ATTACK 不会被更换。
 
 留空则继续使用原来的 LR2 排名显示。名称对不上文件夹时，那个排名不会显示。
 
+#### Arena（多人）
+
+OpenLR2 Arena（`Insert` 覆盖层）有两种模式：
+
+| 模式 | `display_ir` 的作用 |
+|---|---|
+| **IR (CustomIR)** | 设为支持 Arena 的 CustomIR 文件夹名并登录，再用该 IR 的 **room id** Join。建房与联网由模块负责。 |
+| **LAN** | 不使用。在端口 **2222** Start server / Connect。Username 与 host 保存在 `LR2files/Config/arena.ini`。 |
+
+房间人数由 IR 模块／服务器（或 LAN 主机）决定，不是 OpenLR2 固定上限。
+
 ## 示例
 
 ```xml

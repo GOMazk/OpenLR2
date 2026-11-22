@@ -1,14 +1,17 @@
 #include "Scene05_Result.h"
 #include "LR2.h"
 #include "LR2_customir.h"
+#include "LR2_arena.h"
 #include "Scenes.h"
 #include <chrono>
 #include <future>
 #include <optional>
 
 int ProcS_Result(game *g, sqlite3 *sql) {
-	if(g->gameplay.replay.status != 2)
+	if(g->gameplay.replay.status != 2) {
+		openlr2::arena::OnResult(g);
 		g->net.customIR.BeginResultIr(*g, sql, 0, g->gameplay.p1Score.EncodeGhostData().body);
+	}
 
 	LoadSceneG(g, &g->skstruct, SKINTYPE_RESULT);
 	

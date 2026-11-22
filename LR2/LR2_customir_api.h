@@ -248,7 +248,7 @@ struct IRRivalInfo {
 	std::string name;
 };
 
-// One rival score row. Field names match legacy LR2IR XML / Stellaverse JSON.
+// One rival score row. Field names match legacy LR2IR XML / typical IR JSON.
 struct IRRivalScore {
 	std::string hash;
 	int clear{};
@@ -267,6 +267,102 @@ struct IRRivalScore {
 struct IRRivalListResult {
 	std::vector<IRRivalInfo> rivals;
 	uint64_t fetched_at{};
+};
+
+// ---------------------------------------------------------------------------
+// Arena (multiplayer via the display_ir CustomIR module)
+//
+// Two layers (do not confuse them):
+//   1) This MethodTable — OpenLR2 EXE <-> CustomIR DLL only. Field names/types
+//      are the ABI. OpenLR2 never calls your HTTP/WebSocket URLs directly.
+//   2) Vendor transport — how the DLL talks to YOUR servers (HTTP, WS, …).
+//      Free to choose; not part of this ABI.
+//
+// Typical vendor split (example only):
+//   JoinRoom / Leave / SubmitRoomResult     → membership / archive HTTP (or equiv.)
+//   SendSelectedChart…SendItemSettingsJson  → live play channel (WS, etc.)
+//   IsConnected / PollState                 → DLL-local session state
+//
+// LAN (ws://host:2222 msgpack) is implemented inside OpenLR2 itself
+// (arena_lan_*), not through these MethodTable entries.
+//
+// Vendor checklist:
+//   - GetName + LoginV1 (Arena join auth usually reuses Login credentials)
+//   - Assign Arena* pointers; nullptr = Arena unsupported (EXE Fail / no-op)
+//   - ArenaJoinRoom Ok ⇒ live session up (IsConnected true, PollState fills peers)
+//   - ArenaPollState: thread-safe snapshot; drain pendingItems each call
+//   - Send*: no-op when not connected; host-only ops also enforced server-side
+//   - Min play loop without items/archive: Join…KickUser (see MethodTable below)
+//   - Smoke: Join → chart → Ready → Score → Leave
+// ---------------------------------------------------------------------------
+
+// Live score snapshot (play + graph). Same judge fields OpenLR2 already tracks.
+struct ArenaPeerScore {
+	int poor{};
+	int bad{};
+	int good{};
+	int great{};
+	int pgreat{};
+	int maxCombo{};
+	int score{};
+	int currentNotes{};
+};
+
+struct ArenaPeer {
+	int playerId{}; // stable id for Give host / Kick (vendor-defined)
+	std::string username;
+	bool isHost{};
+	bool ready{}; // loading-complete flag for wait-ready
+	std::string selectedHash;
+	unsigned option{};
+	unsigned gauge{};
+	ArenaPeerScore score{};
+};
+
+// Incoming ojama item. ArenaPollState must MOVE these out then clear the queue
+// so each event is delivered once.
+struct ArenaPendingItem {
+	int rolledItemId{-1};
+	unsigned level{};
+};
+
+struct ArenaItemSettingRow {
+	unsigned lv1{};
+	unsigned lv2{};
+	unsigned lv3{};
+	unsigned weight{};
+};
+
+struct ArenaItemSettings {
+	unsigned threshold{10};
+	std::vector<ArenaItemSettingRow> settings;
+	bool updated{}; // true when settings just arrived; clear after OpenLR2 consumes
+};
+
+// Filled by ArenaPollState each call. OpenLR2 TickUi reads this for lobby/graph/
+// seed/host/items. Keep field names stable — rename breaks EXE.
+struct ArenaRoomState {
+	std::string roomId;
+	int hostId{};
+	int selfPlayerId{};
+	bool connected{};
+	bool itemModeEnabled{};
+	int randomSeed{}; // guests: forced seed while armed
+	std::string chartHash;
+	std::string chartTitle;
+	std::string chartArtist;
+	std::vector<ArenaPeer> players;
+	std::vector<std::string> chatLog; // cumulative; OpenLR2 diffs for toasts
+	std::vector<ArenaPendingItem> pendingItems; // drain each poll
+	ArenaItemSettings itemSettings;
+};
+
+// Output of ArenaJoinRoom on Ok. OpenLR2 mainly checks GetStatus + later
+// ArenaIsConnected / PollState; wsUrl/token are for the DLL's own live session.
+struct ArenaJoinResult {
+	std::string roomId;
+	std::string wsUrl;
+	std::string token;
 };
 
 } // namespace openlr2
@@ -311,6 +407,58 @@ struct MethodTable {
 	// The module may use it only to skip HTTP / read its private cache.
 	// On Ok: out is a complete snapshot of that rival's scores. OpenLR2 writes .db and .lr2folder.
 	openlr2::GetStatus(OLR2_IR_API* SyncRivalScores)(int rivalId, uint64_t lastUpdateHint, std::vector<openlr2::IRRivalScore>& out) = nullptr;
+
+	// --- Arena (optional). nullptr = module does not support Arena. ---
+	// OpenLR2 only calls these on the display_ir module. Leave Send* as no-ops
+	// when not connected. Mid-session drop: set connected=false; OpenLR2 stops
+	// sending and toasts disconnect (local play continues).
+	//
+	// Join by room code (UI). On Ok, module should already be live-connected so
+	// ArenaIsConnected becomes true and PollState fills peers. Retry = transient.
+	openlr2::GetStatus(OLR2_IR_API* ArenaJoinRoom)(const char* roomId, openlr2::ArenaJoinResult& out) = nullptr;
+	// Tear down live session. OpenLR2 clears its cache after calling this; void
+	// (no GetStatus) — HTTP leave failure is module-internal.
+	void(OLR2_IR_API* ArenaLeave)() = nullptr;
+	// True while the live session is up (after Join, until Leave / drop).
+	bool(OLR2_IR_API* ArenaIsConnected)() = nullptr;
+	// Snapshot into `out`. Called often from TickUi. Drain pendingItems each call.
+	void(OLR2_IR_API* ArenaPollState)(openlr2::ArenaRoomState& out) = nullptr;
+	// Host selects chart + seed (+ item mode). Guests may also report own hash.
+	void(OLR2_IR_API* ArenaSendSelectedChart)(
+		int randomSeed,
+		const char* hash,
+		const char* title,
+		const char* artist,
+		unsigned option,
+		unsigned gauge,
+		bool itemModeEnabled
+	) = nullptr;
+	// Play score stream. finalScore=true at result; non-final may be throttled by module.
+	void(OLR2_IR_API* ArenaSendScore)(const openlr2::ArenaPeerScore& score, bool finalScore) = nullptr;
+	// Loading complete (everyone-ready wait).
+	void(OLR2_IR_API* ArenaSendReady)() = nullptr;
+	// Chart cancel / return to menu.
+	void(OLR2_IR_API* ArenaSendCancelled)() = nullptr;
+	// UTF-8 chat line.
+	void(OLR2_IR_API* ArenaSendChat)(const char* message) = nullptr;
+	// Local chart missing for current room hash.
+	void(OLR2_IR_API* ArenaSendMissingChart)() = nullptr;
+	// Host only: transfer host to playerId (from ArenaPeer::playerId).
+	void(OLR2_IR_API* ArenaSetHost)(int playerId) = nullptr;
+	// Host only: kick playerId.
+	void(OLR2_IR_API* ArenaKickUser)(int playerId) = nullptr;
+	// Ojama payload JSON object string, e.g. {"rolledItemId":…,"level":…}.
+	void(OLR2_IR_API* ArenaSendItemJson)(const char* jsonObject) = nullptr;
+	// Host only: item weights / threshold JSON for peers (+ late joiners).
+	void(OLR2_IR_API* ArenaSendItemSettingsJson)(const char* jsonObject) = nullptr;
+	// Archive play result to the room page / history. resultJson is a JSON object
+	// string built by OpenLR2. Optional if you do not persist room results.
+	openlr2::GetStatus(OLR2_IR_API* ArenaSubmitRoomResult)(
+		const char* roomId,
+		const char* chartHash,
+		const char* resultJson
+	) = nullptr;
+
 	// Forward compatibility.
 	// This field will always be moved to the end of the struct when new fields are added.
 	// Thanks to this CustomIR module designed for newer game version won't write out-of-bounds memory when assigning fields of older MethodTable.

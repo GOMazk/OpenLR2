@@ -121,6 +121,17 @@ G-ATTACK はそのままです。
 
 空にすると、いつもの LR2 のランキング表示のままです。フォルダ名と合わないときは、そのランキングは出ません。
 
+#### Arena（マルチプレイ）
+
+OpenLR2 Arena（`Insert` オーバーレイ）には 2 モードあります。
+
+| モード | `display_ir` の役割 |
+|---|---|
+| **IR (CustomIR)** | Arena 対応 CustomIR のフォルダ名を設定してログインし、その IR の **room id** で Join。部屋作成・通信はモジュール側。 |
+| **LAN** | 使わない。ポート **2222** で Start server / Connect。Username・host は `LR2files/Config/arena.ini` に保存。 |
+
+人数上限は OpenLR2 ではなく IR モジュール／サーバ（または LAN ホスト）が決めます。
+
 ## 例
 
 ```xml

@@ -77,6 +77,31 @@ public:
 	[[nodiscard]] std::string GetWebRankingUrl(const char* songHash);
 	openlr2::GetStatus GetRivals(openlr2::IRRivalListResult& out);
 	openlr2::GetStatus SyncRivalScores(int rivalId, uint64_t lastUpdateHint, std::vector<openlr2::IRRivalScore>& out);
+
+	openlr2::GetStatus ArenaJoinRoom(const char* roomId, openlr2::ArenaJoinResult& out);
+	void ArenaLeave();
+	[[nodiscard]] bool ArenaIsConnected() const;
+	void ArenaPollState(openlr2::ArenaRoomState& out);
+	void ArenaSendSelectedChart(
+		int randomSeed,
+		const char* hash,
+		const char* title,
+		const char* artist,
+		unsigned option,
+		unsigned gauge,
+		bool itemModeEnabled
+	);
+	void ArenaSendScore(const openlr2::ArenaPeerScore& score, bool finalScore);
+	void ArenaSendReady();
+	void ArenaSendCancelled();
+	void ArenaSendChat(const char* message);
+	void ArenaSendMissingChart();
+	void ArenaSetHost(int playerId);
+	void ArenaKickUser(int playerId);
+	void ArenaSendItemJson(const char* jsonObject);
+	void ArenaSendItemSettingsJson(const char* jsonObject);
+	openlr2::GetStatus ArenaSubmitRoomResult(const char* roomId, const char* chartHash, const char* resultJson);
+
 	[[nodiscard]] const std::string& Name() const { return mName; };
 	[[nodiscard]] bool DidLoginSuccessfully() const { return mDidLoginSuccessfully; };
 private:
@@ -162,6 +187,66 @@ openlr2::GetStatus CustomIR::GetRivals(openlr2::IRRivalListResult& out) {
 openlr2::GetStatus CustomIR::SyncRivalScores(int rivalId, uint64_t lastUpdateHint, std::vector<openlr2::IRRivalScore>& out) {
 	if (mMethods.SyncRivalScores == nullptr) return openlr2::GetStatus::Fail;
 	return mMethods.SyncRivalScores(rivalId, lastUpdateHint, out);
+}
+
+openlr2::GetStatus CustomIR::ArenaJoinRoom(const char* roomId, openlr2::ArenaJoinResult& out) {
+	if (mMethods.ArenaJoinRoom == nullptr) return openlr2::GetStatus::Fail;
+	return mMethods.ArenaJoinRoom(roomId, out);
+}
+void CustomIR::ArenaLeave() {
+	if (mMethods.ArenaLeave) mMethods.ArenaLeave();
+}
+bool CustomIR::ArenaIsConnected() const {
+	return mMethods.ArenaIsConnected != nullptr && mMethods.ArenaIsConnected();
+}
+void CustomIR::ArenaPollState(openlr2::ArenaRoomState& out) {
+	if (mMethods.ArenaPollState) mMethods.ArenaPollState(out);
+	else out = {};
+}
+void CustomIR::ArenaSendSelectedChart(
+	int randomSeed,
+	const char* hash,
+	const char* title,
+	const char* artist,
+	unsigned option,
+	unsigned gauge,
+	bool itemModeEnabled
+) {
+	if (mMethods.ArenaSendSelectedChart) {
+		mMethods.ArenaSendSelectedChart(randomSeed, hash, title, artist, option, gauge, itemModeEnabled);
+	}
+}
+void CustomIR::ArenaSendScore(const openlr2::ArenaPeerScore& score, bool finalScore) {
+	if (mMethods.ArenaSendScore) mMethods.ArenaSendScore(score, finalScore);
+}
+void CustomIR::ArenaSendReady() {
+	if (mMethods.ArenaSendReady) mMethods.ArenaSendReady();
+}
+void CustomIR::ArenaSendCancelled() {
+	if (mMethods.ArenaSendCancelled) mMethods.ArenaSendCancelled();
+}
+void CustomIR::ArenaSendChat(const char* message) {
+	if (mMethods.ArenaSendChat) mMethods.ArenaSendChat(message);
+}
+void CustomIR::ArenaSendMissingChart() {
+	if (mMethods.ArenaSendMissingChart) mMethods.ArenaSendMissingChart();
+}
+void CustomIR::ArenaSetHost(int playerId) {
+	if (mMethods.ArenaSetHost) mMethods.ArenaSetHost(playerId);
+}
+void CustomIR::ArenaKickUser(int playerId) {
+	if (mMethods.ArenaKickUser) mMethods.ArenaKickUser(playerId);
+}
+void CustomIR::ArenaSendItemJson(const char* jsonObject) {
+	if (mMethods.ArenaSendItemJson) mMethods.ArenaSendItemJson(jsonObject);
+}
+
+void CustomIR::ArenaSendItemSettingsJson(const char* jsonObject) {
+	if (mMethods.ArenaSendItemSettingsJson) mMethods.ArenaSendItemSettingsJson(jsonObject);
+}
+openlr2::GetStatus CustomIR::ArenaSubmitRoomResult(const char* roomId, const char* chartHash, const char* resultJson) {
+	if (mMethods.ArenaSubmitRoomResult == nullptr) return openlr2::GetStatus::Fail;
+	return mMethods.ArenaSubmitRoomResult(roomId, chartHash, resultJson);
 }
 
 static std::filesystem::path CustomIRRivalDirectory(const std::string& providerName) {
@@ -560,6 +645,89 @@ std::string CUSTOMIR_MANAGER::GetWebRankingUrl(const char* songHash) const {
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	if (irIt == mModules.end()) { return ""; }
 	return (*irIt)->GetWebRankingUrl(songHash);
+}
+
+openlr2::GetStatus CUSTOMIR_MANAGER::ArenaJoinRoom(const char* roomId, openlr2::ArenaJoinResult& out) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt == mModules.end()) return openlr2::GetStatus::Fail;
+	return (*irIt)->ArenaJoinRoom(roomId, out);
+}
+void CUSTOMIR_MANAGER::ArenaLeave() {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaLeave();
+}
+bool CUSTOMIR_MANAGER::ArenaIsConnected() const {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	return irIt != mModules.end() && (*irIt)->ArenaIsConnected();
+}
+void CUSTOMIR_MANAGER::ArenaPollState(openlr2::ArenaRoomState& out) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt == mModules.end()) {
+		out = {};
+		return;
+	}
+	(*irIt)->ArenaPollState(out);
+}
+void CUSTOMIR_MANAGER::ArenaSendSelectedChart(
+	int randomSeed,
+	const char* hash,
+	const char* title,
+	const char* artist,
+	unsigned option,
+	unsigned gauge,
+	bool itemModeEnabled
+) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) {
+		(*irIt)->ArenaSendSelectedChart(randomSeed, hash, title, artist, option, gauge, itemModeEnabled);
+	}
+}
+void CUSTOMIR_MANAGER::ArenaSendScore(const openlr2::ArenaPeerScore& score, bool finalScore) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaSendScore(score, finalScore);
+}
+void CUSTOMIR_MANAGER::ArenaSendReady() {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaSendReady();
+}
+void CUSTOMIR_MANAGER::ArenaSendCancelled() {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaSendCancelled();
+}
+void CUSTOMIR_MANAGER::ArenaSendChat(const char* message) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaSendChat(message);
+}
+void CUSTOMIR_MANAGER::ArenaSendMissingChart() {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaSendMissingChart();
+}
+void CUSTOMIR_MANAGER::ArenaSetHost(int playerId) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaSetHost(playerId);
+}
+void CUSTOMIR_MANAGER::ArenaKickUser(int playerId) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaKickUser(playerId);
+}
+void CUSTOMIR_MANAGER::ArenaSendItemJson(const char* jsonObject) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaSendItemJson(jsonObject);
+}
+
+void CUSTOMIR_MANAGER::ArenaSendItemSettingsJson(const char* jsonObject) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt != mModules.end()) (*irIt)->ArenaSendItemSettingsJson(jsonObject);
+}
+
+openlr2::GetStatus CUSTOMIR_MANAGER::ArenaSubmitRoomResult(
+	const char* roomId,
+	const char* chartHash,
+	const char* resultJson
+) {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt == mModules.end()) return openlr2::GetStatus::Fail;
+	return (*irIt)->ArenaSubmitRoomResult(roomId, chartHash, resultJson);
 }
 
 std::optional<openlr2::IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId) {
