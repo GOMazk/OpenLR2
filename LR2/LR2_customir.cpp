@@ -964,11 +964,11 @@ std::optional<openlr2::IRRankResult> CUSTOMIR_MANAGER::RestoreCachedRank(const c
 	return std::nullopt;
 }
 
-static std::optional<openlr2::IRRankResult> ResultIrAsync(std::shared_ptr<CustomIR> ir, IRScoreV1 score) {
+static std::optional<CUSTOMIR_MANAGER::IRRankResult> ResultIrAsync(std::shared_ptr<CustomIR> ir, IRScoreV1 score) {
 	SendScoreWithBlockingRetry(*ir, score);
 
-	std::optional<openlr2::IRRankResult> out{ openlr2::IRRankResult{} };
-	switch (ir->GetResultRank(score.song.hash.c_str(), *out)) {
+	std::optional<CUSTOMIR_MANAGER::IRRankResult> out{{openlr2::IRRankResult{}, score.song.hash}};
+	switch (ir->GetResultRank(score.song.hash.c_str(), out->result)) {
 	case openlr2::GetStatus::Ok: return out;
 	case openlr2::GetStatus::Retry:
 		OverlayNotification("'%s' failed to get result rank - ignoring retry\n", ir->Name().c_str());

@@ -196,9 +196,9 @@ int Proc_Result(game *g, skstruct *sk, Timer *T) {
 	if(auto& resultFuture = g->net.customIR.GetResult();
 	   resultFuture.valid() && resultFuture.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready)
 	{
-		if(std::optional<openlr2::IRRankResult> result = resultFuture.get(); result)
+		if(std::optional<CUSTOMIR_MANAGER::IRRankResult> result = resultFuture.get(); result)
 		{
-			openlr2::fill_ranking_from_customir(*result, g->net.rankingData);
+			openlr2::fill_ranking_from_customir(result->result, g->net.rankingData);
 			openlr2::fill_status_from_ranking(g->net.rankingData, false,
 											  g->sSelect.bmsList[g->sSelect.cur_song].mybest);
 		}
