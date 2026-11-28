@@ -2,6 +2,7 @@
 
 #include "LR2_customir_api.h"
 #include "LR2_songmanage.h"
+#include "LR2_scene.h"
 #include "En_fileutil.h"
 #include "filesystem.h"
 #include "structure.h"
@@ -799,8 +800,8 @@ void IRScoreInternal::MakeScoreV1(IRScoreV1& scoreOut) const {
 
 IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player, std::string ghost) {
 	const SONGDATA& curSong = game.sSelect.bmsList[game.sSelect.cur_song];
-	bool courseSong = (game.gameplay.courseType == 0 || game.gameplay.courseType == 2) && game.procSelecter != 13;
-	bool courseScore = game.procSelecter == 13;
+	bool courseSong = (game.gameplay.courseType == 0 || game.gameplay.courseType == 2) && game.procSelecter != SCENE_COURSERESULT;
+	bool courseScore = game.procSelecter == SCENE_COURSERESULT;
 	if (courseSong) {
 		song.hash = curSong.courseHash[game.gameplay.courseStageNow].body;
 		SONGDATA songData;

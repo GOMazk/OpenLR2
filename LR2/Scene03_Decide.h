@@ -1,4 +1,6 @@
 #pragma once
 
 #include "structure.h"
-int ProcI_Decide(game * g);
+int ProcB_Decide(game* g);
+int ProcI_Decide(game* g);
+int ProcE_Decide(game* g);

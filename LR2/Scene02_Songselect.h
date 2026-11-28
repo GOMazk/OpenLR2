@@ -35,10 +35,12 @@ int CreateRandomCourse(game *g, sqlite3 *sql, char playing);
 //scene
 int SetObjectStrings_SongSelect(game * g);
 
+int ProcB_Select(game* g, sqlite3* sql);
 int ProcS_Select(game *g);
 
 void SubProcI_Select(game *g, sqlite3 *sql);
 int ProcI_Select(game * g, sqlite3 * sql);
+int ProcE_Select(game* g, sqlite3* sql);
 
 
 

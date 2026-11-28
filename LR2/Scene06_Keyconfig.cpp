@@ -1,7 +1,19 @@
 #include "Scene06_Keyconfig.h"
 #include "LR2_configsave.h"
 #include "LR2_skinobject.h"
+#include "LR2_skinload.h"
+#include "LR2_scene.h"
 #include "filesystem.h"
+
+int ProcB_Keyconfig(game* g) {
+	LoadSceneG(g, &g->skstruct, SKINTYPE_KEYCONFIG);
+	g->KeyInput.config_keymode = 0;
+	g->KeyInput.config_button = 1;
+	g->KeyInput.config_button_inMap = 1;
+	g->KeyInput.config_key = -1;
+	g->KeyInput.inputAxisDeadzoneAll = 0.1;
+	return 1;
+}
 
 int ProcS_Keyconfig(game *g) {
 	CSTR t("-",0);
@@ -48,7 +60,7 @@ int ProcI_Keyconfig(game *g) {
 	enum { PHASE_NORMAL = 1, PHASE_FADEOUT = 2 };
 	if (g->procPhase == PHASE_FADEOUT) {
 		if ( g->skstruct.fadeout < GetTimeLapse(2, &g->timer1) || g->skstruct.fadeout == 0 ) {
-			g->procSelecter = 2;
+			g->procSelecter = SCENE_SELECT;
 		}
 		return 1;
 	}
@@ -100,6 +112,16 @@ int ProcI_Keyconfig(game *g) {
 		g->procPhase = PHASE_FADEOUT;
 		return 1;
 	}
+	return 1;
+}
+
+int ProcE_Keyconfig(game* g) {
+
+	ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+		fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+
+	g->KeyInput.inputAxisDeadzoneAll = 0.;
+
 	return 1;
 }
 

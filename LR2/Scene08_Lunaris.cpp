@@ -2,6 +2,7 @@
 #include <DxLib.h>
 #include "Engine.h"
 #include "LR2.h"
+#include "filesystem.h"
 
 static int lun_graph[8];
 static int lun_timer;
@@ -611,6 +612,15 @@ int LUNARIS_JUDGE(game *g) {
 	return 1;
 }
 
+
+int ProcB_Lunaris(game* g) {
+	LoadSceneG(g, &g->skstruct, SKINTYPE_7KEYS);
+	ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+		fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+	LUNARIS_START(g);
+
+	return 1;
+}
 
 int ProcI_Lunaris(game *g) {
 	

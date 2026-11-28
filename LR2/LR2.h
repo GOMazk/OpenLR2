@@ -17,3 +17,4 @@
 #include "LR2_statlong.h"
 #include "LR2_statplay.h"
 #include "LR2_gameloop.h"
+#include "LR2_scene.h"

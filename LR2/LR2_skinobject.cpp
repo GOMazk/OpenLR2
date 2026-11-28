@@ -5,6 +5,7 @@
 #include "LR2_audio.h"
 #include "LR2_configsave.h"
 #include "LR2_statplay.h"
+#include "LR2_scene.h"
 #include "Scenes.h"
 #include "filesystem.h"
 #include <DxLib.h>
@@ -115,11 +116,11 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			if (gs->config.play.bgasize == 1) return ret;
 			break;
 		case 32:
-			if (gs->procSelecter == 7) return ret;
+			if (gs->procSelecter == SCENE_SKINSELECT) return ret;
 			if (gs->gameplay.isAutoplay == 0) return ret;
 			break;
 		case 33:
-			if (gs->procSelecter == 7) return ret;
+			if (gs->procSelecter == SCENE_SKINSELECT) return ret;
 			if (gs->gameplay.isAutoplay == 1) return ret;
 			break;
 		case 34:
@@ -264,11 +265,11 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 
 		case 80:
-			if (GetTimeLapse(40, (gs->procSelecter == 7) ? &gs->timer2 : &gs->timer1) == -1.0)
+			if (GetTimeLapse(40, (gs->procSelecter == SCENE_SKINSELECT) ? &gs->timer2 : &gs->timer1) == -1.0)
 				return ret;
 			break;
 		case 81:
-			if (GetTimeLapse(40, (gs->procSelecter == 7) ? &gs->timer2 : &gs->timer1) != -1.0)
+			if (GetTimeLapse(40, (gs->procSelecter == SCENE_SKINSELECT) ? &gs->timer2 : &gs->timer1) != -1.0)
 				return ret;
 			break;
 		case 82:
@@ -647,11 +648,11 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 
 		case 190:
-			if (gs->procSelecter == 7) return !ret;
+			if (gs->procSelecter == SCENE_SKINSELECT) return !ret;
 			if (!songData.isStagefile)return ret;
 			break;
 		case 191:
-			if (gs->procSelecter == 7) return !ret;
+			if (gs->procSelecter == SCENE_SKINSELECT) return !ret;
 			if (songData.isStagefile)return ret;
 			break;
 		case 192:
@@ -928,7 +929,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 
 		case 270:
-			if (gs->procSelecter == 4) {
+			if (gs->procSelecter == SCENE_PLAY) {
 				if ((gs->KeyInput.p1_buttonInput[12] == 2 || gs->KeyInput.p1_buttonInput[13] == 2) && gs->config.play.lanecover[PLAYER_1] && gs->gameplay.lanecoverDisplayP1) return ret;
 				if ((gs->KeyInput.p2_buttonInput[12] == 2 || gs->KeyInput.p2_buttonInput[13] == 2) && gs->config.play.lanecover[PLAYER_1] && gs->gameplay.lanecoverDisplayP1 && gs->config.play.battle != OPTION_BATTLE_BATTLE && gs->config.play.battle != OPTION_BATTLE_GBATTLE) return ret;
 				if ((gs->KeyInput.p1_buttonInput[12] == 2 || gs->KeyInput.p1_buttonInput[13] == 2) && gs->config.play.lift[PLAYER_1]) return ret;
@@ -937,19 +938,19 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 271:
-			if (gs->procSelecter == 4) {
+			if (gs->procSelecter == SCENE_PLAY) {
 				if (gs->KeyInput.p2_buttonInput[12] == 2) return ret;
 				if (gs->KeyInput.p2_buttonInput[13] == 2) return ret;
 			}
 			break;
 
 		case 274: // Extension: is lanecoverP1 enabled
-			if (gs->procSelecter == 4) {
+			if (gs->procSelecter == SCENE_PLAY) {
 				if (gs->gameplay.lanecoverDisplayP1) return ret;
 			}
 			break;
 		case 275: // Extension: is lanecoverP2 enabled
-			if (gs->procSelecter == 4) {
+			if (gs->procSelecter == SCENE_PLAY) {
 				if (gs->gameplay.lanecoverDisplayP2) return ret;
 			}
 			break;
@@ -1628,7 +1629,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 
 		default:
 			if (option - 900 < 100) {
-				if (gs->procSelecter == 7) {
+				if (gs->procSelecter == SCENE_SKINSELECT) {
 					if (gs->skstruct2.op[option]) return ret;
 				}
 				else if (gs->skstruct.op[option]) return ret;
@@ -1839,12 +1840,12 @@ uint SetObjectValue_Num(game *g, int op) {
 		case 103:
 			return (int)((g->gameplay.player[PLAYER_1].rate) * 100.0) % 100;
 		case 104:
-			if ((g->gameplay.courseType == 0 || g->gameplay.courseType == 2) && g->procSelecter == 4) {
+			if ((g->gameplay.courseType == 0 || g->gameplay.courseType == 2) && g->procSelecter == SCENE_PLAY) {
 				return g->gameplay.player[PLAYER_1].now_combo_course;
 			}
 			return g->gameplay.player[PLAYER_1].now_combo;
 		case 105:
-			if ((g->gameplay.courseType == 0 || g->gameplay.courseType == 2) && g->procSelecter == 4) {
+			if ((g->gameplay.courseType == 0 || g->gameplay.courseType == 2) && g->procSelecter == SCENE_PLAY) {
 				return g->gameplay.player[PLAYER_1].max_combo_course;
 			}
 			return g->gameplay.player[PLAYER_1].max_combo;
@@ -1898,12 +1899,12 @@ uint SetObjectValue_Num(game *g, int op) {
 		case 123:
 			return (int)((g->gameplay.player[PLAYER_2].rate) * 100.0) % 100;
 		case 124:
-			if ((g->gameplay.courseType == 0 || g->gameplay.courseType == 2) && g->procSelecter == 4) {
+			if ((g->gameplay.courseType == 0 || g->gameplay.courseType == 2) && g->procSelecter == SCENE_PLAY) {
 				return g->gameplay.player[PLAYER_2].now_combo_course;
 			}
 			return g->gameplay.player[PLAYER_2].now_combo;
 		case 125:
-			if ((g->gameplay.courseType == 0 || g->gameplay.courseType == 2) && g->procSelecter == 4) {
+			if ((g->gameplay.courseType == 0 || g->gameplay.courseType == 2) && g->procSelecter == SCENE_PLAY) {
 				return g->gameplay.player[PLAYER_2].max_combo_course;
 			}
 			return g->gameplay.player[PLAYER_2].max_combo;
@@ -2067,18 +2068,18 @@ uint SetObjectValue_Num(game *g, int op) {
 		case 200:
 			return g->net.rankingData.rankingCount;
 		case 201:
-			if (g->procSelecter == 4) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_PLAY) { // Extension: fast-slow
 				return g->gameplay.lastHitOffsetBySide[PLAYER_1];
 			}
 			return g->net.rankingData.totalPlaycount;
 
 		case 210:
-			if (g->procSelecter == 4) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_PLAY) { // Extension: fast-slow
 				return g->gameplay.lastFastSlowBySide[PLAYER_1];
 			}
 			return g->net.rankingData.clearPlayers[1];
 		case 211:
-			if (g->procSelecter == 4) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_PLAY) { // Extension: fast-slow
 				return g->gameplay.lastFastSlowBySide[PLAYER_2];
 			}
 			if (g->net.rankingData.rankingCount != 0) {
@@ -2086,15 +2087,15 @@ uint SetObjectValue_Num(game *g, int op) {
 			}
 			break;
 		case 212:
-			if (g->procSelecter == 4 || g->procSelecter == 5) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_PLAY || g->procSelecter == SCENE_RESULT) { // Extension: fast-slow
 				return g->gameplay.player[PLAYER_1].extendedStats.fast;
 			}
-			if (g->procSelecter == 13) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_COURSERESULT) { // Extension: fast-slow
 				return g->gameplay.player[PLAYER_1].extendedStatsCourse.fast;
 			}
 			return g->net.rankingData.clearPlayers[2];
 		case 213:
-			if (g->procSelecter == 4) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_PLAY) { // Extension: fast-slow
 				return g->gameplay.lastHitOffsetBySide[PLAYER_2];
 			}
 			if (g->net.rankingData.rankingCount != 0) {
@@ -2102,10 +2103,10 @@ uint SetObjectValue_Num(game *g, int op) {
 			}
 			break;
 		case 214:
-			if (g->procSelecter == 4 || g->procSelecter == 5) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_PLAY || g->procSelecter == SCENE_RESULT) { // Extension: fast-slow
 				return g->gameplay.player[PLAYER_1].extendedStats.slow;
 			}
-			if (g->procSelecter == 13) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_COURSERESULT) { // Extension: fast-slow
 				return g->gameplay.player[PLAYER_1].extendedStatsCourse.slow;
 			}
 			return g->net.rankingData.clearPlayers[3];
@@ -2115,15 +2116,15 @@ uint SetObjectValue_Num(game *g, int op) {
 			}
 			break;
 		case 216:
-			if (g->procSelecter == 4 || g->procSelecter == 5) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_PLAY || g->procSelecter == SCENE_RESULT) { // Extension: fast-slow
 				return g->gameplay.player[PLAYER_1].extendedStats.cb;
 			}
-			if (g->procSelecter == 13) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_COURSERESULT) { // Extension: fast-slow
 				return g->gameplay.player[PLAYER_1].extendedStatsCourse.cb;
 			}
 			return g->net.rankingData.clearPlayers[4];
 		case 217:
-			if (g->procSelecter == 4) { // Extension: fast-slow NOTE: redundant with 106
+			if (g->procSelecter == SCENE_PLAY) { // Extension: fast-slow NOTE: redundant with 106
 				return g->gameplay.player[PLAYER_1].totalnotes;
 			}
 			if (g->net.rankingData.rankingCount != 0) {
@@ -2131,7 +2132,7 @@ uint SetObjectValue_Num(game *g, int op) {
 			}
 			break;
 		case 218:
-			if (g->procSelecter == 4 || g->procSelecter == 5) { // Extension: fast-slow
+			if (g->procSelecter == SCENE_PLAY || g->procSelecter == SCENE_RESULT) { // Extension: fast-slow
 				return g->gameplay.player[PLAYER_1].note_current;
 			}
 			return g->net.rankingData.clearPlayers[5];
@@ -3059,7 +3060,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 13:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						g->sSelect.is_clicked_keyconfig = 1;
 					}
 				}
@@ -3068,7 +3069,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 14:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						g->sSelect.is_clicked_skinselect = 1;
 					}
 				}
@@ -3077,7 +3078,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 15:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						if (g->sSelect.bmsList[g->sSelect.cur_song].keymode > 0 || g->sSelect.bmsList[g->sSelect.cur_song].folderType == 9) {
 							g->gameplay.isAutoplay = 0;
 							g->sSelect.is_clicked_autoplay_replay = 1;
@@ -3089,7 +3090,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 16:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						if (g->sSelect.bmsList[g->sSelect.cur_song].keymode > 0 || g->sSelect.bmsList[g->sSelect.cur_song].folderType == 9) {
 							g->gameplay.isAutoplay = 1;
 							g->sSelect.is_clicked_autoplay_replay = 1;
@@ -3101,7 +3102,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 17:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						ShowReadmes(g);
 						if (g->txtStruct.readme.show) {
 							ResetTimeLapse(16, T);
@@ -3115,7 +3116,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 18:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						g->sSelect.is_clicked_tagedit = 1;
 					}
@@ -3125,7 +3126,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 19:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2 && g->sSelect.bmsList[g->sSelect.cur_song].keymode > 0) {
+					if (g->procSelecter == SCENE_SELECT && g->sSelect.bmsList[g->sSelect.cur_song].keymode > 0) {
 						g->gameplay.replay.status = 2;
 						g->gameplay.isAutoplay = 0;
 						g->sSelect.is_clicked_autoplay_replay = 1;
@@ -3286,7 +3287,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			//Option Play
 			case 40:
-				isClickSuccess = g->procSelecter == 4 || g->procSelecter == 5 || g->procSelecter == 13 ?
+				isClickSuccess = g->procSelecter == SCENE_PLAY || g->procSelecter == SCENE_RESULT || g->procSelecter == SCENE_COURSERESULT ?
 					ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[PLAYER_1].gaugeType, OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel) :
 					ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeType[PLAYER_1], OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
@@ -3297,7 +3298,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			case 41:
 				if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
-					isClickSuccess = g->procSelecter == 4 || g->procSelecter == 5 || g->procSelecter == 13 ?
+					isClickSuccess = g->procSelecter == SCENE_PLAY || g->procSelecter == SCENE_RESULT || g->procSelecter == SCENE_COURSERESULT ?
 						ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[PLAYER_2].gaugeType, OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel) :
 						ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeType[PLAYER_2], OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel);
 					if (isClickSuccess == 2) {
@@ -3830,7 +3831,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 209:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						ShowReadme(g,sk->helpfilePath[op-200]);
 						if (g->txtStruct.readme.show) {
 							ResetTimeLapse(16, &g->timer1);
@@ -3844,7 +3845,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 210:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						g->sSelect.is_buttonIRpage = 1;
 					}
 				}
@@ -3991,7 +3992,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 260:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.optimumlevel_7, 0, 99, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
 					}
@@ -4000,7 +4001,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 261:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.maxlevel, 0, 99, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
 					}
@@ -4009,7 +4010,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 262:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.minlevel, 0, 99, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
 					}
@@ -4018,7 +4019,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 263:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.bpmrange, 0, 99, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
 					}
@@ -4029,7 +4030,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 99, g->sSelect.panel);
 				g->config.course.maxbpm = iTmp * 10;
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
 					}
@@ -4040,7 +4041,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 99, g->sSelect.panel);
 				g->config.course.minbpm = iTmp * 10;
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
 					}
@@ -4049,7 +4050,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 266:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.stage, 0, 5, g->sSelect.panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
 					}
@@ -4059,7 +4060,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 268:
 				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.defaultconnection, 0, 5, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
-					if (g->procSelecter == 2) {
+					if (g->procSelecter == SCENE_SELECT) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
 					}

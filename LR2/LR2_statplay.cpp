@@ -39,7 +39,7 @@ int CheckClearLampChallenge(game *g){ //TOFIX : assist[PLAYER_2] == 1 but no bat
 	if (g->config.play.assist[PLAYER_2] != 0 && g->sSelect.metaSelected.keymode >= 10)	return 1;
 
 	//not assist
-	switch (g->procSelecter == 4 || g->procSelecter == 5 || g->procSelecter == 13
+	switch (g->procSelecter == SCENE_PLAY || g->procSelecter == SCENE_RESULT || g->procSelecter == SCENE_COURSERESULT
 		? g->gameplay.player[PLAYER_1].gaugeType
 		: g->config.play.gaugeType[PLAYER_1]) {
 	case OPTION_GAUGE_EASY:

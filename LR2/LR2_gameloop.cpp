@@ -3,6 +3,7 @@
 #include "LR2_replay.h"
 #include "LR2_audio.h"
 #include "LR2_skinobject.h"
+#include "LR2_scene.h"
 
 #include "Scenes.h"
 
@@ -61,7 +62,7 @@ void ReactInput(game *g) {
 
 	GetTimeWrap();
 	if (g->sSelect.metaSelected.keymode >= 10) {
-		if (g->procSelecter == 4 && g->config.play.battle == OPTION_BATTLE_SP2DP) {
+		if (g->procSelecter == SCENE_PLAY && g->config.play.battle == OPTION_BATTLE_SP2DP) {
 			if (g->gameplay.replay.status == 2 && GetTimeLapse(41, &g->timer1) != -1.0)
 				InputToButton(&g->KeyInput, &g->config.input, 1, 1);
 			else
@@ -75,7 +76,7 @@ void ReactInput(game *g) {
 		}
 	}
 	else {
-		if (g->procSelecter == 4 && g->config.play.battle == OPTION_BATTLE_OFF) {
+		if (g->procSelecter == SCENE_PLAY && g->config.play.battle == OPTION_BATTLE_OFF) {
 			if (g->gameplay.replay.status == 2 && GetTimeLapse(41, &g->timer1) != -1.0)
 				InputToButton(&g->KeyInput, &g->config.input, 1, 1);
 			else
@@ -87,7 +88,7 @@ void ReactInput(game *g) {
 			else
 				InputToButton(&g->KeyInput, &g->config.input, 0, 0);
 		}
-		else if (g->procSelecter == 4 && g->config.play.battle == OPTION_BATTLE_SP2DP) {
+		else if (g->procSelecter == SCENE_PLAY && g->config.play.battle == OPTION_BATTLE_SP2DP) {
 			if (g->gameplay.replay.status == 2 && GetTimeLapse(41, &g->timer1) != -1.0)
 				InputToButton(&g->KeyInput, &g->config.input, 1, 1);
 			else
@@ -104,10 +105,10 @@ void ReactInput(game *g) {
 
 	GetTimeWrap();
 
-	if (g->gameplay.replay.status == 1 && GetTimeLapse(41, &g->timer1) != -1.0 && g->procSelecter == 4) {
+	if (g->gameplay.replay.status == 1 && GetTimeLapse(41, &g->timer1) != -1.0 && g->procSelecter == SCENE_PLAY) {
 		InputToReplay(&g->gameplay.replay, &g->KeyInput, GetTimeLapse(41, &g->timer1), g->gameplay.scratchSide);
 	}
-	else if (g->gameplay.replay.status == 2 && GetTimeLapse(41, &g->timer1) != -1.0 && g->procSelecter == 4) {
+	else if (g->gameplay.replay.status == 2 && GetTimeLapse(41, &g->timer1) != -1.0 && g->procSelecter == SCENE_PLAY) {
 		ReplayToInput(&g->gameplay.replay, g, &g->audio, &g->gameplay, &g->KeyInput, &g->timer1);
 	}
 	GetTimeWrap();
@@ -155,12 +156,12 @@ void ReactInput(game *g) {
 	GetTimeWrap();
 
 	GetTimeWrap();
-	if (g->procSelecter == 7) {
+	if (g->procSelecter == SCENE_SKINSELECT) {
 		SetObjectValue_Slider(g, &g->skstruct2, &g->timer2, 1);
 		SetObjectValue_Button(g, &g->skstruct2, &g->timer2, 1);
 	}
 
-	if (g->procSelecter == 4) {
+	if (g->procSelecter == SCENE_PLAY) {
 		enum {
 			BUTTON_SCRATCH_DOWN = 10,
 			BUTTON_SCRATCH_UP = 11,
@@ -369,7 +370,7 @@ void ReactInput(game *g) {
 		g->timer1.Rhythm = ( (GetTimeWrap() - g->timer1.rhythmTick) * g->gameplay.BPM) / 60.0 + g->timer1.Rhythm;
 	}
 
-	if(g->procSelecter==4){
+	if(g->procSelecter== SCENE_PLAY){
 		enum {
 			BUTTON_START = 12,
 			BUTTON_SELECT = 13,
@@ -424,7 +425,7 @@ void ReactInput(game *g) {
 	if(g->config.play.m_isLunaris && GetTimeLapse(41,&g->timer1) > 0.0 && g->procPhase == 1){
 		ProcI_Lunaris(g);
 	}
-	if (g->procSelecter == 4 && !g->config.play.m_isLunaris) {
+	if (g->procSelecter == SCENE_PLAY && !g->config.play.m_isLunaris) {
 		
 		if (g->KeyInput.inputID[KEY_INPUT_1] == 2) {
 			if (g->KeyInput.inputID[KEY_INPUT_UP] == 1) g->skstruct.adjust.shift_y -= 10;
@@ -489,7 +490,7 @@ void ReactInput(game *g) {
 	}
 	g->timer1.scratch = GetTimeWrap();
 	g->timer1.rhythmTick = GetTimeWrap();
-	if (g->procSelecter == 7) {
+	if (g->procSelecter == SCENE_SKINSELECT) {
 		g->timer2.scratch = g->timer1.scratch;
 		g->timer2.rhythmTick = g->timer1.rhythmTick;
 	}
