@@ -1911,6 +1911,119 @@ static std::pair<std::pair<std::string, std::string>, int> MyLoadImage(CSTR dir,
 	return {std::pair{dir.c_str(), banner.c_str()}, LoadSoftImageWithStrLen(image_path.c_str(), image_path.length())};
 }
 
+int ProcB_Select(game* g, sqlite3* sql) {
+	g->gameplay.ghostBattle = 0;
+	if (!g->config.select.control) ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+		fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+	else ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
+		fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
+	DeleteGraph(g->skstruct.GrHandle[GRHTYPE_STAGE]);
+	g->skstruct.GrHandle[GRHTYPE_STAGE] = -1;
+	DeleteGraph(g->skstruct.GrHandle[GRHTYPE_BACKBMP]);
+	g->skstruct.GrHandle[GRHTYPE_BACKBMP] = -1;
+	g->sSelect.is_clicked_autoplay_replay = 0;
+	g->sSelect.is_clicked_keyconfig = 0;
+	g->sSelect.is_clicked_skinselect = 0;
+	g->sSelect.course.isCourseCreated = 0;
+	g->gameplay.replay.status = 0;
+	if (g->po4MainMenuCursor == 3) {
+		LoadSceneG(g, &g->skstruct, SKINTYPE_COURSESELECT);
+		if (g->sSelect.toRoot) {
+			g->sSelect.bmsListCount = 1;
+			InitSongData(g->sSelect.bmsList);
+			g->sSelect.bmsList->title = "NEW COURSE";
+			g->sSelect.bmsList->fulltitle = "NEW COURSE";
+			g->sSelect.bmsList->artist = "新規コースを作成します";
+			g->sSelect.bmsList->folderType = 0;
+			g->sSelect.listCalculatedBar = 0;
+			g->sSelect.barMoveStartTime = GetTimeWrap();
+			g->sSelect.barMoveEndTime = GetTimeWrap();
+			g->sSelect.flag_folderlamp = g->config.select.folderlamp != 0;
+			g->sSelect.oldBar = 0;
+			g->sSelect.nowBar = 0;
+			g->sSelect.listTopbar = 0;
+			g->sSelect.listSelectedBarFromScreenTop = g->skstruct.BAR_CENTER;
+			if (g->cmd_directplay == 0) {
+				int intTemp = g->sSelect.listCalculatedBar / 1000;
+				if (g->sSelect.listCalculatedBar != intTemp * 1000 && g->sSelect.scrollDirection == 2)
+					intTemp++;
+				g->sSelect.cur_song = (intTemp + g->sSelect.bmsListCount * 30) % g->sSelect.bmsListCount;
+			}
+			else {
+				g->sSelect.cur_song = 0;
+			}
+		}
+	}
+	else {
+		LoadSceneG(g, &g->skstruct, SKINTYPE_SELECT);
+		if (g->sSelect.toRoot) {
+			g->sSelect.cur = 0;
+			if (g->is_starter == 0) {
+				cstrSprintf(&g->sSelect.stack_query[g->sSelect.cur], "SELECT * FROM folder WHERE parent = \'%s\'", AssignCRC32("ROOT").body);
+				g->sSelect.stack_isFolder[g->sSelect.cur] = 1;
+				g->sSelect.stack_rivalID[g->sSelect.cur] = 0;
+				g->sSelect.stack_searchTitle[g->sSelect.cur] = "検索語句を入力";
+				g->sSelect.directory = "ROOT";
+				LoadBmsListFromDB(g->sSelect.stack_query[g->sSelect.cur], sql, &g->sSelect, &g->config.select.difficulty, &g->config.select.key, 0, 0);
+				SwapBmsList(&g->sSelect);
+			}
+			else {
+				cstrSprintf(&g->sSelect.stack_query[g->sSelect.cur], "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE parent = \'%s\'", AssignCRC32(g->config.jukebox.path[0]).body);
+				g->sSelect.stack_isFolder[g->sSelect.cur] = 0;
+				g->sSelect.stack_rivalID[g->sSelect.cur] = 0;
+				g->sSelect.stack_searchTitle[g->sSelect.cur] = "検索語句を入力";
+				g->sSelect.directory = "ROOT";
+				LoadFilteredBmsListFromDB(g->sSelect.stack_query[g->sSelect.cur], sql, &g->sSelect, &g->config.select.difficulty, &g->config.select.key, g->config.select.sort, 0, 0, g->net.customIR);
+				SwapBmsList(&g->sSelect);
+			}
+			if (g->rec.recMode == 4) {
+				g->sSelect.stack_searchTitle->assign("オートプレイかリプレイを録画します");
+			}
+			g->sSelect.listCalculatedBar = 0;
+			g->sSelect.barMoveStartTime = GetTimeWrap();
+			g->sSelect.barMoveEndTime = GetTimeWrap();
+			g->sSelect.flag_folderlamp = g->config.select.folderlamp != 0;
+			g->sSelect.oldBar = 0;
+			g->sSelect.nowBar = 0;
+			g->sSelect.listTopbar = 0;
+			g->sSelect.listSelectedBarFromScreenTop = g->skstruct.BAR_CENTER;
+			if (g->cmd_directplay == 0) {
+				int tmp = g->sSelect.listCalculatedBar / 1000;
+				if ((g->sSelect.listCalculatedBar != tmp * 1000) && (g->sSelect.scrollDirection == 2))
+					tmp++;
+				g->sSelect.cur_song = (tmp + g->sSelect.bmsListCount * 30) % g->sSelect.bmsListCount;
+				g->sSelect.cur_song = ((g->sSelect.listCalculatedBar / 1000) + ((g->sSelect.listCalculatedBar != g->sSelect.listCalculatedBar / 1000 * 1000) && (g->sSelect.scrollDirection == 2)) + g->sSelect.bmsListCount * 30) % g->sSelect.bmsListCount;
+			}
+			else {
+				g->sSelect.cur_song = 0;
+			}
+		}
+		g->sSelect.course.count = -1;
+		g->sSelect.course.isMakingCourse = 0;
+	}
+	g->sSelect.toRoot = 0;
+	LoadFontForSongs(g, 0);
+
+	StopSysSound(g);
+	if (g->is_recordmode == 0) {
+		for (int i = 0; i < SLOTS; i++) {
+			StopSound(&g->audio, &g->gameplay.keysound[i]);
+			ReleaseSound(&g->audio, &g->gameplay.keysound[i]);
+		}
+		ErrorLogAdd("BMSの音を初期化しました\n");
+	}
+	ReleaseBGA(g);
+
+	g->sSelect.panel_unk = -1;
+	ReadLR2SoundSet(g, g->config.skin.skinFilePath[10], 0);
+	if (g->config.play.m_isExtra && g->audio.sysSound.exselect.load)
+		PlaySound(&g->audio, &g->audio.sysSound.exselect, g->audio.chnBgm, -1);
+	else
+		PlaySound(&g->audio, &g->audio.sysSound.select, g->audio.chnBgm, -1);
+
+	return 1;
+}
+
 int ProcS_Select(game *g_) {
 	auto& g = *g_;
 
@@ -2952,6 +3065,156 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 	return 1;
 }
 
+int ProcE_Select(game* g, sqlite3* sql) {
+	g->gameplay.flag_closingPhase = 1;
+	g->gameplay.isPreviewLoad = 0;
+	g->gameplay.flag_gameinput = 0;
+	for (int i = 0; i < SLOTS; i++) {
+		StopSound(&g->audio, &g->gameplay.keysound[i]);
+	}
+	g->gameplay.previewStatus = 0;
+	g->gameplay.isCourse = 0;
+	g->gameplay.courseStageCount = 1;
+	g->gameplay.randomseed = 0; // TOFIX: 0 is a valid seed
+	for (int i = 0; i < 5; i++) {
+		g->gameplay.courseFilepath[i].fillzero();
+	}
+	g->gameplay.courseStageNow = 0;
+	g->gameplay.courseType = -1;
+	if (g->procSelecter != SCENE_SKINSELECT && g->sSelect.bmsList[g->sSelect.cur_song].coursePlayable == 1) {
+		SONGDATA sd;
+		g->gameplay.isCourse = 1;
+		g->gameplay.courseStageCount = g->sSelect.bmsList[g->sSelect.cur_song].courseStageCount;
+		for (int i = 0; i < g->sSelect.bmsList[g->sSelect.cur_song].courseStageCount; i++) {
+			GetSongData(g->sSelect.bmsList[g->sSelect.cur_song].courseHash[i], &sd, sql, &g->sSelect);
+			g->gameplay.courseFilepath[i] = sd.filepath;
+		}
+		g->gameplay.courseType = g->sSelect.bmsList[g->sSelect.cur_song].courseType;
+		g->gameplay.courseConnection[0] = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[0];
+		g->gameplay.courseConnection[1] = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[1];
+		g->gameplay.courseConnection[2] = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[2];
+		g->gameplay.courseConnection[3] = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[3];
+		g->gameplay.courseConnection[4] = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[4];
+		g->gameplay.courseConnection[5] = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[5];
+		g->gameplay.courseConnection[6] = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[6];
+		g->gameplay.courseConnection[7] = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[7];
+		g->gameplay.courseConnection[8] = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[8];
+		// Block some options for dan courses
+		if (g->sSelect.bmsList[g->sSelect.cur_song].courseType == 2) {
+			if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 10 || g->sSelect.bmsList[g->sSelect.cur_song].keymode == 14) {
+				// LR2 difference: DP: allow mirror, but only combined with dpFlip
+				if (!g->config.play.dpFlip || g->config.play.random[PLAYER_1] != OPTION_RANDOM_MIRROR || g->config.play.random[PLAYER_2] != OPTION_RANDOM_MIRROR) {
+					g->config.play.random[PLAYER_1] = OPTION_RANDOM_OFF;
+					g->config.play.random[PLAYER_2] = OPTION_RANDOM_OFF;
+					g->config.play.dpFlip = false;
+				}
+			}
+			else {
+				// LR2 difference: SP: allow mirror
+				if (g->config.play.random[PLAYER_1] != OPTION_RANDOM_OFF && g->config.play.random[PLAYER_1] != OPTION_RANDOM_MIRROR) {
+					g->config.play.random[PLAYER_1] = OPTION_RANDOM_OFF;
+				}
+			}
+			if (g->config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_EASY || g->config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_GATTACK) {
+				g->config.play.gaugeType[PLAYER_1] = OPTION_GAUGE_GROOVE;
+			}
+			if (g->config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_EASY || g->config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_GATTACK) {
+				g->config.play.gaugeType[PLAYER_2] = OPTION_GAUGE_GROOVE;
+			}
+			g->config.play.m_HIDSUD[PLAYER_1] = 0;
+			g->config.play.m_HIDSUD[PLAYER_2] = 0;
+			g->config.play.assist[PLAYER_1] = 0;
+			g->config.play.assist[PLAYER_2] = 0;
+			g->config.play.battle = OPTION_BATTLE_OFF;
+			g->config.play.m_isExtra = false;
+			g->config.play.m_accel = 0;
+			g->config.play.m_addnote = 0;
+			g->config.play.autokey = false;
+			g->config.play.m_char = 0;
+			g->config.play.m_earthquake = 0;
+			g->config.play.m_extra = 0;
+			g->config.play.m_isLunaris = false;
+			g->config.play.m_gambol = 0;
+			g->config.play.m_sidejump = 0;
+			g->config.play.m_nabeatsu = 0;
+			g->config.play.m_heartbeat = 0;
+			g->config.play.m_sincurve = 0;
+			g->config.play.m_softlanding = 0;
+			g->config.play.m_spiral = 0;
+			g->config.play.m_loudness = 0;
+			g->config.play.m_wave = 0;
+			g->config.play.m_tornado = 0;
+			g->audio.param.pitch_amount = 0;
+			g->audio.param.pitch_on = 0;
+			ApplySoundFX(&g->audio, 1, false);
+		}
+		// Block some options for nonstop courses
+		if (g->sSelect.bmsList[g->sSelect.cur_song].courseType == 1) {
+			g->audio.param.pitch_amount = 0;
+			g->audio.param.pitch_on = 0;
+			ApplySoundFX(&g->audio, 1, false);
+		}
+	}
+	g->isSkipDrawTick = 1;
+	g->net.rankingData.target_ID = 0;
+	g->gameplay.ghostBattle = 0;
+	if (g->net.rankingData.showRanking == 0) {
+		if (g->sSelect.stack_query[g->sSelect.cur].findStrPos("__RIVAL__") >= 0) {
+			g->net.rankingData.target_ID = g->sSelect.stack_rivalID[g->sSelect.cur];
+			g->gameplay.playConfigBackupBeforeTargetSomething = g->config.play; // TODO: GOMazk: need check
+			if (g->config.play.battle == OPTION_BATTLE_GBATTLE && g->sSelect.bmsList[g->sSelect.cur_song].keymode < 8) g->gameplay.ghostBattle = 1;
+			g->config.play.battle = OPTION_BATTLE_OFF;
+		}
+		else if (g->config.play.battle == OPTION_BATTLE_GBATTLE) {
+			g->config.play.battle = OPTION_BATTLE_OFF;
+		}
+	}
+	else {
+		g->gameplay.playConfigBackupBeforeTargetSomething = g->config.play; // TODO: GOMazk: need check
+		if (g->config.play.battle == OPTION_BATTLE_GBATTLE && g->sSelect.bmsList[g->sSelect.cur_song].keymode < 8) g->gameplay.ghostBattle = 1;
+		g->config.play.battle = OPTION_BATTLE_OFF;
+		g->net.rankingData.target_ID = g->net.rankingData.ranking[g->sSelect.cur_song].id;
+		g->net.rankingData.target_number = g->sSelect.cur_song;
+		ResetTimeLapse(175, &g->timer1);
+		SetTimeLapse(176, &g->timer1);
+		SwapBmsList(&g->sSelect);
+		if (g->sSelect.prevSelectedBarFromScreenTop != g->sSelect.listSelectedBarFromScreenTop) {
+			g->sSelect.listTopbar += (g->sSelect.prevSelectedBarFromScreenTop - g->sSelect.listSelectedBarFromScreenTop) * 1000;
+		}
+		g->sSelect.listCalculatedBar = g->sSelect.listTopbar;
+		while (g->sSelect.listCalculatedBar < 0) {
+			g->sSelect.listCalculatedBar += g->sSelect.bmsListCount * 1000;
+		}
+		while (g->sSelect.listCalculatedBar >= g->sSelect.bmsListCount * 1000) {
+			g->sSelect.listCalculatedBar -= g->sSelect.bmsListCount * 1000;
+		}
+		g->sSelect.barMoveStartTime = GetTimeWrap();
+		g->sSelect.barMoveEndTime = GetTimeWrap();
+		g->sSelect.oldBar = g->sSelect.listTopbar;
+		g->sSelect.nowBar = g->sSelect.listTopbar;
+		if (g->cmd_directplay == 0) { //same GetSongCursor(g)
+			g->sSelect.cur_song = (g->sSelect.bmsListCount * 30 - g->skstruct.BAR_CENTER + g->sSelect.listSelectedBarFromScreenTop +
+				((g->sSelect.listCalculatedBar % 1000 == 0 || g->sSelect.scrollDirection != 2) ? (g->sSelect.listCalculatedBar / 1000) : (g->sSelect.listCalculatedBar / 1000 + 1)))
+				% g->sSelect.bmsListCount;
+		}
+		else {
+			g->sSelect.cur_song = 0;
+		}
+		g->net.rankingData.showRanking = 0;
+		ProcS_Select(g);
+	}
+
+	if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 10 || g->sSelect.bmsList[g->sSelect.cur_song].keymode == 14) {
+		if (g->config.play.battle >= OPTION_BATTLE_DBATTLE && g->config.play.battle != OPTION_BATTLE_SP2DP) g->config.play.battle = OPTION_BATTLE_OFF;
+	}
+	else if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 9) {
+		if (g->config.play.battle >= OPTION_BATTLE_BATTLE && g->config.play.battle != OPTION_BATTLE_SP2DP) g->config.play.battle = OPTION_BATTLE_OFF;
+	}
+	g->gameplay.flag_retry = 0;
+	SetObjectString(30, g->sSelect.stack_searchTitle[g->sSelect.cur], g->txtStruct.objectStr);
+
+	return 1;
+}
 
 
 int CreateRandomCourse(game *g, sqlite3 *sql, char playing) {

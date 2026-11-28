@@ -1,6 +1,12 @@
 #include "Scene10_Po4decide.h"
 #include "LR2.h"
 
+int ProcB_PO4Decide(game* g) {
+	LoadSceneG(g, &g->skstruct, SKINTYPE_MODEDECIDE);
+
+	return 1;
+}
+
 int ProcI_PO4Decide(game *g) {
 
 	if (GetTimeLapse(0, &g->timer1) > g->skstruct.scenetime && g->procPhase == 1) {

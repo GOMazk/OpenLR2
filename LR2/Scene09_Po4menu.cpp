@@ -1,6 +1,66 @@
-#include "Scene09_Po4menu.h"
+﻿#include "Scene09_Po4menu.h"
 #include "Scene02_Songselect.h"
 #include "LR2.h"
+
+int ProcB_PO4Menu(game* g) {
+	LoadSceneG(g, &g->skstruct, SKINTYPE_MODESELECT);
+	g->sSelect.listCalculatedBar = g->po4MainMenuCursor * 1000;
+	g->sSelect.barMoveStartTime = GetTimeWrap();
+	g->sSelect.barMoveEndTime = GetTimeWrap();
+	g->sSelect.listTopbar = g->po4MainMenuCursor * 1000;
+	g->sSelect.flag_folderlamp = (g->config.select.folderlamp != 0);
+	g->sSelect.listSelectedBarFromScreenTop = g->skstruct.BAR_CENTER;
+	if (g->cmd_directplay == 0) {
+		int intTemp = g->sSelect.listCalculatedBar / 1000;
+		if (g->sSelect.listCalculatedBar != intTemp * 1000 && g->sSelect.scrollDirection == 2)
+			intTemp++;
+		g->sSelect.cur_song = (intTemp + g->sSelect.bmsListCount * 0x1e) % g->sSelect.bmsListCount;
+	}
+	else {
+		g->sSelect.cur_song = 0;
+	}
+	g->sSelect.toRoot = 1;
+	g->sSelect.bmsListCount = 7;
+	g->sSelect.nowBar = g->sSelect.listTopbar;
+	g->sSelect.oldBar = g->sSelect.listTopbar;
+
+	g->sSelect.bmsList[0].title = "FREE";
+	g->sSelect.bmsList[0].fulltitle = "FREE";
+	g->sSelect.bmsList[0].artist = "全曲から自由に選曲できます。";
+	g->sSelect.bmsList[0].level = 0;
+
+	g->sSelect.bmsList[1].title = "ARCADE";
+	g->sSelect.bmsList[1].fulltitle = "ARCADE";
+	g->sSelect.bmsList[1].artist = "全3ステージ+αをプレイするメインモードです。";
+	g->sSelect.bmsList[1].level = 1;
+
+	g->sSelect.bmsList[2].title = "CHARANGE";
+	g->sSelect.bmsList[2].fulltitle = "CHARANGE";
+	g->sSelect.bmsList[2].artist = "最高難度に挑戦するモードです。";
+	g->sSelect.bmsList[2].level = 2;
+
+	g->sSelect.bmsList[3].title = "COURSE";
+	g->sSelect.bmsList[3].fulltitle = "COURSE";
+	g->sSelect.bmsList[3].artist = "決められた5曲を連続でプレイするモードです。";
+	g->sSelect.bmsList[3].level = 3;
+
+	g->sSelect.bmsList[4].title = "GRADE";
+	g->sSelect.bmsList[4].fulltitle = "GRADE";
+	g->sSelect.bmsList[4].artist = "プレイヤーの腕前を判定するモードです。";
+	g->sSelect.bmsList[4].level = 4;
+
+	g->sSelect.bmsList[5].title = "OPTION";
+	g->sSelect.bmsList[5].fulltitle = "OPTION";
+	g->sSelect.bmsList[5].artist = "ゲームの設定を行います。";
+	g->sSelect.bmsList[5].level = 5;
+
+	g->sSelect.bmsList[6].title = "EXIT";
+	g->sSelect.bmsList[6].fulltitle = "EXIT";
+	g->sSelect.bmsList[6].artist = "ゲームを終了します。";
+	g->sSelect.bmsList[6].level = 6;
+
+	return 1;
+}
 
 int ProcI_PO4Menu(game *g, sqlite3 */*sql*/) { //not tested
 

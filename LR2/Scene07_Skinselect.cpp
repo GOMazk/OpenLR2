@@ -444,6 +444,12 @@ int PlayPreviewSample(game *g) {
 	return 1;
 }
 
+int ProcB_SkinSelect(game* g) {
+	LoadSceneG(g, &g->skstruct, SKINTYPE_SKINSELECT);
+
+	return 1;
+}
+
 int ProcS_SkinSelect(game *g) {
 	CSTR path;
 	SkinUser sku;
@@ -491,6 +497,14 @@ int ProcS_SkinSelect(game *g) {
 	PlayPreviewSample(g);
 	InitTimer(&g->timer2);
 	SetTimeLapse(0, &g->timer2);
+	return 1;
+}
+
+int ProcE_SkinSelect(game* g) {
+
+	ClearSkinGraph(&g->skstruct2);
+	ReadLR2SoundSet(g, g->config.skin.skinFilePath[10], 0);
+
 	return 1;
 }
 

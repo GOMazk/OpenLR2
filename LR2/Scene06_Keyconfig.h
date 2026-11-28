@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Engine.h"
+int ProcB_Keyconfig(game* g);
 int ProcS_Keyconfig(game *g);
 int ProcI_Keyconfig(game *g);
+int ProcE_Keyconfig(game* g);
 
 //ui and button mapping
 CSTR GetKeyIDname(int keyID);

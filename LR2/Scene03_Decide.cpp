@@ -4,7 +4,7 @@
 #include "LR2_skinload.h"
 #include "LR2_scene.h"
 
-int ProcS_Decide(game* g) {
+int ProcB_Decide(game* g) {
 
 	DeleteGraph(g->skstruct.GrHandle[GRHTYPE_STAGE]);
 	g->skstruct.GrHandle[GRHTYPE_STAGE] = -1;

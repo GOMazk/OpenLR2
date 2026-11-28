@@ -166,7 +166,7 @@ int ProcS_subCourseResult(game *g, sqlite3 *sql) {
 	return 1;
 }
 
-int ProcS_CourseResult(game *g, sqlite3 *sql) {
+int ProcB_CourseResult(game *g, sqlite3 *sql) {
 	PlayerCheckAndSwap(&g->gameplay);
 	CheckCourseClear(g);
 	ProcS_subCourseResult(g, sql);
@@ -183,5 +183,37 @@ int ProcS_CourseResult(game *g, sqlite3 *sql) {
 	else 
 		PlaySound(&g->audio, &g->audio.sysSound.coursefail, g->audio.chnBgm, -1);
 	
+	return 1;
+}
+
+int ProcE_CourseResult(game* g) {
+
+	if (g->gameplay.replay.status == 1 && g->gameplay.isAutoplay == 0) {
+		if (g->config.play.replay == 1) {
+			if (MoveReplayFile(g->sSelect.bmsList[g->sSelect.cur_song].hash, g->config.player.id) == 1)
+				g->sSelect.bmsList[g->sSelect.cur_song].replayExist = 1;
+		}
+		else if (g->config.play.replay == 2) {
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore <= g->gameplay.player[PLAYER_1].exscore && g->gameplay.player[PLAYER_1].exscore > 0) {
+				if (MoveReplayFile(g->sSelect.bmsList[g->sSelect.cur_song].hash, g->config.player.id) == 1)
+					g->sSelect.bmsList[g->sSelect.cur_song].replayExist = 1;
+			}
+		}
+		else if (g->config.play.replay == 3) {
+			if (g->gameplay.player[PLAYER_1].clearType > 1 && g->gameplay.player[PLAYER_1].exscore > 0) {
+				if (MoveReplayFile(g->sSelect.bmsList[g->sSelect.cur_song].hash, g->config.player.id) == 1)
+					g->sSelect.bmsList[g->sSelect.cur_song].replayExist = 1;
+			}
+		}
+		else if (g->config.play.replay == 4) {
+			if (g->gameplay.player[PLAYER_1].clearType == 5 && g->gameplay.player[PLAYER_1].exscore > 0) {
+				if (MoveReplayFile(g->sSelect.bmsList[g->sSelect.cur_song].hash, g->config.player.id) == 1)
+					g->sSelect.bmsList[g->sSelect.cur_song].replayExist = 1;
+			}
+		}
+	}
+	if (g->procSelecter != SCENE_PLAY) g->procSelecter = SCENE_SELECT;
+	StopSysSound(g);
+
 	return 1;
 }

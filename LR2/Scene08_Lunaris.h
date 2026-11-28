@@ -17,4 +17,5 @@ int DrawLunaris(game * g);
 int LUNARIS_START(game * g);
 int LUNARIS_JUDGE(game * g);
 
+int ProcB_Lunaris(game* g);
 int ProcI_Lunaris(game * g);

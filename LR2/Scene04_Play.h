@@ -24,4 +24,6 @@ int ProcI_Play(game * g);
 
 int ProcGame(game * g);
 void ProcGameThread(game * g);
+int ProcB_Play(game* g, sqlite3* sql);
 int ProcS_Play(game * g, sqlite3 * sql);
+int ProcE_Play(game* g, sqlite3* sql);

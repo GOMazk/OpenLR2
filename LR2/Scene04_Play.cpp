@@ -1,4 +1,7 @@
-﻿#include "Scene04_Play.h"
+﻿#include "filesystem.h"
+
+#include "Scene02_SongSelect.h"
+#include "Scene04_Play.h"
 #include "Scene08_Lunaris.h"
 //drawing part
 #include <math.h>
@@ -1828,6 +1831,192 @@ void ProcGameThread(game *g) {
 	g->gameplay.flag_threadExist = 0;
 }
 
+int ProcB_Play(game* g, sqlite3* sql) {
+	if (g->gameplay.courseType == 0 || g->gameplay.courseType == 2) {
+		SONGDATA sd;
+		GetSongData(g->sSelect.bmsList[g->sSelect.cur_song].courseHash[g->gameplay.courseStageNow], &sd, sql, &g->sSelect);
+		SetObjectString(10, sd.title, g->txtStruct.objectStr);
+		SetObjectString(11, sd.subtitle, g->txtStruct.objectStr);
+		SetObjectString(12, sd.fulltitle, g->txtStruct.objectStr);
+		SetObjectString(13, sd.genre, g->txtStruct.objectStr);
+		SetObjectString(14, sd.artist, g->txtStruct.objectStr);
+		SetObjectString(15, sd.subartist, g->txtStruct.objectStr);
+	}
+	g->skstruct.flag_flip = false;
+	if (g->gameplay.replay.status == 2 || g->config.play.replay == 0) {
+		if (g->gameplay.replay.status == 1) {
+			AllocReplayBuffer(&g->gameplay.replay);
+			AddReplayDataHeader(&g->config.play, &g->gameplay.replay, &g->audio, &g->gameplay);
+		}
+		else if (g->gameplay.replay.status == 2) {
+			int flagLoadSuccess;
+			if (g->sSelect.bmsList[g->sSelect.cur_song].courseType == 0 || g->sSelect.bmsList[g->sSelect.cur_song].courseType == 2) {
+				flagLoadSuccess = LoadReplayFileCourse(&g->gameplay.replay, g->sSelect.bmsList[g->sSelect.cur_song].hash, g->gameplay.courseStageNow, g->config.player.id);
+			}
+			else {
+				flagLoadSuccess = LoadReplayFile(&g->gameplay.replay, g->sSelect.bmsList[g->sSelect.cur_song].hash, g->config.player.id);
+			}
+			if (flagLoadSuccess == -1 && g->rec.recMode == 2 && g->is_recordmode) return 0;
+			SetReplayConfig(&g->gameplay.replay, g, &g->audio, &g->gameplay, &g->KeyInput, &g->timer1);
+		}
+	}
+	else {
+		g->gameplay.replay.status = 1;
+		AllocReplayBuffer(&g->gameplay.replay);
+		AddReplayDataHeader(&g->config.play, &g->gameplay.replay, &g->audio, &g->gameplay);
+	}
+	if (g->gameplay.ghostBattle == 1) {
+		if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 5) {
+			LoadSceneG(g, &g->skstruct, SKINTYPE_5KEYSBATTLE);
+			if (g->skinData.Data[g->skinData.skinID[13]].type != SKINTYPE_5KEYSBATTLE)
+				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+					fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+			else
+				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+					fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
+		}
+		else {
+			LoadSceneG(g, &g->skstruct, SKINTYPE_7KEYSBATTLE);
+			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+				fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+		}
+	}
+	else if (g->config.select.control && (g->sSelect.metaSelected.keymode == 5 || g->sSelect.metaSelected.keymode == 7)) {
+		if (g->config.play.battle == OPTION_BATTLE_OFF || g->config.play.battle == OPTION_BATTLE_DBATTLE) {
+			LoadSceneG(g, &g->skstruct, SKINTYPE_9KEYS);
+		}
+		else if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
+			LoadSceneG(g, &g->skstruct, SKINTYPE_9KEYSBATTLE);
+		}
+		ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
+			fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
+	}
+	else {
+		switch (g->sSelect.metaSelected.keymode) {
+		case 5:
+			if (g->config.play.battle == OPTION_BATTLE_OFF) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_5KEYS);
+				if (g->skinData.Data[g->skinData.skinID[1]].type != SKINTYPE_5KEYS)
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+				else
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_5KEYSBATTLE);
+				if (g->skinData.Data[g->skinData.skinID[13]].type != SKINTYPE_5KEYSBATTLE)
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+				else
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_DBATTLE || g->config.play.battle == OPTION_BATTLE_SP2DP) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_10KEYS);
+				if (g->skinData.Data[g->skinData.skinID[3]].type != SKINTYPE_10KEYS)
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+				else
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
+			}
+			break;
+
+		default:
+			if (g->config.play.battle == OPTION_BATTLE_OFF) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_7KEYS);
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_7KEYSBATTLE);
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_DBATTLE || g->config.play.battle == OPTION_BATTLE_SP2DP) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_14KEYS);
+			}
+			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+				fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+			break;
+
+		case 9:
+			if (g->config.play.battle == OPTION_BATTLE_SP2DP) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_7KEYS);
+				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+					fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+				break;
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_OFF || g->config.play.battle == OPTION_BATTLE_DBATTLE) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_9KEYS);
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_9KEYSBATTLE);
+			}
+			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
+				fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
+			break;
+
+		case 10:
+			if (g->config.play.battle == OPTION_BATTLE_OFF) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_10KEYS);
+				if (g->skinData.Data[g->skinData.skinID[3]].type == SKINTYPE_10KEYS)
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
+				else
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_BATTLE || g->config.play.battle == OPTION_BATTLE_DBATTLE) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_5KEYSBATTLE);
+				if (g->skinData.Data[g->skinData.skinID[13]].type == SKINTYPE_5KEYSBATTLE)
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
+				else
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_SP2DP) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_5KEYS);
+				if (g->skinData.Data[g->skinData.skinID[1]].type == SKINTYPE_5KEYS)
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
+				else
+					ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+			}
+			break;
+
+		case 14:
+			if (g->config.play.battle == OPTION_BATTLE_OFF || g->config.play.battle == OPTION_BATTLE_DBATTLE) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_14KEYS);
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_7KEYSBATTLE);
+			}
+			else if (g->config.play.battle == OPTION_BATTLE_SP2DP) {
+				LoadSceneG(g, &g->skstruct, SKINTYPE_7KEYS);
+			}
+			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+				fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+			break;
+		}
+	}
+
+	if (g->config.play.m_isLunaris) {
+		LoadSceneG(g, &g->skstruct, SKINTYPE_7KEYS);
+		ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+			fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+		g->gameplay.isAutoplay = 0;
+	}
+	for (int i = 0; i < g->skstruct.num_of_ImageFont; i++) {
+		LoadFontForText(&g->skstruct.ImageFonts[i], &g->sSelect.bmsList[g->sSelect.cur_song].artist);
+		LoadFontForText(&g->skstruct.ImageFonts[i], &g->sSelect.bmsList[g->sSelect.cur_song].genre);
+		LoadFontForText(&g->skstruct.ImageFonts[i], &g->sSelect.bmsList[g->sSelect.cur_song].subartist);
+		LoadFontForText(&g->skstruct.ImageFonts[i], &g->sSelect.bmsList[g->sSelect.cur_song].title);
+		LoadFontForText(&g->skstruct.ImageFonts[i], &g->sSelect.bmsList[g->sSelect.cur_song].subtitle);
+	}
+
+	return 1;
+}
+
 int ProcS_Play(game *g, sqlite3* sql) {
 
 	int iTemp;
@@ -2068,3 +2257,167 @@ int ProcS_Play(game *g, sqlite3* sql) {
 	return 1;
 }
 
+int ProcE_Play(game* g, sqlite3* sql) {
+	CSTR skinMD5;
+	cstrSprintf(&skinMD5, fs::make_preferred("LR2files/SkinCustomize/%s.xml").data(), g->skstruct.skinMD5.body);
+	SkinUser tmpSk;
+	ReadSkinCustomize(&tmpSk, skinMD5);
+	tmpSk.adjust.shift_x = g->skstruct.adjust.shift_x;
+	tmpSk.adjust.size_y = g->skstruct.adjust.size_y;
+	tmpSk.adjust.shift_y = g->skstruct.adjust.shift_y;
+	tmpSk.adjust.size_x = g->skstruct.adjust.size_x;
+	tmpSk.adjust.judge_x = g->skstruct.adjust.judge_x;
+	tmpSk.adjust.rate_x = g->skstruct.adjust.rate_x;
+	tmpSk.adjust.rate_y = g->skstruct.adjust.rate_y;
+	tmpSk.adjust.note_x[PLAYER_1] = g->skstruct.adjust.note_x[PLAYER_1];
+	tmpSk.adjust.judge_y = g->skstruct.adjust.judge_y;
+	tmpSk.adjust.dark_type = g->skstruct.adjust.dark_type;
+	tmpSk.adjust.note_y[PLAYER_2] = g->skstruct.adjust.note_y[PLAYER_2];
+	tmpSk.adjust.note_y[PLAYER_1] = g->skstruct.adjust.note_y[PLAYER_1];
+	tmpSk.adjust.note_x[PLAYER_2] = g->skstruct.adjust.note_x[PLAYER_2];
+	WriteSkinCustomizeXml(&tmpSk, skinMD5);
+	SetTarget(g);
+
+	if (g->gameplay.isAutoplay) {
+		g->procSelecter = SCENE_SELECT;
+		if (g->is_recordmode == 0) {
+			for (int i = 0; i < SLOTS; i++) {
+				StopSound(&g->audio, &g->gameplay.keysound[i]);
+				ReleaseSound(&g->audio, &g->gameplay.keysound[i]);
+			}
+			ErrorLogAdd("BMSの音を初期化しました\n");
+		}
+	}
+	else if (g->gameplay.player[PLAYER_1].note_current == 0 && g->gameplay.player[PLAYER_2].note_current == 0 && !g->config.play.m_isLunaris) {
+		g->procSelecter = SCENE_SELECT;
+		for (int i = 0; i < SLOTS; i++) {
+			StopSound(&g->audio, &g->gameplay.keysound[i]);
+			ReleaseSound(&g->audio, &g->gameplay.keysound[i]);
+		}
+		ErrorLogAdd("BMSの音を初期化しました\n");
+	}
+	else if (g->gameplay.player[PLAYER_1].judgecount[3] + g->gameplay.player[PLAYER_1].judgecount[4] + g->gameplay.player[PLAYER_1].judgecount[5] != 0) {
+		SaveResult(g, sql);
+	}
+	else if (!g->config.play.m_isLunaris && g->config.play.battle != OPTION_BATTLE_BATTLE) {
+		g->procSelecter = SCENE_SELECT;
+		for (int i = 0; i < SLOTS; i++) {
+			StopSound(&g->audio, &g->gameplay.keysound[i]);
+			ReleaseSound(&g->audio, &g->gameplay.keysound[i]);
+		}
+		ErrorLogAdd("BMSの音を初期化しました\n");
+	}
+	else if ((g->gameplay.player[PLAYER_2].judgecount[3] + g->gameplay.player[PLAYER_2].judgecount[4] + g->gameplay.player[PLAYER_2].judgecount[5] != 0) || g->config.play.battle != OPTION_BATTLE_BATTLE) {
+		SaveResult(g, sql);
+	}
+	else {
+		g->procSelecter = SCENE_SELECT;
+		for (int i = 0; i < SLOTS; i++) {
+			StopSound(&g->audio, &g->gameplay.keysound[i]);
+			ReleaseSound(&g->audio, &g->gameplay.keysound[i]);
+		}
+		ErrorLogAdd("BMSの音を初期化しました\n");
+	}
+
+	ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+		fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+	if (g->net.rankingData.target_ID != 0) {
+		if (auto& backup = g->gameplay.playConfigBackupBeforeTargetSomething)
+		{
+			g->config.play = *backup;
+			backup.reset();
+		}
+		else {
+			ErrorLogAdd("BUG: playConfigBackupBeforeTargetSomething is not filled but was supposed to\n");
+		}
+	}
+	if (g->gameplay.replay.status == 2) {
+		if (auto& backup = g->gameplay.replay.playConfigBackupBeforeWatchingReplay) {
+			g->config.play = *backup;
+			backup.reset();
+		}
+		else {
+			ErrorLogAdd("BUG: playConfigBackupBeforeWatchingReplay is not filled but was supposed to\n");
+		}
+		ReleaseReplayBuffer(&g->gameplay.replay);
+		if (auto& backup = g->gameplay.replay.audioParamBackupBeforeWatchingReplay)
+		{
+			g->audio.param.eq_gain[0] = backup->eq_gain[0];
+			g->audio.param.eq_gain[1] = backup->eq_gain[1];
+			g->audio.param.eq_gain[3] = backup->eq_gain[3];
+			g->audio.param.eq_gain[4] = backup->eq_gain[4];
+			g->audio.param.eq_gain[2] = backup->eq_gain[2];
+			g->audio.param.eq_gain[6] = backup->eq_gain[6];
+			g->audio.param.eq_on = backup->eq_on;
+			g->audio.param.eq_gain[5] = backup->eq_gain[5];
+			for (int i = 0; i < 3; i++) {
+				g->audio.param.fxParam[i][PLAYER_1] = backup->fxParam[i][PLAYER_1];
+				g->audio.param.fxParam[i][PLAYER_2] = backup->fxParam[i][PLAYER_2];
+				g->audio.param.fxChannel[i] = backup->fxChannel[i];
+				g->audio.param.fxType[i] = backup->fxType[i];
+				g->audio.param.fx_on[i] = backup->fx_on[i];
+			}
+			g->audio.param.pitch_on = backup->pitch_on;
+			g->audio.param.pitch_type = backup->pitch_type;
+			g->audio.param.volume_BGM = backup->volume_BGM;
+			g->audio.param.pitch_amount = backup->pitch_amount;
+			g->audio.param.volume_key = backup->volume_key;
+			g->audio.param.fx_volume_on = backup->fx_volume_on;
+			g->audio.param.volume_master = backup->volume_master;
+			backup.reset();
+		}
+		else {
+			ErrorLogAdd("BUG: audioParamBackupBeforeWatchingReplay is not filled but was supposed to\n");
+		}
+		ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
+	}
+	else if (g->gameplay.replay.status == 1) {
+		if (g->gameplay.isAutoplay == 0) {
+			if (g->sSelect.bmsList[g->sSelect.cur_song].courseType == 2 || g->sSelect.bmsList[g->sSelect.cur_song].courseType == 0) {
+				CSTR tmp;
+				cstrSprintf(&tmp, "__%d", g->gameplay.courseStageNow);
+				OverwriteReplayData(&g->gameplay.replay, 0, 0x65, static_cast<short>(g->gameplay.player[PLAYER_1].clearGaugeTypeCourse));
+				OverwriteReplayData(&g->gameplay.replay, 0, 0x97, static_cast<short>(g->gameplay.player[PLAYER_2].clearGaugeTypeCourse));
+				SaveReplay(&g->gameplay.replay, tmp, g->config.player.id);
+			}
+			else if (g->config.play.replay == 1) {
+				OverwriteReplayData(&g->gameplay.replay, 0, 0x65, static_cast<short>(g->gameplay.player[PLAYER_1].gaugeType));
+				OverwriteReplayData(&g->gameplay.replay, 0, 0x97, static_cast<short>(g->gameplay.player[PLAYER_2].gaugeType));
+				if (SaveReplay(&g->gameplay.replay, g->sSelect.bmsList[g->sSelect.cur_song].hash, g->config.player.id) == 1)
+					g->sSelect.bmsList[g->sSelect.cur_song].replayExist = 1;
+			}
+			else if (g->config.play.replay == 2) {
+				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore <= g->gameplay.player[PLAYER_1].exscore && g->gameplay.player[PLAYER_1].exscore > 0) {
+					OverwriteReplayData(&g->gameplay.replay, 0, 0x65, static_cast<short>(g->gameplay.player[PLAYER_1].gaugeType));
+					OverwriteReplayData(&g->gameplay.replay, 0, 0x97, static_cast<short>(g->gameplay.player[PLAYER_2].gaugeType));
+					if (SaveReplay(&g->gameplay.replay, g->sSelect.bmsList[g->sSelect.cur_song].hash, g->config.player.id) == 1)
+						g->sSelect.bmsList[g->sSelect.cur_song].replayExist = 1;
+				}
+			}
+			else if (g->config.play.replay == 3) {
+				if (g->gameplay.player[PLAYER_1].clearType >= 2 && g->gameplay.player[PLAYER_1].exscore > 0) {
+					OverwriteReplayData(&g->gameplay.replay, 0, 0x65, static_cast<short>(g->gameplay.player[PLAYER_1].gaugeType));
+					OverwriteReplayData(&g->gameplay.replay, 0, 0x97, static_cast<short>(g->gameplay.player[PLAYER_2].gaugeType));
+					if (SaveReplay(&g->gameplay.replay, g->sSelect.bmsList[g->sSelect.cur_song].hash, g->config.player.id) == 1)
+						g->sSelect.bmsList[g->sSelect.cur_song].replayExist = 1;
+				}
+			}
+			else if (g->config.play.replay == 4) {
+				if (g->gameplay.player[PLAYER_1].clearType == 5 && g->gameplay.player[PLAYER_1].exscore > 0) {
+					OverwriteReplayData(&g->gameplay.replay, 0, 0x65, static_cast<short>(g->gameplay.player[PLAYER_1].gaugeType));
+					OverwriteReplayData(&g->gameplay.replay, 0, 0x97, static_cast<short>(g->gameplay.player[PLAYER_2].gaugeType));
+					if (SaveReplay(&g->gameplay.replay, g->sSelect.bmsList[g->sSelect.cur_song].hash, g->config.player.id) == 1)
+						g->sSelect.bmsList[g->sSelect.cur_song].replayExist = 1;
+				}
+			}
+		}
+		ReleaseReplayBuffer(&g->gameplay.replay);
+	}
+
+	if (g->gameplay.isAutoplay == 1 && (g->gameplay.courseType == 0 || g->gameplay.courseType == 2) && g->gameplay.courseStageNow < g->gameplay.courseStageCount - 1 && g->gameplay.flag_closingPhase == 0) {
+		g->gameplay.courseStageNow++;
+		g->procSelecter = SCENE_PLAY;
+	}
+
+	return 1;
+}

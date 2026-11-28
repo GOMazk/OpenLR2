@@ -1,6 +1,7 @@
 ﻿#include "Scene11_Po4select.h"
 #include "Scenes.h"
 #include "LR2.h"
+#include "filesystem.h"
 
 void ThreadProc_PO4parseBMS(game *g) {
 	
@@ -14,6 +15,10 @@ void ThreadProc_PO4parseBMS(game *g) {
 	g->gameplay.bmsResourceLoaded = 1;
 }
 
+int ProcB_PO4Select(game* g) {
+	LoadScene(&g->skstruct, fs::make_preferred("LR2files/event.csv").data(), 0, 0);
+	return 1;
+}
 int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 
 	int selectedBar = g->sSelect.listSelectedBarFromScreenTop;

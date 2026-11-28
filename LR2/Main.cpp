@@ -1088,396 +1088,55 @@ int main(int argc, char** argv) {
 				ProcS_Select(&gs);
 			}
 
+			//Begin
 			switch (gs.procSelecter) {
 				case SCENE_SELECT:
-					gs.gameplay.ghostBattle = 0;
-					if (!gs.config.select.control) ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-					else ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
-						fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
-					DeleteGraph(gs.skstruct.GrHandle[GRHTYPE_STAGE]);
-					gs.skstruct.GrHandle[GRHTYPE_STAGE] = -1;
-					DeleteGraph(gs.skstruct.GrHandle[GRHTYPE_BACKBMP]);
-					gs.skstruct.GrHandle[GRHTYPE_BACKBMP] = -1;
-					gs.sSelect.is_clicked_autoplay_replay = 0;
-					gs.sSelect.is_clicked_keyconfig = 0;
-					gs.sSelect.is_clicked_skinselect = 0;
-					gs.sSelect.course.isCourseCreated = 0;
-					gs.gameplay.replay.status = 0;
-					if (gs.po4MainMenuCursor == 3) {
-						LoadSceneG(&gs, &gs.skstruct, SKINTYPE_COURSESELECT);
-						if (gs.sSelect.toRoot) {
-							gs.sSelect.bmsListCount = 1;
-							InitSongData(gs.sSelect.bmsList);
-							gs.sSelect.bmsList->title = "NEW COURSE";
-							gs.sSelect.bmsList->fulltitle = "NEW COURSE";
-							gs.sSelect.bmsList->artist = "新規コースを作成します";
-							gs.sSelect.bmsList->folderType = 0;
-							gs.sSelect.listCalculatedBar = 0;
-							gs.sSelect.barMoveStartTime = GetTimeWrap();
-							gs.sSelect.barMoveEndTime = GetTimeWrap();
-							gs.sSelect.flag_folderlamp = gs.config.select.folderlamp != 0;
-							gs.sSelect.oldBar = 0;
-							gs.sSelect.nowBar = 0;
-							gs.sSelect.listTopbar = 0;
-							gs.sSelect.listSelectedBarFromScreenTop = gs.skstruct.BAR_CENTER;
-							if (gs.cmd_directplay == 0) {
-								int intTemp = gs.sSelect.listCalculatedBar / 1000;
-								if (gs.sSelect.listCalculatedBar != intTemp * 1000 && gs.sSelect.scrollDirection == 2) 
-									intTemp++;
-								gs.sSelect.cur_song = (intTemp + gs.sSelect.bmsListCount * 30) % gs.sSelect.bmsListCount;
-							}
-							else {
-								gs.sSelect.cur_song = 0;
-							}
-						}
-					}
-					else {
-						LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
-						if (gs.sSelect.toRoot) {
-							gs.sSelect.cur = 0;
-							if (gs.is_starter == 0) {
-								cstrSprintf(&gs.sSelect.stack_query[gs.sSelect.cur], "SELECT * FROM folder WHERE parent = \'%s\'", AssignCRC32("ROOT").body);
-								gs.sSelect.stack_isFolder[gs.sSelect.cur] = 1;
-								gs.sSelect.stack_rivalID[gs.sSelect.cur] = 0;
-								gs.sSelect.stack_searchTitle[gs.sSelect.cur] = "検索語句を入力";
-								gs.sSelect.directory = "ROOT";
-								LoadBmsListFromDB(gs.sSelect.stack_query[gs.sSelect.cur], sql3, &gs.sSelect, &gs.config.select.difficulty, &gs.config.select.key, 0, 0);
-								SwapBmsList(&gs.sSelect);
-							}
-							else {
-								cstrSprintf(&gs.sSelect.stack_query[gs.sSelect.cur], "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE parent = \'%s\'", AssignCRC32(gs.config.jukebox.path[0]).body);
-								gs.sSelect.stack_isFolder[gs.sSelect.cur] = 0;
-								gs.sSelect.stack_rivalID[gs.sSelect.cur] = 0;
-								gs.sSelect.stack_searchTitle[gs.sSelect.cur] = "検索語句を入力";
-								gs.sSelect.directory = "ROOT";
-								LoadFilteredBmsListFromDB(gs.sSelect.stack_query[gs.sSelect.cur], sql3, &gs.sSelect, &gs.config.select.difficulty, &gs.config.select.key, gs.config.select.sort, 0, 0, gs.net.customIR);
-								SwapBmsList(&gs.sSelect);
-							}
-							if (gs.rec.recMode == 4) {
-								gs.sSelect.stack_searchTitle->assign("オートプレイかリプレイを録画します");
-							}
-							gs.sSelect.listCalculatedBar = 0;
-							gs.sSelect.barMoveStartTime = GetTimeWrap();
-							gs.sSelect.barMoveEndTime = GetTimeWrap();
-							gs.sSelect.flag_folderlamp = gs.config.select.folderlamp != 0;
-							gs.sSelect.oldBar = 0;
-							gs.sSelect.nowBar = 0;
-							gs.sSelect.listTopbar = 0;
-							gs.sSelect.listSelectedBarFromScreenTop = gs.skstruct.BAR_CENTER;
-							if (gs.cmd_directplay == 0) {
-								int tmp = gs.sSelect.listCalculatedBar / 1000;
-								if ((gs.sSelect.listCalculatedBar != tmp * 1000) &&	(gs.sSelect.scrollDirection == 2))
-									tmp++;
-								gs.sSelect.cur_song = (tmp + gs.sSelect.bmsListCount * 30) % gs.sSelect.bmsListCount;
-								gs.sSelect.cur_song = ((gs.sSelect.listCalculatedBar / 1000) + ((gs.sSelect.listCalculatedBar != gs.sSelect.listCalculatedBar / 1000 * 1000) && (gs.sSelect.scrollDirection == 2)) + gs.sSelect.bmsListCount * 30) % gs.sSelect.bmsListCount;
-							}
-							else {
-								gs.sSelect.cur_song = 0;
-							}
-						}
-						gs.sSelect.course.count = -1;
-						gs.sSelect.course.isMakingCourse = 0;
-					}
-					gs.sSelect.toRoot = 0;
-					LoadFontForSongs(&gs, 0);
-
-					StopSysSound(&gs);
-					if (gs.is_recordmode == 0) {
-						for (int i = 0; i < SLOTS; i++) {
-							StopSound(&gs.audio, &gs.gameplay.keysound[i]);
-							ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
-						}
-						ErrorLogAdd("BMSの音を初期化しました\n");
-					}
-					ReleaseBGA(&gs);
-
-					gs.sSelect.panel_unk = -1;
-					ReadLR2SoundSet(&gs, gs.config.skin.skinFilePath[10], 0);
-					if (gs.config.play.m_isExtra && gs.audio.sysSound.exselect.load)
-						PlaySound(&gs.audio, &gs.audio.sysSound.exselect, gs.audio.chnBgm, -1);
-					else
-						PlaySound(&gs.audio, &gs.audio.sysSound.select, gs.audio.chnBgm, -1);
-
+					ProcB_Select(&gs, sql3);
 					ProcS_Select(&gs);
 					break;
-							
+
 				case SCENE_DECIDE:
-					ProcS_Decide(&gs);
+					ProcB_Decide(&gs);
 					break;
+
 				case SCENE_PLAY:
-					if (gs.gameplay.courseType==0 || gs.gameplay.courseType==2) {
-						SONGDATA sd;
-						GetSongData(gs.sSelect.bmsList[gs.sSelect.cur_song].courseHash[gs.gameplay.courseStageNow], &sd, sql3, &gs.sSelect);
-						SetObjectString(10, sd.title, gs.txtStruct.objectStr);
-						SetObjectString(11, sd.subtitle, gs.txtStruct.objectStr);
-						SetObjectString(12, sd.fulltitle, gs.txtStruct.objectStr);
-						SetObjectString(13, sd.genre, gs.txtStruct.objectStr);
-						SetObjectString(14, sd.artist, gs.txtStruct.objectStr);
-						SetObjectString(15, sd.subartist, gs.txtStruct.objectStr);
-					}
-					gs.skstruct.flag_flip = false;
-					if (gs.gameplay.replay.status == 2 || gs.config.play.replay == 0) {
-						if (gs.gameplay.replay.status == 1) {
-							AllocReplayBuffer(&gs.gameplay.replay);
-							AddReplayDataHeader(&gs.config.play, &gs.gameplay.replay, &gs.audio, &gs.gameplay);
-						}
-						else if (gs.gameplay.replay.status == 2) {
-							int flagLoadSuccess;
-							if (gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 0 || gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 2) {
-								flagLoadSuccess = LoadReplayFileCourse(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash,gs.gameplay.courseStageNow, gs.config.player.id);
-							}
-							else {
-								flagLoadSuccess = LoadReplayFile(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id);
-							}
-							if (flagLoadSuccess == -1 && gs.rec.recMode == 2 && gs.is_recordmode) return 0;
-							SetReplayConfig(&gs.gameplay.replay, &gs, &gs.audio, &gs.gameplay, &gs.KeyInput, &gs.timer1);
-						}
-					}
-					else {
-						gs.gameplay.replay.status = 1;
-						AllocReplayBuffer(&gs.gameplay.replay);
-						AddReplayDataHeader(&gs.config.play, &gs.gameplay.replay, &gs.audio, &gs.gameplay);
-					}
-					if (gs.gameplay.ghostBattle == 1) {
-						if (gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 5) {
-							LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYSBATTLE);
-							if (gs.skinData.Data[gs.skinData.skinID[13]].type != SKINTYPE_5KEYSBATTLE)
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-									fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-							else 
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
-									fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
-						}
-						else {
-							LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYSBATTLE);
-							ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-								fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-						}
-					}
-					else if (gs.config.select.control && (gs.sSelect.metaSelected.keymode == 5 || gs.sSelect.metaSelected.keymode == 7)) {
-						if (gs.config.play.battle == OPTION_BATTLE_OFF || gs.config.play.battle == OPTION_BATTLE_DBATTLE) {
-							LoadSceneG(&gs, &gs.skstruct, SKINTYPE_9KEYS);
-						}
-						else if (gs.config.play.battle == OPTION_BATTLE_BATTLE) {
-							LoadSceneG(&gs, &gs.skstruct, SKINTYPE_9KEYSBATTLE);
-						}
-						ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
-							fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
-					}
-					else {
-						switch (gs.sSelect.metaSelected.keymode) {
-							case 5:
-								if (gs.config.play.battle == OPTION_BATTLE_OFF) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYS);
-									if (gs.skinData.Data[gs.skinData.skinID[1]].type != SKINTYPE_5KEYS)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
-								}
-								else if (gs.config.play.battle == OPTION_BATTLE_BATTLE) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYSBATTLE);
-									if (gs.skinData.Data[gs.skinData.skinID[13]].type != SKINTYPE_5KEYSBATTLE)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
-								}
-								else if (gs.config.play.battle == OPTION_BATTLE_DBATTLE || gs.config.play.battle == OPTION_BATTLE_SP2DP) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_10KEYS);
-									if (gs.skinData.Data[gs.skinData.skinID[3]].type != SKINTYPE_10KEYS)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
-								}
-								break;
-
-							default:
-								if (gs.config.play.battle == OPTION_BATTLE_OFF) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYS);
-								}
-								else if (gs.config.play.battle == OPTION_BATTLE_BATTLE) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYSBATTLE);
-								}
-								else if (gs.config.play.battle == OPTION_BATTLE_DBATTLE || gs.config.play.battle == OPTION_BATTLE_SP2DP) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_14KEYS);
-								}
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-									fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-								break;
-
-							case 9:
-								if (gs.config.play.battle == OPTION_BATTLE_SP2DP) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYS);
-									ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-										fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-									break;
-								}
-								else if (gs.config.play.battle == OPTION_BATTLE_OFF || gs.config.play.battle == OPTION_BATTLE_DBATTLE) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_9KEYS);
-								}
-								else if (gs.config.play.battle == OPTION_BATTLE_BATTLE) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_9KEYSBATTLE);
-								}
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
-									fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
-								break;
-
-							case 10:
-								if (gs.config.play.battle == OPTION_BATTLE_OFF) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_10KEYS);
-									if (gs.skinData.Data[gs.skinData.skinID[3]].type == SKINTYPE_10KEYS)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
-									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-								}
-								else if (gs.config.play.battle == OPTION_BATTLE_BATTLE || gs.config.play.battle == OPTION_BATTLE_DBATTLE) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYSBATTLE);
-									if (gs.skinData.Data[gs.skinData.skinID[13]].type == SKINTYPE_5KEYSBATTLE)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
-									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-								}
-								else if (gs.config.play.battle == OPTION_BATTLE_SP2DP) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYS);
-									if (gs.skinData.Data[gs.skinData.skinID[1]].type == SKINTYPE_5KEYS)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
-									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-								}
-								break;
-
-							case 14:
-								if (gs.config.play.battle == OPTION_BATTLE_OFF || gs.config.play.battle == OPTION_BATTLE_DBATTLE) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_14KEYS);
-								}
-								else if (gs.config.play.battle == OPTION_BATTLE_BATTLE) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYSBATTLE);
-								}
-								else if(gs.config.play.battle == OPTION_BATTLE_SP2DP) {
-									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYS);
-								}
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-									fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-								break;
-						}
-					}
-
-					if (gs.config.play.m_isLunaris) {
-						LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYS);
-						ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-							fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-						gs.gameplay.isAutoplay = 0;
-					}
-					for (int i = 0; i < gs.skstruct.num_of_ImageFont; i++) {
-						LoadFontForText(&gs.skstruct.ImageFonts[i], &gs.sSelect.bmsList[gs.sSelect.cur_song].artist);
-						LoadFontForText(&gs.skstruct.ImageFonts[i], &gs.sSelect.bmsList[gs.sSelect.cur_song].genre);
-						LoadFontForText(&gs.skstruct.ImageFonts[i], &gs.sSelect.bmsList[gs.sSelect.cur_song].subartist);
-						LoadFontForText(&gs.skstruct.ImageFonts[i], &gs.sSelect.bmsList[gs.sSelect.cur_song].title);
-						LoadFontForText(&gs.skstruct.ImageFonts[i], &gs.sSelect.bmsList[gs.sSelect.cur_song].subtitle);
-					}
+					ProcB_Play(&gs, sql3);
 					ProcS_Play(&gs, sql3);
 					break;
+
 				case SCENE_RESULT:
-					ProcS_Result(&gs, sql3);
+					ProcB_Result(&gs, sql3);
 					break;
+					
 				case SCENE_KEYCONFIG:
-					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_KEYCONFIG);
-					gs.KeyInput.config_keymode = 0;
-					gs.KeyInput.config_button = 1;
-					gs.KeyInput.config_button_inMap = 1;
-					gs.KeyInput.config_key = -1;
-					gs.KeyInput.inputAxisDeadzoneAll = 0.1;
+					ProcB_Keyconfig(&gs);
 					ProcS_Keyconfig(&gs);
 					break;
+
 				case SCENE_SKINSELECT:
-					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SKINSELECT);
+					ProcB_SkinSelect(&gs);
 					ProcS_SkinSelect(&gs);
 					break;
+
 				case SCENE_LUNARIS:
-					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYS);
-					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-					LUNARIS_START(&gs);
+					ProcB_Lunaris(&gs);
 					break;
+
 				case SCENE_PO4MENU:
-					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_MODESELECT);
-					gs.sSelect.listCalculatedBar = gs.po4MainMenuCursor * 1000;
-					gs.sSelect.barMoveStartTime = GetTimeWrap();
-					gs.sSelect.barMoveEndTime = GetTimeWrap();
-					gs.sSelect.listTopbar = gs.po4MainMenuCursor * 1000;
-					gs.sSelect.flag_folderlamp = (gs.config.select.folderlamp != 0);
-					gs.sSelect.listSelectedBarFromScreenTop = gs.skstruct.BAR_CENTER;
-					if (gs.cmd_directplay == 0) {
-						int intTemp = gs.sSelect.listCalculatedBar / 1000;
-						if (gs.sSelect.listCalculatedBar != intTemp * 1000 && gs.sSelect.scrollDirection == 2) 
-							intTemp++;
-						gs.sSelect.cur_song =(intTemp + gs.sSelect.bmsListCount * 0x1e) % gs.sSelect.bmsListCount;
-					}
-					else {
-						gs.sSelect.cur_song = 0;
-					}
-					gs.sSelect.toRoot = 1;
-					gs.sSelect.bmsListCount = 7;
-					gs.sSelect.nowBar = gs.sSelect.listTopbar;
-					gs.sSelect.oldBar = gs.sSelect.listTopbar;
-
-					gs.sSelect.bmsList[0].title = "FREE";
-					gs.sSelect.bmsList[0].fulltitle = "FREE";
-					gs.sSelect.bmsList[0].artist = "全曲から自由に選曲できます。";
-					gs.sSelect.bmsList[0].level = 0;
-
-					gs.sSelect.bmsList[1].title = "ARCADE";
-					gs.sSelect.bmsList[1].fulltitle = "ARCADE";
-					gs.sSelect.bmsList[1].artist = "全3ステージ+αをプレイするメインモードです。";
-					gs.sSelect.bmsList[1].level = 1;
-
-					gs.sSelect.bmsList[2].title = "CHARANGE";
-					gs.sSelect.bmsList[2].fulltitle = "CHARANGE";
-					gs.sSelect.bmsList[2].artist = "最高難度に挑戦するモードです。";
-					gs.sSelect.bmsList[2].level = 2;
-
-					gs.sSelect.bmsList[3].title = "COURSE";
-					gs.sSelect.bmsList[3].fulltitle = "COURSE";
-					gs.sSelect.bmsList[3].artist = "決められた5曲を連続でプレイするモードです。";
-					gs.sSelect.bmsList[3].level = 3;
-
-					gs.sSelect.bmsList[4].title = "GRADE";
-					gs.sSelect.bmsList[4].fulltitle = "GRADE";
-					gs.sSelect.bmsList[4].artist = "プレイヤーの腕前を判定するモードです。";
-					gs.sSelect.bmsList[4].level = 4;
-
-					gs.sSelect.bmsList[5].title = "OPTION";
-					gs.sSelect.bmsList[5].fulltitle = "OPTION";
-					gs.sSelect.bmsList[5].artist = "ゲームの設定を行います。";
-					gs.sSelect.bmsList[5].level = 5;
-
-					gs.sSelect.bmsList[6].title = "EXIT";
-					gs.sSelect.bmsList[6].fulltitle = "EXIT";
-					gs.sSelect.bmsList[6].artist = "ゲームを終了します。";
-					gs.sSelect.bmsList[6].level = 6;
-
+					ProcB_PO4Menu(&gs);
 					ProcS_Select(&gs);
 					break;
+
 				case SCENE_PO4DECIDE:
-					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_MODEDECIDE);
+					ProcB_PO4Decide(&gs);
 					break;
+
 				case SCENE_PO4SELECT:
-					LoadScene(&gs.skstruct, fs::make_preferred("LR2files/event.csv").data(), 0, 0);
+					ProcB_PO4Select(&gs);
 					break;
+
 				case SCENE_COURSERESULT:
-					ProcS_CourseResult(&gs,sql3);
+					ProcB_CourseResult(&gs,sql3);
 					break;
 			}
 			InitTimer(&gs.timer1);
@@ -1495,7 +1154,7 @@ int main(int argc, char** argv) {
 		if (((gs.procPhase == 1) || (gs.procPhase == 2)) || (gs.procPhase == 3)) {
 			GetTimeWrap();
 			int procPrev = gs.procSelecter;
-			switch (gs.procSelecter) {
+			switch (gs.procSelecter) { //Interact
 				case 2:
 					ProcI_Select(&gs, sql3);
 					break;
@@ -1530,384 +1189,29 @@ int main(int argc, char** argv) {
 				default:
 					break;
 			}
-			if (procPrev != gs.procSelecter) { //This is Close of Scene
+			if (procPrev != gs.procSelecter) { //This is End of Scene
 				PlayerCheckAndSwap(&gs.gameplay);
 				switch (procPrev) {
 				case SCENE_SELECT:
-					gs.gameplay.flag_closingPhase = 1;
-					gs.gameplay.isPreviewLoad = 0;
-					gs.gameplay.flag_gameinput = 0;
-					for (int i = 0; i < SLOTS; i++) {
-						StopSound(&gs.audio, &gs.gameplay.keysound[i]);
-					}
-					gs.gameplay.previewStatus = 0;
-					gs.gameplay.isCourse = 0;
-					gs.gameplay.courseStageCount = 1;
-					gs.gameplay.randomseed = 0; // TOFIX: 0 is a valid seed
-					for (int i = 0; i < 5; i++) {
-						gs.gameplay.courseFilepath[i].fillzero();
-					}
-					gs.gameplay.courseStageNow = 0;
-					gs.gameplay.courseType = -1;
-					if (gs.procSelecter != SCENE_SKINSELECT && gs.sSelect.bmsList[gs.sSelect.cur_song].coursePlayable == 1) {
-						SONGDATA sd;
-						gs.gameplay.isCourse = 1;
-						gs.gameplay.courseStageCount = gs.sSelect.bmsList[gs.sSelect.cur_song].courseStageCount;
-						for (int i = 0; i < gs.sSelect.bmsList[gs.sSelect.cur_song].courseStageCount; i++) {
-							GetSongData(gs.sSelect.bmsList[gs.sSelect.cur_song].courseHash[i], &sd, sql3, &gs.sSelect);
-							gs.gameplay.courseFilepath[i] = sd.filepath;
-						}
-						gs.gameplay.courseType = gs.sSelect.bmsList[gs.sSelect.cur_song].courseType;
-						gs.gameplay.courseConnection[0] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[0];
-						gs.gameplay.courseConnection[1] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[1];
-						gs.gameplay.courseConnection[2] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[2];
-						gs.gameplay.courseConnection[3] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[3];
-						gs.gameplay.courseConnection[4] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[4];
-						gs.gameplay.courseConnection[5] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[5];
-						gs.gameplay.courseConnection[6] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[6];
-						gs.gameplay.courseConnection[7] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[7];
-						gs.gameplay.courseConnection[8] =	gs.sSelect.bmsList[gs.sSelect.cur_song].courseKeys[8];
-						// Block some options for dan courses
-						if (gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 2) {
-							if (gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 10 || gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 14) {
-								// LR2 difference: DP: allow mirror, but only combined with dpFlip
-								if (!gs.config.play.dpFlip || gs.config.play.random[PLAYER_1] != OPTION_RANDOM_MIRROR || gs.config.play.random[PLAYER_2] != OPTION_RANDOM_MIRROR) {
-									gs.config.play.random[PLAYER_1] = OPTION_RANDOM_OFF;
-									gs.config.play.random[PLAYER_2] = OPTION_RANDOM_OFF;
-									gs.config.play.dpFlip = false;
-								}
-							} else {
-								// LR2 difference: SP: allow mirror
-								if (gs.config.play.random[PLAYER_1] != OPTION_RANDOM_OFF && gs.config.play.random[PLAYER_1] != OPTION_RANDOM_MIRROR) {
-									gs.config.play.random[PLAYER_1] = OPTION_RANDOM_OFF;
-								}
-							}
-							if (gs.config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_EASY || gs.config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_GATTACK) {
-								gs.config.play.gaugeType[PLAYER_1] = OPTION_GAUGE_GROOVE;
-							}
-							if (gs.config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_EASY || gs.config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_GATTACK) {
-								gs.config.play.gaugeType[PLAYER_2] = OPTION_GAUGE_GROOVE;
-							}
-							gs.config.play.m_HIDSUD[PLAYER_1] = 0;
-							gs.config.play.m_HIDSUD[PLAYER_2] = 0;
-							gs.config.play.assist[PLAYER_1] = 0;
-							gs.config.play.assist[PLAYER_2] = 0;
-							gs.config.play.battle = OPTION_BATTLE_OFF;
-							gs.config.play.m_isExtra = false;
-							gs.config.play.m_accel = 0;
-							gs.config.play.m_addnote = 0;
-							gs.config.play.autokey = false;
-							gs.config.play.m_char = 0;
-							gs.config.play.m_earthquake = 0;
-							gs.config.play.m_extra = 0;
-							gs.config.play.m_isLunaris = false;
-							gs.config.play.m_gambol = 0;
-							gs.config.play.m_sidejump = 0;
-							gs.config.play.m_nabeatsu = 0;
-							gs.config.play.m_heartbeat = 0;
-							gs.config.play.m_sincurve = 0;
-							gs.config.play.m_softlanding = 0;
-							gs.config.play.m_spiral = 0;
-							gs.config.play.m_loudness = 0;
-							gs.config.play.m_wave = 0;
-							gs.config.play.m_tornado = 0;
-							gs.audio.param.pitch_amount = 0;
-							gs.audio.param.pitch_on = 0;
-							ApplySoundFX(&gs.audio, 1, false);
-						}
-						// Block some options for nonstop courses
-						if (gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 1) {
-							gs.audio.param.pitch_amount = 0;
-							gs.audio.param.pitch_on = 0;
-							ApplySoundFX(&gs.audio, 1, false);
-						}
-					}
-					gs.isSkipDrawTick = 1;
-					gs.net.rankingData.target_ID = 0;
-					gs.gameplay.ghostBattle = 0;
-					if (gs.net.rankingData.showRanking == 0) {
-						if (gs.sSelect.stack_query[gs.sSelect.cur].findStrPos("__RIVAL__") >= 0) {
-							gs.net.rankingData.target_ID = gs.sSelect.stack_rivalID[gs.sSelect.cur];
-							gs.gameplay.playConfigBackupBeforeTargetSomething = gs.config.play; // TODO: GOMazk: need check
-							if (gs.config.play.battle == OPTION_BATTLE_GBATTLE && gs.sSelect.bmsList[gs.sSelect.cur_song].keymode < 8) gs.gameplay.ghostBattle = 1;
-							gs.config.play.battle = OPTION_BATTLE_OFF;
-						}
-						else if (gs.config.play.battle == OPTION_BATTLE_GBATTLE) {
-							gs.config.play.battle = OPTION_BATTLE_OFF;
-						}
-					}
-					else {
-						gs.gameplay.playConfigBackupBeforeTargetSomething = gs.config.play; // TODO: GOMazk: need check
-						if (gs.config.play.battle == OPTION_BATTLE_GBATTLE && gs.sSelect.bmsList[gs.sSelect.cur_song].keymode < 8) gs.gameplay.ghostBattle = 1;
-						gs.config.play.battle = OPTION_BATTLE_OFF;
-						gs.net.rankingData.target_ID = gs.net.rankingData.ranking[gs.sSelect.cur_song].id;
-						gs.net.rankingData.target_number = gs.sSelect.cur_song;
-						ResetTimeLapse(175, &gs.timer1);
-						SetTimeLapse(176, &gs.timer1);
-						SwapBmsList(&gs.sSelect);
-						if (gs.sSelect.prevSelectedBarFromScreenTop != gs.sSelect.listSelectedBarFromScreenTop) {
-							gs.sSelect.listTopbar += (gs.sSelect.prevSelectedBarFromScreenTop - gs.sSelect.listSelectedBarFromScreenTop) * 1000;
-						}
-						gs.sSelect.listCalculatedBar = gs.sSelect.listTopbar;
-						while (gs.sSelect.listCalculatedBar < 0) {
-							gs.sSelect.listCalculatedBar += gs.sSelect.bmsListCount * 1000;
-						}
-						while (gs.sSelect.listCalculatedBar >= gs.sSelect.bmsListCount * 1000) {
-							gs.sSelect.listCalculatedBar -= gs.sSelect.bmsListCount * 1000;
-						}
-						gs.sSelect.barMoveStartTime = GetTimeWrap();
-						gs.sSelect.barMoveEndTime = GetTimeWrap();
-						gs.sSelect.oldBar = gs.sSelect.listTopbar;
-						gs.sSelect.nowBar = gs.sSelect.listTopbar;
-						if (gs.cmd_directplay == 0) { //same GetSongCursor(g)
-							gs.sSelect.cur_song = (gs.sSelect.bmsListCount * 30 - gs.skstruct.BAR_CENTER + gs.sSelect.listSelectedBarFromScreenTop +
-								((gs.sSelect.listCalculatedBar % 1000 == 0 || gs.sSelect.scrollDirection != 2) ? (gs.sSelect.listCalculatedBar / 1000) : (gs.sSelect.listCalculatedBar / 1000 + 1)))
-								% gs.sSelect.bmsListCount;
-						}
-						else {
-							gs.sSelect.cur_song = 0;
-						}
-						gs.net.rankingData.showRanking = 0;
-						ProcS_Select(&gs);
-					}
-
-					if (gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 10 || gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 14) {
-						if ( gs.config.play.battle >= OPTION_BATTLE_DBATTLE && gs.config.play.battle != OPTION_BATTLE_SP2DP) gs.config.play.battle = OPTION_BATTLE_OFF;
-					}
-					else if (gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 9) {
-						if (gs.config.play.battle >= OPTION_BATTLE_BATTLE && gs.config.play.battle != OPTION_BATTLE_SP2DP) gs.config.play.battle = OPTION_BATTLE_OFF;
-					}
-					gs.gameplay.flag_retry = 0;
-					SetObjectString(30, gs.sSelect.stack_searchTitle[gs.sSelect.cur], gs.txtStruct.objectStr);
+					ProcE_Select(&gs, sql3);
 					break;
 				case SCENE_DECIDE:
 					ProcE_Decide(&gs);
 					break;
-				case SCENE_PLAY: {
-					CSTR skinMD5;
-					cstrSprintf(&skinMD5, fs::make_preferred("LR2files/SkinCustomize/%s.xml").data(), gs.skstruct.skinMD5.body);
-					SkinUser tmpSk;
-					ReadSkinCustomize(&tmpSk, skinMD5);
-					tmpSk.adjust.shift_x = gs.skstruct.adjust.shift_x;
-					tmpSk.adjust.size_y = gs.skstruct.adjust.size_y;
-					tmpSk.adjust.shift_y = gs.skstruct.adjust.shift_y;
-					tmpSk.adjust.size_x = gs.skstruct.adjust.size_x;
-					tmpSk.adjust.judge_x = gs.skstruct.adjust.judge_x;
-					tmpSk.adjust.rate_x = gs.skstruct.adjust.rate_x;
-					tmpSk.adjust.rate_y = gs.skstruct.adjust.rate_y;
-					tmpSk.adjust.note_x[PLAYER_1] = gs.skstruct.adjust.note_x[PLAYER_1];
-					tmpSk.adjust.judge_y = gs.skstruct.adjust.judge_y;
-					tmpSk.adjust.dark_type = gs.skstruct.adjust.dark_type;
-					tmpSk.adjust.note_y[PLAYER_2] = gs.skstruct.adjust.note_y[PLAYER_2];
-					tmpSk.adjust.note_y[PLAYER_1] = gs.skstruct.adjust.note_y[PLAYER_1];
-					tmpSk.adjust.note_x[PLAYER_2] = gs.skstruct.adjust.note_x[PLAYER_2];
-					WriteSkinCustomizeXml(&tmpSk, skinMD5);
-					SetTarget(&gs);
-
-					if (gs.gameplay.isAutoplay) {
-						gs.procSelecter = SCENE_SELECT;
-						if(gs.is_recordmode == 0){
-							for (int i = 0; i < SLOTS; i++) {
-								StopSound(&gs.audio, &gs.gameplay.keysound[i]);
-								ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
-							}
-							ErrorLogAdd("BMSの音を初期化しました\n");
-						}
-					}
-					else if (gs.gameplay.player[PLAYER_1].note_current == 0 && gs.gameplay.player[PLAYER_2].note_current == 0 && !gs.config.play.m_isLunaris) {
-						gs.procSelecter = SCENE_SELECT;
-						for (int i = 0; i < SLOTS; i++) {
-							StopSound(&gs.audio, &gs.gameplay.keysound[i]);
-							ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
-						}
-						ErrorLogAdd("BMSの音を初期化しました\n");
-					}
-					else if (gs.gameplay.player[PLAYER_1].judgecount[3] + gs.gameplay.player[PLAYER_1].judgecount[4] + gs.gameplay.player[PLAYER_1].judgecount[5] != 0) {
-						SaveResult(&gs, sql3);
-					}
-					else if (!gs.config.play.m_isLunaris && gs.config.play.battle != OPTION_BATTLE_BATTLE) {
-						gs.procSelecter = SCENE_SELECT;
-						for (int i = 0; i < SLOTS; i++) {
-							StopSound(&gs.audio, &gs.gameplay.keysound[i]);
-							ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
-						}
-						ErrorLogAdd("BMSの音を初期化しました\n");
-					}
-					else if ((gs.gameplay.player[PLAYER_2].judgecount[3] + gs.gameplay.player[PLAYER_2].judgecount[4] + gs.gameplay.player[PLAYER_2].judgecount[5] != 0) || gs.config.play.battle != OPTION_BATTLE_BATTLE) {
-						SaveResult(&gs, sql3);
-					}
-					else {
-						gs.procSelecter = SCENE_SELECT;
-						for (int i = 0; i < SLOTS; i++) {
-							StopSound(&gs.audio, &gs.gameplay.keysound[i]);
-							ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
-						}
-						ErrorLogAdd("BMSの音を初期化しました\n");
-					}
-
-					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-					if (gs.net.rankingData.target_ID != 0) {
-						if(auto& backup = gs.gameplay.playConfigBackupBeforeTargetSomething)
-						{
-							gs.config.play = *backup;
-							backup.reset();
-						} else {
-							ErrorLogAdd("BUG: playConfigBackupBeforeTargetSomething is not filled but was supposed to\n");
-						}
-					}
-					if (gs.gameplay.replay.status == 2) {
-						if(auto& backup = gs.gameplay.replay.playConfigBackupBeforeWatchingReplay) {
-							gs.config.play = *backup;
-							backup.reset();
-						} else {
-							ErrorLogAdd("BUG: playConfigBackupBeforeWatchingReplay is not filled but was supposed to\n");
-						}
-						ReleaseReplayBuffer(&gs.gameplay.replay);
-						if(auto& backup = gs.gameplay.replay.audioParamBackupBeforeWatchingReplay)
-						{
-							gs.audio.param.eq_gain[0] = backup->eq_gain[0];
-							gs.audio.param.eq_gain[1] = backup->eq_gain[1];
-							gs.audio.param.eq_gain[3] = backup->eq_gain[3];
-							gs.audio.param.eq_gain[4] = backup->eq_gain[4];
-							gs.audio.param.eq_gain[2] = backup->eq_gain[2];
-							gs.audio.param.eq_gain[6] = backup->eq_gain[6];
-							gs.audio.param.eq_on = backup->eq_on;
-							gs.audio.param.eq_gain[5] = backup->eq_gain[5];
-							for (int i = 0; i < 3; i++) {
-								gs.audio.param.fxParam[i][PLAYER_1] = backup->fxParam[i][PLAYER_1];
-								gs.audio.param.fxParam[i][PLAYER_2] = backup->fxParam[i][PLAYER_2];
-								gs.audio.param.fxChannel[i] = backup->fxChannel[i];
-								gs.audio.param.fxType[i] = backup->fxType[i];
-								gs.audio.param.fx_on[i] = backup->fx_on[i];
-							}
-							gs.audio.param.pitch_on = backup->pitch_on;
-							gs.audio.param.pitch_type = backup->pitch_type;
-							gs.audio.param.volume_BGM = backup->volume_BGM;
-							gs.audio.param.pitch_amount = backup->pitch_amount;
-							gs.audio.param.volume_key = backup->volume_key;
-							gs.audio.param.fx_volume_on = backup->fx_volume_on;
-							gs.audio.param.volume_master = backup->volume_master;
-							backup.reset();
-						} else {
-							ErrorLogAdd("BUG: audioParamBackupBeforeWatchingReplay is not filled but was supposed to\n");
-						}
-						ApplySoundFX(&gs.audio, 1, gs.config.sound.disableDSP);
-					}
-					else if (gs.gameplay.replay.status == 1) {
-						if (gs.gameplay.isAutoplay == 0) {
-							if (gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 2 || gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 0) {
-								CSTR tmp;
-								cstrSprintf(&tmp, "__%d", gs.gameplay.courseStageNow);
-								OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[PLAYER_1].clearGaugeTypeCourse));
-								OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[PLAYER_2].clearGaugeTypeCourse));
-								SaveReplay(&gs.gameplay.replay, tmp, gs.config.player.id);
-							}
-							else if (gs.config.play.replay == 1) {
-								OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[PLAYER_1].gaugeType));
-								OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[PLAYER_2].gaugeType));
-								if (SaveReplay(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1) 
-									gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
-							}
-							else if (gs.config.play.replay == 2) {
-								if (gs.sSelect.bmsList[gs.sSelect.cur_song].mybest.stat_exscore <= gs.gameplay.player[PLAYER_1].exscore && gs.gameplay.player[PLAYER_1].exscore > 0) {
-									OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[PLAYER_1].gaugeType));
-									OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[PLAYER_2].gaugeType));
-									if (SaveReplay(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
-										gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
-								}
-							}
-							else if (gs.config.play.replay == 3) {
-								if (gs.gameplay.player[PLAYER_1].clearType >= 2 && gs.gameplay.player[PLAYER_1].exscore > 0) {
-									OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[PLAYER_1].gaugeType));
-									OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[PLAYER_2].gaugeType));
-									if (SaveReplay(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
-										gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
-								}
-							}
-							else if (gs.config.play.replay == 4) {
-								if (gs.gameplay.player[PLAYER_1].clearType == 5 && gs.gameplay.player[PLAYER_1].exscore > 0) {
-									OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[PLAYER_1].gaugeType));
-									OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[PLAYER_2].gaugeType));
-									if (SaveReplay(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
-										gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
-								}
-							}
-						}
-						ReleaseReplayBuffer(&gs.gameplay.replay);
-					}
-
-					if (gs.gameplay.isAutoplay == 1 && (gs.gameplay.courseType == 0 || gs.gameplay.courseType == 2) && gs.gameplay.courseStageNow < gs.gameplay.courseStageCount -1  && gs.gameplay.flag_closingPhase == 0) {
-						gs.gameplay.courseStageNow++;
-						gs.procSelecter = SCENE_PLAY;
-					}
+				case SCENE_PLAY:
+					ProcE_Play(&gs, sql3);
 					break;
-				}
 				case SCENE_RESULT:
-					if (gs.is_recordmode == 0) {
-						if (gs.procSelecter == SCENE_PLAY) {
-							for (int i = 0; i < SLOTS; i++) {
-								StopSound(&gs.audio, &gs.gameplay.keysound[i]);
-							}
-						}
-						else {
-							for (int i = 0; i < SLOTS; i++) {
-								StopSound(&gs.audio, &gs.gameplay.keysound[i]);
-								ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
-							}
-							ErrorLogAdd("BMSの音を初期化しました\n");
-							ReleaseBGA(&gs);
-						}
-					}
-					StopSysSound(&gs);
-					if (gs.gameplay.courseType == 0 || gs.gameplay.courseType == 2) {
-						gs.gameplay.player[PLAYER_1].gaugeType = gs.gameplay.player[PLAYER_1].lastCourseGaugeType;
-						gs.gameplay.player[PLAYER_2].gaugeType = gs.gameplay.player[PLAYER_2].lastCourseGaugeType;
-						if (gs.procSelecter != SCENE_PLAY) {
-							if (gs.gameplay.courseStageNow < gs.gameplay.courseStageCount -1 && gs.gameplay.player[PLAYER_1].clearType != 0 && (gs.gameplay.player[PLAYER_2].clearType != 0 || gs.config.play.battle != OPTION_BATTLE_BATTLE) && gs.gameplay.player[PLAYER_1].HP[gs.gameplay.player[PLAYER_1].gaugeType] >= 2.0) {
-								gs.gameplay.courseStageNow++;
-								gs.procSelecter = SCENE_PLAY;
-							}
-							else gs.procSelecter = SCENE_COURSERESULT;
-						}
-					}
+					ProcE_Result(&gs);
 					break;
 				case SCENE_KEYCONFIG:
-					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
-						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
-					gs.KeyInput.inputAxisDeadzoneAll = 0.;
+					ProcE_Keyconfig(&gs);
 					break;
 				case SCENE_SKINSELECT:
-					ClearSkinGraph(&gs.skstruct2);
-					ReadLR2SoundSet(&gs, gs.config.skin.skinFilePath[10], 0);
+					ProcE_SkinSelect(&gs);					
 					break;
 				case SCENE_COURSERESULT:
-					if (gs.gameplay.replay.status == 1 && gs.gameplay.isAutoplay == 0) {
-						if (gs.config.play.replay == 1) {
-							if (MoveReplayFile(gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
-								gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
-						}
-						else if (gs.config.play.replay == 2) {
-							if (gs.sSelect.bmsList[gs.sSelect.cur_song].mybest.stat_exscore <= gs.gameplay.player[PLAYER_1].exscore && gs.gameplay.player[PLAYER_1].exscore > 0) {
-								if (MoveReplayFile(gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
-									gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
-							}
-						}
-						else if (gs.config.play.replay == 3) {
-							if (gs.gameplay.player[PLAYER_1].clearType > 1 && gs.gameplay.player[PLAYER_1].exscore > 0) {
-								if (MoveReplayFile(gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
-									gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
-							}
-						}
-						else if (gs.config.play.replay == 4) {
-							if (gs.gameplay.player[PLAYER_1].clearType == 5 && gs.gameplay.player[PLAYER_1].exscore > 0) {
-								if (MoveReplayFile(gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
-									gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
-							}
-						}
-					}	
-					if (gs.procSelecter != SCENE_PLAY) gs.procSelecter = SCENE_SELECT;
-					StopSysSound(&gs);
+					ProcE_CourseResult(&gs);
 					break;
 				}
 				InitInputStructure2(&gs.KeyInput);
