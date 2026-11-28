@@ -730,7 +730,7 @@ int main(int argc, char** argv) {
 		SetWaitVSyncFlag(0); //VSYNC
 		SetDrawScreen(DX_SCREEN_BACK);
 	}
-	gs.procSelecter = 2;
+	gs.procSelecter = SCENE_SELECT;
 	gs.procPhase = 0;
 	gs.isSkipDrawTick = 0;
 	gs.gameplay.flag_threadExist = 0;
@@ -897,11 +897,11 @@ int main(int argc, char** argv) {
 		}
 	}
 	clsDx();
-	gs.procSelecter = 2;
+	gs.procSelecter = SCENE_SELECT;
 	gs.po4MainMenuCursor = 0;
 	gs.procPhase = 0;
 	if (gs.cmd_directplay) {
-		gs.procSelecter = 4;
+		gs.procSelecter = SCENE_PLAY;
 		gs.gameplay.flag_closingPhase = 1;
 		gs.gameplay.isPreviewLoad = 0;
 		gs.gameplay.flag_gameinput = 0;
@@ -977,7 +977,7 @@ int main(int argc, char** argv) {
 				gs.config.system.windowsize_y = wSizeY;
 			}
 		}
-		if (gs.cmd_directplay && gs.procSelecter != 4 && gs.procSelecter != 5 && gs.procSelecter != 13 && gs.procPhase != 2 && gs.procPhase != 3) {
+		if (gs.cmd_directplay && gs.procSelecter != SCENE_PLAY && gs.procSelecter != SCENE_RESULT && gs.procSelecter != SCENE_COURSERESULT && gs.procPhase != 2 && gs.procPhase != 3) {
 			ErrorLogFmtAdd("break\n");
 			break;
 		}
@@ -989,22 +989,6 @@ int main(int argc, char** argv) {
 			GetTimeWrap();
 		}
 
-		enum {
-			PROC_PHASE_ENTERING = 0,
-		};
-		enum {
-			SCENE_SELECT = 2,
-			SCENE_DECIDE = 3,
-			SCENE_PLAY = 4,
-			SCENE_RESULT = 5,
-			SCENE_KEYCONFIG = 6,
-			SCENE_SKINSELECT = 7,
-			SCENE_LUNARIS = 8,
-			SCENE_PO4MENU = 9,
-			SCENE_PO4DECIDE = 10,
-			SCENE_PO4SELECT = 11,
-			SCENE_COURSERESULT = 13,
-		};
 		static const auto get_scene_name_for_nowplayingtxt = [](int procSelecter) -> const char* {
 			switch (procSelecter) {
 			case SCENE_SELECT: return "select";
@@ -1586,7 +1570,7 @@ int main(int argc, char** argv) {
 			if (procPrev != gs.procSelecter) { //This is Close of Scene
 				PlayerCheckAndSwap(&gs.gameplay);
 				switch (procPrev) {
-				case 2:
+				case SCENE_SELECT:
 					gs.gameplay.flag_closingPhase = 1;
 					gs.gameplay.isPreviewLoad = 0;
 					gs.gameplay.flag_gameinput = 0;
@@ -1757,7 +1741,7 @@ int main(int argc, char** argv) {
 						}
 					}
 					break;
-				case 4: {
+				case SCENE_PLAY: {
 					CSTR skinMD5;
 					cstrSprintf(&skinMD5, fs::make_preferred("LR2files/SkinCustomize/%s.xml").data(), gs.skstruct.skinMD5.body);
 					SkinUser tmpSk;
@@ -1779,7 +1763,7 @@ int main(int argc, char** argv) {
 					SetTarget(&gs);
 
 					if (gs.gameplay.isAutoplay) {
-						gs.procSelecter = 2;
+						gs.procSelecter = SCENE_SELECT;
 						if(gs.is_recordmode == 0){
 							for (int i = 0; i < SLOTS; i++) {
 								StopSound(&gs.audio, &gs.gameplay.keysound[i]);
@@ -1789,7 +1773,7 @@ int main(int argc, char** argv) {
 						}
 					}
 					else if (gs.gameplay.player[PLAYER_1].note_current == 0 && gs.gameplay.player[PLAYER_2].note_current == 0 && !gs.config.play.m_isLunaris) {
-						gs.procSelecter = 2;
+						gs.procSelecter = SCENE_SELECT;
 						for (int i = 0; i < SLOTS; i++) {
 							StopSound(&gs.audio, &gs.gameplay.keysound[i]);
 							ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
@@ -1800,7 +1784,7 @@ int main(int argc, char** argv) {
 						SaveResult(&gs, sql3);
 					}
 					else if (!gs.config.play.m_isLunaris && gs.config.play.battle != OPTION_BATTLE_BATTLE) {
-						gs.procSelecter = 2;
+						gs.procSelecter = SCENE_SELECT;
 						for (int i = 0; i < SLOTS; i++) {
 							StopSound(&gs.audio, &gs.gameplay.keysound[i]);
 							ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
@@ -1811,7 +1795,7 @@ int main(int argc, char** argv) {
 						SaveResult(&gs, sql3);
 					}
 					else {
-						gs.procSelecter = 2;
+						gs.procSelecter = SCENE_SELECT;
 						for (int i = 0; i < SLOTS; i++) {
 							StopSound(&gs.audio, &gs.gameplay.keysound[i]);
 							ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
@@ -1913,13 +1897,13 @@ int main(int argc, char** argv) {
 
 					if (gs.gameplay.isAutoplay == 1 && (gs.gameplay.courseType == 0 || gs.gameplay.courseType == 2) && gs.gameplay.courseStageNow < gs.gameplay.courseStageCount -1  && gs.gameplay.flag_closingPhase == 0) {
 						gs.gameplay.courseStageNow++;
-						gs.procSelecter = 4;
+						gs.procSelecter = SCENE_PLAY;
 					}
 					break;
 				}
-				case 5:
+				case SCENE_RESULT:
 					if (gs.is_recordmode == 0) {
-						if (gs.procSelecter == 4) {
+						if (gs.procSelecter == SCENE_PLAY) {
 							for (int i = 0; i < SLOTS; i++) {
 								StopSound(&gs.audio, &gs.gameplay.keysound[i]);
 							}
@@ -1937,25 +1921,25 @@ int main(int argc, char** argv) {
 					if (gs.gameplay.courseType == 0 || gs.gameplay.courseType == 2) {
 						gs.gameplay.player[PLAYER_1].gaugeType = gs.gameplay.player[PLAYER_1].lastCourseGaugeType;
 						gs.gameplay.player[PLAYER_2].gaugeType = gs.gameplay.player[PLAYER_2].lastCourseGaugeType;
-						if (gs.procSelecter != 4) {
+						if (gs.procSelecter != SCENE_PLAY) {
 							if (gs.gameplay.courseStageNow < gs.gameplay.courseStageCount -1 && gs.gameplay.player[PLAYER_1].clearType != 0 && (gs.gameplay.player[PLAYER_2].clearType != 0 || gs.config.play.battle != OPTION_BATTLE_BATTLE) && gs.gameplay.player[PLAYER_1].HP[gs.gameplay.player[PLAYER_1].gaugeType] >= 2.0) {
 								gs.gameplay.courseStageNow++;
-								gs.procSelecter = 4;
+								gs.procSelecter = SCENE_PLAY;
 							}
-							else gs.procSelecter = 13;
+							else gs.procSelecter = SCENE_COURSERESULT;
 						}
 					}
 					break;
-				case 6:
+				case SCENE_KEYCONFIG:
 					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
 						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 					gs.KeyInput.inputAxisDeadzoneAll = 0.;
 					break;
-				case 7:
+				case SCENE_SKINSELECT:
 					ClearSkinGraph(&gs.skstruct2);
 					ReadLR2SoundSet(&gs, gs.config.skin.skinFilePath[10], 0);
 					break;
-				case 13:
+				case SCENE_COURSERESULT:
 					if (gs.gameplay.replay.status == 1 && gs.gameplay.isAutoplay == 0) {
 						if (gs.config.play.replay == 1) {
 							if (MoveReplayFile(gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
@@ -1980,7 +1964,7 @@ int main(int argc, char** argv) {
 							}
 						}
 					}	
-					if (gs.procSelecter != 4) gs.procSelecter = 2;
+					if (gs.procSelecter != SCENE_PLAY) gs.procSelecter = SCENE_SELECT;
 					StopSysSound(&gs);
 					break;
 				}
@@ -1989,7 +1973,7 @@ int main(int argc, char** argv) {
 			}
 		}
 		GetTimeWrap();
-		if (gs.procSelecter == 4 && gs.procPhase == 1 && GetTimeLapse(41,&gs.timer1) > 0 && gs.config.system.thread ==0){
+		if (gs.procSelecter == SCENE_PLAY && gs.procPhase == 1 && GetTimeLapse(41,&gs.timer1) > 0 && gs.config.system.thread ==0){
 			ProcGame(&gs);
 		}
 		GetTimeWrap();
@@ -2108,7 +2092,7 @@ int main(int argc, char** argv) {
 		}
 
 		if (gs.gameplay.courseType == 1) {
-			if (gs.procSelecter == 4) {
+			if (gs.procSelecter == SCENE_PLAY) {
 				if (GetTimeLapse(41, &gs.timer1) >= 0.0 && gs.config.play.bga > 0) {
 					int intTemp = 0;
 					while (gs.gameplay.bgaMixer[intTemp] <= 0) {
@@ -2131,7 +2115,7 @@ int main(int argc, char** argv) {
 
 		}
 
-		if (gs.procSelecter == 4 || gs.is_starter) {
+		if (gs.procSelecter == SCENE_PLAY || gs.is_starter) {
 			if (GetTimeLapse(41, &gs.timer1) >= 0.0 && gs.config.play.bga > 0) {
 				for (int i = 0; i < gs.skstruct.otherObject[4].srcSize; i++) {
 					if (GetOptionFlag_dst(&gs, gs.skstruct.otherObject[4].dst[i].opt1) && GetOptionFlag_dst(&gs, gs.skstruct.otherObject[4].dst[i].opt2)
@@ -2181,7 +2165,7 @@ int main(int argc, char** argv) {
 
 				// Type A ghost / Fast-Slow: DST timer 46/47 = JUDGETIMER (same as LUXURY Simple Skin).
 				int numX = 0, numY = 0;
-				if (gs.procSelecter == 4) {
+				if (gs.procSelecter == SCENE_PLAY) {
 					const int t = gs.skstruct.otherObject[6].dst[i].timer;
 					if (t == 46) {
 						numX = gs.skstruct.adjust.note_x[PLAYER_1];
@@ -2219,7 +2203,7 @@ int main(int argc, char** argv) {
 			AddDrawingBuffer_ObjectAlpha(&gs.skstruct.drBuf, &gs.skstruct.src_MOUSECURSOR, &gs.skstruct.dst_MOUSECURSOR, &gs.timer1, gs.KeyInput.mouse_oldX, gs.KeyInput.mouse_oldY,
 				(((gs.KeyInput.mouse_recentMoveTime - GetTimeWrap()) + 10500) * 255) / 500);
 
-		if (gs.procSelecter == 2) {
+		if (gs.procSelecter == SCENE_SELECT) {
 			int h = gs.txtStruct.readme.h;
 			for (int i = 0; i < gs.txtStruct.readme.lines; i++) {
 				int y = gs.skstruct.src_README[0].op1 * i + h;
@@ -2232,7 +2216,7 @@ int main(int argc, char** argv) {
 		}
 		for (int i = 0; i < gs.skstruct.drBuf.count; i++) {
 			int quake_x = 0, quake_y = 0;
-			if (((gs.procPhase == 1) && (gs.procSelecter == 4)) && (0 < gs.config.play.m_earthquake)) {
+			if (((gs.procPhase == 1) && (gs.procSelecter == SCENE_PLAY)) && (0 < gs.config.play.m_earthquake)) {
 				quake_x = (double)gs.gameplay.earthquake_x;
 				quake_y = (double)gs.gameplay.earthquake_y;
 			}
@@ -2260,7 +2244,7 @@ int main(int argc, char** argv) {
 		GetTimeWrap();
 
 		GetTimeWrap();
-		if (gs.procSelecter == 4) {
+		if (gs.procSelecter == SCENE_PLAY) {
 			if (gs.KeyInput.inputID[KEY_INPUT_1] == 2) {
 				printfDx("スキン位置の変更(カーソルキーで調節)\nx:%d\ny:%d\n", gs.skstruct.adjust.shift_x, gs.skstruct.adjust.shift_y);
 			}
@@ -2319,7 +2303,7 @@ int main(int argc, char** argv) {
 			//TEST END
 		}
 		gs.sSelect.flag_maniacPanel = 0;
-		if(gs.procSelecter == 2){
+		if(gs.procSelecter == SCENE_SELECT){
 			if ( (gs.KeyInput.inputID[KEY_INPUT_F5] == 1 || gs.sSelect.is_buttonIRpage != 0) && gs.sSelect.bmsList[gs.sSelect.cur_song].keymode > 4) {
 				// Both desktop(0) and borderless(2) own the display: drop to windowed(1) before
 				// opening the external browser, otherwise exclusive blocks/crashes the browser show.
@@ -2606,7 +2590,7 @@ int main(int argc, char** argv) {
 			}
 			SetObjectStrings_SongSelect(&gs);
 		}
-		if (gs.KeyInput.inputID[KEY_INPUT_F4] == 1 && gs.procSelecter == 2) {
+		if (gs.KeyInput.inputID[KEY_INPUT_F4] == 1 && gs.procSelecter == SCENE_SELECT) {
 			LoopInRange(0, 2, 1, &gs.config.system.screenmode); // 0=desktop 1=windowed 2=borderless
 			gs.is_clicked_screenModeChange = 1;
 		}
@@ -2661,7 +2645,7 @@ int main(int argc, char** argv) {
 			SetObjectStrings_SongSelect(&gs);
 		}
 		SetMouseDispFlag((gs.KeyInput.mouse_oldX >= 0 && gs.KeyInput.mouse_oldX < skinSizeX && gs.KeyInput.mouse_oldY >= 0 && gs.KeyInput.mouse_oldY < skinSizeY) ? 0 : 1); //TODO_RESOULUTION
-		if ( (gs.procSelecter == 2 || gs.procSelecter == 9) && gs.KeyInput.inputID[KEY_INPUT_ESCAPE]
+		if ( (gs.procSelecter == SCENE_SELECT || gs.procSelecter == SCENE_PO4MENU) && gs.KeyInput.inputID[KEY_INPUT_ESCAPE]
 				&& (GetTimeLapse(4,&gs.timer1) < 0.0 || GetTimeLapse(4, &gs.timer1) > 100.0) 
 				&& gs.txtStruct.st_text_num == -1 
 				&& GetTimeLapse(0, &gs.timer1) > gs.skstruct.startinput_start ){

@@ -50,6 +50,7 @@
     <ClInclude Include="..\LR2\LR2_ir.h" />
     <ClInclude Include="..\LR2\LR2_makemp3.h" />
     <ClInclude Include="..\LR2\LR2_replay.h" />
+    <ClInclude Include="..\LR2\LR2_scene.h" />
     <ClInclude Include="..\LR2\LR2_skindraw.h" />
     <ClInclude Include="..\LR2\LR2_skinload.h" />
     <ClInclude Include="..\LR2\LR2_skinmanage.h" />
@@ -94,6 +95,7 @@
     <ClCompile Include="..\LR2\LR2_ir.cpp" />
     <ClCompile Include="..\LR2\LR2_makemp3.cpp" />
     <ClCompile Include="..\LR2\LR2_replay.cpp" />
+    <ClCompile Include="..\LR2\LR2_scene.cpp" />
     <ClCompile Include="..\LR2\LR2_skindraw.cpp" />
     <ClCompile Include="..\LR2\LR2_skinload.cpp" />
     <ClCompile Include="..\LR2\LR2_skinmanage.cpp" />
