@@ -1100,7 +1100,7 @@ int main(int argc, char** argv) {
 					break;
 
 				case SCENE_PLAY:
-					ProcB_Play(&gs, sql3);
+					if(!ProcB_Play(&gs, sql3)) return 0;
 					ProcS_Play(&gs, sql3);
 					break;
 
