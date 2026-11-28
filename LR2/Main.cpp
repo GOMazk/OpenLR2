@@ -1202,46 +1202,9 @@ int main(int argc, char** argv) {
 					ProcS_Select(&gs);
 					break;
 							
-				case SCENE_DECIDE:{
-					DeleteGraph(gs.skstruct.GrHandle[GRHTYPE_STAGE]);
-					gs.skstruct.GrHandle[GRHTYPE_STAGE] = -1;
-					DeleteGraph(gs.skstruct.GrHandle[GRHTYPE_BACKBMP]);
-					gs.skstruct.GrHandle[GRHTYPE_BACKBMP] = -1;
-					DeleteGraph(gs.skstruct.GrHandle[GRHTYPE_BANNER]);
-					gs.skstruct.GrHandle[GRHTYPE_BANNER] = -1;
-					SetTransColor(0, 255, 0);
-					CSTR dir(gs.sSelect.bmsList[gs.sSelect.cur_song].filepath.getDirectory());
-					if (gs.sSelect.bmsList[gs.sSelect.cur_song].isStagefile) {
-						CSTR oBuf;
-						if (FindAltImage(gs.sSelect.bmsList[gs.sSelect.cur_song].stagefile, dir, &oBuf) != 1)
-							gs.sSelect.bmsList[gs.sSelect.cur_song].isStagefile = false;
-						gs.skstruct.GrHandle[GRHTYPE_STAGE] = LoadGraph(oBuf, 0);
-						if (gs.skstruct.GrHandle[GRHTYPE_STAGE] == -1) gs.sSelect.bmsList[gs.sSelect.cur_song].isStagefile = false;
-					}
-					if (gs.sSelect.bmsList[gs.sSelect.cur_song].isBackBMP) {
-						CSTR oBuf;
-						if (FindAltImage(gs.sSelect.bmsList[gs.sSelect.cur_song].backBMP, dir, &oBuf) != 1)
-							gs.sSelect.bmsList[gs.sSelect.cur_song].isBackBMP = false;
-						gs.skstruct.GrHandle[GRHTYPE_BACKBMP] = LoadGraph(oBuf, 0);
-						if (gs.skstruct.GrHandle[GRHTYPE_BACKBMP] == -1) gs.sSelect.bmsList[gs.sSelect.cur_song].isBackBMP = false;
-					}
-					if (gs.sSelect.bmsList[gs.sSelect.cur_song].isBanner) {
-						CSTR oBuf;
-						if (FindAltImage(gs.sSelect.bmsList[gs.sSelect.cur_song].banner, dir, &oBuf) != 1) 
-							gs.sSelect.bmsList[gs.sSelect.cur_song].isBanner = false;
-						gs.skstruct.GrHandle[GRHTYPE_BANNER] = LoadGraph(oBuf, 0); //TOFIX : when banner size is not 300 80, this will break graph size and banner is not displayed until next song
-						if (gs.skstruct.GrHandle[GRHTYPE_BANNER] == -1) gs.sSelect.bmsList[gs.sSelect.cur_song].isBanner = false;
-					}
-					SetTransColor(0, 255, 0);
-							
-					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_DECIDE);
-							
-					StopSysSound(&gs);
-					if (gs.config.play.m_isExtra && gs.audio.sysSound.exdecide.load)
-						PlaySound(&gs.audio, &gs.audio.sysSound.exdecide, gs.audio.chnBgm, -1);
-					else
-						PlaySound(&gs.audio, &gs.audio.sysSound.decide, gs.audio.chnBgm, -1);
-					break; }
+				case SCENE_DECIDE:
+					ProcS_Decide(&gs);
+					break;
 				case SCENE_PLAY:
 					if (gs.gameplay.courseType==0 || gs.gameplay.courseType==2) {
 						SONGDATA sd;
@@ -1717,29 +1680,8 @@ int main(int argc, char** argv) {
 					gs.gameplay.flag_retry = 0;
 					SetObjectString(30, gs.sSelect.stack_searchTitle[gs.sSelect.cur], gs.txtStruct.objectStr);
 					break;
-				case 3:
-					gs.config.play.randSC[PLAYER_1] = 0;
-					gs.config.play.randSC[PLAYER_2] = 0;
-					gs.config.play.randFix[PLAYER_1] = 0;
-					gs.config.play.randFix[PLAYER_2] = 0;
-					InitInputStructure2(&gs.KeyInput);
-					InputToButton(&gs.KeyInput, &gs.config.input, (int)(uint)(gs.sSelect.metaSelected.keymode < 10), 0);
-					if (gs.KeyInput.p1_buttonInput[12] == 1 && gs.KeyInput.p1_buttonInput[13] == 1) {
-						gs.config.play.randSC[PLAYER_1] = 1;
-					}
-					else if (gs.KeyInput.p2_buttonInput[12] == 1 && gs.KeyInput.p2_buttonInput[13] == 1) {
-						gs.config.play.randSC[PLAYER_2] = 1;
-					}
-					else if (gs.KeyInput.p1_buttonInput[12] == 1 || gs.KeyInput.p1_buttonInput[13] == 1 || gs.KeyInput.p2_buttonInput[12] == 1 || gs.KeyInput.p2_buttonInput[13] == 1) {
-						for (int i = 1; i <= 9; i++) {
-							if (gs.KeyInput.p1_buttonInput[i] == 1) {
-								gs.config.play.randFix[PLAYER_1] = i;
-							}
-							if (gs.KeyInput.p2_buttonInput[i] == 1) {
-								gs.config.play.randFix[PLAYER_2] = i;
-							}
-						}
-					}
+				case SCENE_DECIDE:
+					ProcE_Decide(&gs);
 					break;
 				case SCENE_PLAY: {
 					CSTR skinMD5;
