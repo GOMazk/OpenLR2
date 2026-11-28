@@ -208,11 +208,11 @@ int Proc_Result(game *g, skstruct *sk, Timer *T) {
 }
 
 static void QuickRestart(game& game, bool newRandom) {
-	const bool restartCourse = game.procSelecter == 13
+	const bool restartCourse = game.procSelecter == SCENE_COURSERESULT
 		&& (game.gameplay.courseType == 0 || game.gameplay.courseType == 2);
 
 	game.procPhase = 0;
-	game.procSelecter = 4;
+	game.procSelecter = SCENE_PLAY;
 	game.gameplay.flag_retry = newRandom ? 0 : 1;
 	game.gameplay.randomseed = newRandom ? 0 : game.gameplay.randomseed;
 
@@ -252,7 +252,7 @@ int ProcI_Result(game *g) {
 			}
 		}
 	};
-	if (g->config.play.m_gas && g->procSelecter != 13 && g->gameplay.replay.status != 2) {
+	if (g->config.play.m_gas && g->procSelecter != SCENE_COURSERESULT && g->gameplay.replay.status != 2) {
 		switch_gauge_display(g->gameplay, g->KeyInput.p1_buttonInput[13], g->gameplay.player[PLAYER_1]);
 		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 			switch_gauge_display(g->gameplay, g->KeyInput.p2_buttonInput[13], g->gameplay.player[PLAYER_2]);
@@ -319,7 +319,7 @@ int ProcI_Result(game *g) {
 				&& (g->KeyInput.p1_buttonInput[2] == 2 || g->KeyInput.p1_buttonInput[4] == 2 || g->KeyInput.p1_buttonInput[6] == 2 ||
 					g->KeyInput.p2_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[4] == 2 || g->KeyInput.p2_buttonInput[6] == 2) 
 				&& g->gameplay.replay.status != 2 && !g->config.play.m_isLunaris
-				&& (g->procSelecter == 13 || (g->gameplay.courseType != 0 && g->gameplay.courseType != 2))) {
+				&& (g->procSelecter == SCENE_COURSERESULT || (g->gameplay.courseType != 0 && g->gameplay.courseType != 2))) {
 
 				const bool newRandom = g->config.play.newRandomRestart && (g->KeyInput.p1_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[2] == 2);
 				QuickRestart(*g, newRandom);
@@ -341,7 +341,7 @@ int ProcI_Result(game *g) {
 				}
 			}
 			else {
-				g->procSelecter = 2;
+				g->procSelecter = SCENE_SELECT;
 				g->gameplay.flag_retry = 0;
 			}
 

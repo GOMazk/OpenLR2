@@ -650,7 +650,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 									} while (g->gameplay.targetScore.DealJudgeFromQueue() == 0);
 									g->gameplay.bmsobj_note[key].draw_count++;
 								}
-								else if (cfg->battle == OPTION_BATTLE_BATTLE || (g->skinData.select > 11 && g->procSelecter == 7)) {
+								else if (cfg->battle == OPTION_BATTLE_BATTLE || (g->skinData.select > 11 && g->procSelecter == SCENE_SKINSELECT)) {
 									if (g->net.rankingData.target_ID <= 0 || g->gameplay.targetScore.ghostReadCount <= 0) {
 										ApplyJudgeNote(5, g, key / 10, key, T, 0);
 										g->gameplay.bmsobj_note[key].draw_count++;
@@ -1151,7 +1151,7 @@ int ProcNoteOnTiming(game *g, int lane, int keypress, int timing, int player) {
 
 static void QuickRestart(game& game, bool newRandom) {
 	game.procPhase = 0;
-	game.procSelecter = 4;
+	game.procSelecter = SCENE_PLAY;
 	game.gameplay.flag_retry = newRandom ? 0 : 1;
 	game.gameplay.randomseed = newRandom ? 0 : game.gameplay.randomseed;
 
@@ -1207,13 +1207,13 @@ int ProcI_Play(game *g) {
 	if (g->procPhase == 2) {
 		timeLimit = g->skstruct.fadeout;
 		gameTime = GetTimeLapse(2, &g->timer1);
-		if (timeLimit < gameTime || timeLimit == 0) g->procSelecter = 5;
+		if (timeLimit < gameTime || timeLimit == 0) g->procSelecter = SCENE_RESULT;
 		proc_quickrestart(*g);
 	}
 	else if (g->procPhase == 3) {
 		timeLimit = g->skstruct.close;
 		gameTime = GetTimeLapse(3, &g->timer1);
-		if (timeLimit < gameTime || timeLimit == 0) g->procSelecter = 5;
+		if (timeLimit < gameTime || timeLimit == 0) g->procSelecter = SCENE_RESULT;
 		proc_quickrestart(*g);
 	}
 	return 1;
@@ -1287,7 +1287,7 @@ int ProcGame(game *g) {
 				ReactInput(g);
 			}
 
-			if (g->is_starter || (g->procSelecter == 4 && g->procPhase != 2 && g->procPhase != 3)) {
+			if (g->is_starter || (g->procSelecter == SCENE_PLAY && g->procPhase != 2 && g->procPhase != 3)) {
 				if ((g->gameplay.player[PLAYER_1].HP[gaugeType[PLAYER_1]] >= 2.0 || g->config.play.battle == OPTION_BATTLE_BATTLE) && (g->gameplay.player[PLAYER_1].HP[gaugeType[PLAYER_1]] >= 2.0 || g->gameplay.player[PLAYER_2].HP[gaugeType[PLAYER_2]] >= 2.0 || g->config.play.battle != OPTION_BATTLE_BATTLE) || g->gameplay.isPreviewLoad) {
 
 					if (g->gameplay.isAutoplay == 0 && !g->config.play.m_isLunaris && g->gameplay.isPreviewLoad == 0) {
@@ -1580,7 +1580,7 @@ int ProcGame(game *g) {
 		}
 
 		if (g->is_starter == 0) {
-			if (g->procSelecter != 4 || g->procPhase == 2 || g->procPhase == 3) {
+			if (g->procSelecter != SCENE_PLAY || g->procPhase == 2 || g->procPhase == 3) {
 				break;
 			}
 		}
@@ -1618,7 +1618,7 @@ int ProcGame(game *g) {
 		}
 	}
 
-	if (g->procSelecter != 2) {
+	if (g->procSelecter != SCENE_SELECT) {
 		if (g->is_recordmode == 0 || g->rec.recMode == 2) {
 			ReactInput(g);
 			int gaugeType[PLAYER_MAX] = { g->gameplay.player[PLAYER_1].gaugeType, g->gameplay.player[PLAYER_2].gaugeType };

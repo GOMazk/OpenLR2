@@ -953,7 +953,7 @@ int main(int argc, char** argv) {
 
 	GetTimeWrap();
 	if (gs.is_starter) {
-		gs.procSelecter = 11;
+		gs.procSelecter = SCENE_PO4SELECT;
 		gs.po4procSelecter = 0;
 	}
 

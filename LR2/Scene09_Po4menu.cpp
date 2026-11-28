@@ -139,11 +139,11 @@ int ProcI_PO4Menu(game *g, sqlite3 */*sql*/) { //not tested
 				if (g->procPhase == 2) {
 					if (GetTimeLapse(2, &g->timer1) > g->skstruct.fadeout || g->skstruct.fadeout == 0) {
 						if (g->sSelect.is_clicked_keyconfig == 1) {
-							g->procSelecter = 6;
+							g->procSelecter = SCENE_KEYCONFIG;
 							g->sSelect.is_clicked_keyconfig = 0;
 						}
 						else if (g->sSelect.is_clicked_skinselect == 1) {
-							g->procSelecter = 7;
+							g->procSelecter = SCENE_SKINSELECT;
 							g->sSelect.is_clicked_skinselect = 0;
 						}
 					}
@@ -223,7 +223,7 @@ int ProcI_PO4Menu(game *g, sqlite3 */*sql*/) { //not tested
 				}
 				else {
 					g->po4MainMenuCursor = g->sSelect.bmsList[g->sSelect.cur_song].level;
-					g->procSelecter = (g->po4MainMenuCursor != 6) ? 10 : 0;
+					g->procSelecter = (g->po4MainMenuCursor != 6) ? SCENE_PO4DECIDE : 0;
 				}
 			}
 		}

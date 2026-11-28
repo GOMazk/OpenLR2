@@ -32,12 +32,12 @@ template <class... Ts> struct overloaded : Ts...
 
 int SetTarget(game *g) {
 
-	if (g->net.rankingData.showRanking == 1 && g->procSelecter == 2) {
+	if (g->net.rankingData.showRanking == 1 && g->procSelecter == SCENE_SELECT) {
 		SetObjectString(1, g->sSelect.bmsList[g->sSelect.cur_song].title, g->txtStruct.objectStr);
 		return 1;
 	}
 
-	if (g->sSelect.stack_query[g->sSelect.cur].findStrPos("__RIVAL__") >= 0 && g->procSelecter == 2) {
+	if (g->sSelect.stack_query[g->sSelect.cur].findStrPos("__RIVAL__") >= 0 && g->procSelecter == SCENE_SELECT) {
 		SetObjectString(1, g->sSelect.stack_searchTitle[g->sSelect.cur], g->txtStruct.objectStr);
 		return 1;
 	}
@@ -1882,11 +1882,11 @@ static void ThreadProc_LoadPreview(game *g) {
 
 	g->gameplay.isPreviewLoad = 1;
 	ParseBmsFile(&g->gameplay, g->gameplay.previewBMSfilepath, &g->audio, &g->config, &meta, 0, 0);
-	if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
+	if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == SCENE_SELECT && g->gameplay.previewStatus == 1) {
 		LoadBmsResource(&g->gameplay, g->gameplay.previewBMSfilepath, &g->audio, &g->config, &meta, 0, g->skstruct.flag_flip, 1, false);
 	}
 
-	if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
+	if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == SCENE_SELECT && g->gameplay.previewStatus == 1) {
 		g->gameplay.bmsobj.note_count = 0;
 		SetTimeLapse(41, &g->timer1);
 		SetTimeLapse(142, &g->timer1);
@@ -2101,12 +2101,12 @@ int ProcS_Select(game *g_) {
 	g.sSelect.levelBarGraph[4] = g.sSelect.levelIndicatorAnimation[4];
 	g.sSelect.levelsOfSong[4] = cur.difficultyLevel[4];
 
-	if (cur.isBanner && g.skstruct.reloadbanner == 1 && g.procSelecter == 2) {
+	if (cur.isBanner && g.skstruct.reloadbanner == 1 && g.procSelecter == SCENE_SELECT) {
 		g.hThreadBanner.push_back(std::async(std::launch::async, MyLoadImage,
 					cur.filepath.getDirectory(),
 					cur.banner));
 	}
-	if (g.procSelecter == 2) {
+	if (g.procSelecter == SCENE_SELECT) {
 		if (cur.keymode >= 5 && (cur.courseStageCount < 1 || cur.courseIR)) {
 			g.net.WaitForRankingHandle();
 			if (g.sSelect.stack_query[g.sSelect.cur].findStrPos("__RIVAL__") == -1/*not LR2IR rival, matches ThreadProc_RankingAutoUpdate*/) {
@@ -2227,7 +2227,7 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 					g->sSelect.nowBar = g->sSelect.listTopbar;
 					g->sSelect.cur_song = GetSongCursor(g);
 					g->net.rankingData.showRanking = 0;
-					if (g->sSelect.stack_query[g->sSelect.cur].findStrPos("__RIVAL__") >= 0 && g->procSelecter == 2) {
+					if (g->sSelect.stack_query[g->sSelect.cur].findStrPos("__RIVAL__") >= 0 && g->procSelecter == SCENE_SELECT) {
 						SetObjectString(1, g->sSelect.stack_searchTitle[g->sSelect.cur], g->txtStruct.objectStr);
 					}
 					else {
@@ -2373,15 +2373,15 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 			if (g->procPhase == 2) {
 				if (GetTimeLapse(2, &g->timer1) > g->skstruct.fadeout || g->skstruct.fadeout == 0) {
 					if (g->sSelect.is_clicked_keyconfig == 1) {
-						g->procSelecter = 6;
+						g->procSelecter = SCENE_KEYCONFIG;
 						g->sSelect.is_clicked_keyconfig = 0;
 					}
 					else if (g->sSelect.is_clicked_skinselect == 1) {
-						g->procSelecter = 7;
+						g->procSelecter = SCENE_SKINSELECT;
 						g->sSelect.is_clicked_skinselect = 0;
 					}
 					else {
-						g->procSelecter = 9;
+						g->procSelecter = SCENE_PO4MENU;
 					}
 				}
 				return;
@@ -2400,7 +2400,7 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 					return;
 				}
 				else if (((g->sSelect.bmsList[g->sSelect.cur_song].courseStageCount <= 0 || g->sSelect.bmsList[g->sSelect.cur_song].coursePlayable == 1) && g->sSelect.bmsList[g->sSelect.cur_song].keymode >= 1)) {
-					g->procSelecter = 3;
+					g->procSelecter = SCENE_DECIDE;
 					return;
 				}
 			}
@@ -2417,7 +2417,7 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 							ErrorLogAdd("ホールド開始\n");
 						}
 						else {
-							g->procSelecter = 3;
+							g->procSelecter = SCENE_DECIDE;
 							g->gameplay.replay.status = 0;
 							g->gameplay.isAutoplay = 1;
 							ErrorLogAdd("ホールド無しでオートプレイ\n");
@@ -2434,7 +2434,7 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 						return;
 					}
 					else if (g->KeyInput.p1_buttonInput[6] == 0 && g->KeyInput.p2_buttonInput[6] == 0 && g->KeyInput.p1_buttonInput[1] == 0) {
-						g->procSelecter = 3;
+						g->procSelecter = SCENE_DECIDE;
 						g->gameplay.replay.status = 0;
 						g->gameplay.isAutoplay = 1;
 						ResetTimeLapse(172, &g->timer1);
@@ -2442,7 +2442,7 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 						return;
 					}
 					else if (GetTimeLapse(172, &g->timer1) > 2000.0) {
-						g->procSelecter = 3;
+						g->procSelecter = SCENE_DECIDE;
 						g->gameplay.replay.status = 2;
 						g->gameplay.isAutoplay = 0;
 						ErrorLogAdd("ホールド1秒でリプレイ\n");
@@ -2727,7 +2727,7 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 						}
 					}
 					else {
-						g->procSelecter = 3;
+						g->procSelecter = SCENE_DECIDE;
 						g->gameplay.isAutoplay = 0;
 					}
 					return;
@@ -3358,13 +3358,13 @@ int InitSelectBySearchResult(game *g, sqlite3 *sql) {
 				if (g->sSelect.filter_clicked == 8) {
 					g->sSelect.listTopbar = 0;
 					flag = 1;
-					g->procSelecter = 3;
+					g->procSelecter = SCENE_DECIDE;
 					g->gameplay.isAutoplay = 0;
 				}
 				if (g->sSelect.filter_clicked == 9) {
 					g->sSelect.listTopbar = 0;
 					flag = 1;
-					g->procSelecter = 3;
+					g->procSelecter = SCENE_DECIDE;
 					g->gameplay.isAutoplay = 1;
 				}
 				if (g->sSelect.filter_clicked == 7) {
@@ -3461,7 +3461,7 @@ int InitSelectBySearchResult(game *g, sqlite3 *sql) {
 				SetTimeLapse(11, &g->timer1);
 				ProcS_Select(g);
 				if (g->sSelect.searchMax == 1 && g->sSelect.rivalID == 0) {
-					g->procSelecter = 3;
+					g->procSelecter = SCENE_DECIDE;
 					g->gameplay.isAutoplay = 0;
 					g->isSkipDrawTick = 1;
 				}

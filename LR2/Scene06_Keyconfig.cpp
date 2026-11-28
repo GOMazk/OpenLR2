@@ -2,6 +2,7 @@
 #include "LR2_configsave.h"
 #include "LR2_skinobject.h"
 #include "LR2_skinload.h"
+#include "LR2_scene.h"
 #include "filesystem.h"
 
 int ProcB_Keyconfig(game* g) {
@@ -59,7 +60,7 @@ int ProcI_Keyconfig(game *g) {
 	enum { PHASE_NORMAL = 1, PHASE_FADEOUT = 2 };
 	if (g->procPhase == PHASE_FADEOUT) {
 		if ( g->skstruct.fadeout < GetTimeLapse(2, &g->timer1) || g->skstruct.fadeout == 0 ) {
-			g->procSelecter = 2;
+			g->procSelecter = SCENE_SELECT;
 		}
 		return 1;
 	}

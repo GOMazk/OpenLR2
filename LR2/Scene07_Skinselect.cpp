@@ -60,7 +60,7 @@ int ProcI_SkinSelect(game *g) {
 	}
 	else if (g->procPhase == 2) {
 		if (GetTimeLapse(2, &g->timer1) > g->skstruct.fadeout|| !g->skstruct.fadeout) {
-			g->procSelecter = 2;
+			g->procSelecter = SCENE_SELECT;
 		}
 	}
 	//retutn to SongSelect END
